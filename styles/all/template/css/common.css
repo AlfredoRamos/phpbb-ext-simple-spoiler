@@ -1,0 +1,26 @@
+/**
+ * Simple Spoiler Extension for phpBB.
+ * @author Alfredo Ramos <alfredo.ramos@yandex.com>
+ * @copyright 2017 Alfredo Ramos
+ * @license GNU GPL-3.0+
+ */
+
+.spoiler {
+	overflow: hidden;
+}
+
+.spoiler .spoiler-trigger {
+	cursor: pointer;
+}
+
+.spoiler .spoiler-header .spoiler-status {
+	float: right;
+}
+
+.spoiler .spoiler-body {
+	display: none;
+}
+
+.spoiler-shown .spoiler-body {
+	display: block;
+}

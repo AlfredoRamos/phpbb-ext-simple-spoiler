@@ -1,0 +1,43 @@
+/**
+ * Simple Spoiler Extension for phpBB.
+ * @author Alfredo Ramos <alfredo.ramos@yandex.com>
+ * @copyright 2017 Alfredo Ramos
+ * @license GNU GPL-3.0+
+ */
+
+.spoiler {
+	background-color: #fff;
+	border-width: 1px;
+	border-color: #ddd;
+	border-style: solid;
+	border-radius: 3px;
+}
+
+.spoiler .spoiler-header,
+.spoiler .spoiler-body {
+	padding: 3px 5px;
+}
+
+.spoiler .spoiler-header {
+	background-color: #f3f3f3;
+	font-size: 80%;
+	font-weight: bold;
+	color: #333;
+}
+
+.spoiler .spoiler-header .spoiler-status {
+	background-color: #5cb85c;
+	padding: 0 4px;
+	border-radius: 3px;
+	color: #fff;
+}
+
+.spoiler .spoiler-body {
+	border-width: 1px 0 0;
+	border-color: #ddd;
+	border-style: solid;
+}
+
+.spoiler-shown .spoiler-header .spoiler-status {
+	background-color: #d9534f;
+}
