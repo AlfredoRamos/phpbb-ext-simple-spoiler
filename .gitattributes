@@ -1,0 +1,8 @@
+* text=auto
+tests/ export-ignore
+travis/ export-ignore
+phpunit.xml.dist export-ignore
+build.xml export-ignore
+.travs.yml export-ignore
+.gitignore export-ignore
+.gitattributes export-ignore
