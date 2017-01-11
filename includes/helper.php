@@ -120,22 +120,22 @@ class helper {
 	public function bbcode_data() {
 		return [
 			'bbcode_tag'	=> 'spoiler=',
-			'bbcode_match'	=> '[spoiler={SIMPLETEXT;optional}]{TEXT}[/spoiler]',
+			'bbcode_match'	=> '[spoiler={TEXT2;optional}]{TEXT1}[/spoiler]',
 			'bbcode_tpl'	=> '<xsl:choose>'.
 				'<xsl:when test="@spoiler">'.
 				'<div class="spoiler">'.
 				'<div class="spoiler-header spoiler-trigger clearfix">'.
-				'{SIMPLETEXT} <span class="spoiler-status">Show</span>'.
+				'{TEXT2} <span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
 				'</div>'.
-				'<div class="spoiler-body">{TEXT}</div>'.
+				'<div class="spoiler-body">{TEXT1}</div>'.
 				'</div>'.
 				'</xsl:when>'.
 				'<xsl:otherwise>'.
 				'<div class="spoiler">'.
 				'<div class="spoiler-header spoiler-trigger clearfix">'.
-				'{L_SPOILER} <span class="spoiler-status">Show</span>'.
+				'{L_SPOILER} <span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
 				'</div>'.
-				'<div class="spoiler-body">{TEXT}</div>'.
+				'<div class="spoiler-body">{TEXT1}</div>'.
 				'</div>'.
 				'</xsl:otherwise>'.
 				'</xsl:choose>',

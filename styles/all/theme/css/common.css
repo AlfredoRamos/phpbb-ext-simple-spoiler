@@ -13,14 +13,10 @@
 	cursor: pointer;
 }
 
-.spoiler .spoiler-header .spoiler-status {
-	float: right;
-}
-
-.spoiler .spoiler-body {
+.spoiler > .spoiler-body {
 	display: none;
 }
 
-.spoiler-shown .spoiler-body {
+.spoiler-shown > .spoiler-body {
 	display: block;
 }

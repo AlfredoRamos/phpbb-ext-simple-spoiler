@@ -30,6 +30,7 @@
 	padding: 0 4px;
 	border-radius: 3px;
 	color: #fff;
+	float: right;
 }
 
 .spoiler .spoiler-body {
@@ -38,6 +39,6 @@
 	border-style: solid;
 }
 
-.spoiler-shown .spoiler-header .spoiler-status {
+.spoiler-shown > .spoiler-header .spoiler-status {
 	background-color: #d9534f;
 }
