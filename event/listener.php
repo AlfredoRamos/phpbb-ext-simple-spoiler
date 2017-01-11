@@ -10,20 +10,25 @@
 namespace alfredoramos\simplespoiler\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use phpbb\config\config;
-use phpbb\controller\helper;
-use phpbb\template\template;
-use phpbb\user;
-use alfredoramos\simplespoiler\includes\helper as spoiler_helper;
 
 class listener implements EventSubscriberInterface {
 
+	/**
+	 * Assign functions defined in this class to event listeners
+	 * in the core.
+	 * @return	array
+	 */
 	static public function getSubscribedEvents() {
 		return [
 			'core.user_setup'	=> 'user_setup'
 		];
 	}
 
+	/**
+	 * Load language files and modify user data on every page.
+	 * @param	object	$event
+	 * @return	void
+	 */
 	public function user_setup($event) {
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [

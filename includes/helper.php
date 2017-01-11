@@ -18,6 +18,13 @@ class helper {
 	protected $php_ext;
 	protected $acp_bbcodes;
 
+	/**
+	 * Constructor of the helper class.
+	 * @param	\php\db\driver\factory	$db
+	 * @param	string					$phpbb_root_path
+	 * @param	string					$php_ext
+	 * @return	void
+	 */
 	public function __construct(factory $db, $phpbb_root_path, $php_ext) {
 		$this->db = $db;
 		$this->phpbb_root_path = $phpbb_root_path;
@@ -30,6 +37,11 @@ class helper {
 		$this->acp_bbcodes = new \acp_bbcodes;
 	}
 
+	/**
+	 * Check whether BBCode already exists.
+	 * @param	string		$bbcode_tag
+	 * @return	boolean|int
+	 */
 	public function bbcode_exists($bbcode_tag = '') {
 		if (empty($bbcode_tag)) {
 			return false;
@@ -45,6 +57,10 @@ class helper {
 		return $bbcode_id;
 	}
 
+	/**
+	 * Calculate the ID for the BBCode that is about to be installed.
+	 * @return	int
+	 */
 	public function bbcode_id() {
 		$sql = 'SELECT MAX(bbcode_id) as last_id
 			FROM ' . BBCODES_TABLE;
@@ -60,6 +76,11 @@ class helper {
 		return $bbcode_id;
 	}
 
+	/**
+	 * Install the new BBCode adding it in the database or updating it
+	 * if it already exists.
+	 * @return	void
+	 */
 	public function install_bbcode() {
 		$data = $this->bbcode_data();
 
@@ -73,13 +94,18 @@ class helper {
 			)
 		);
 
-		if ($id = $this->bbcode_exists($data['bbcode_tag'])) {
-			$this->update_bbcode($id, $data);
+		if ($bbcode_id = $this->bbcode_exists($data['bbcode_tag'])) {
+			$this->update_bbcode($bbcode_id, $data);
 		} else {
 			$this->add_bbcode($data);
 		}
 	}
 
+	/**
+	 * Add the BBCode in the database.
+	 * @param	array			$data
+	 * @return	boolean|void
+	 */
 	public function add_bbcode($data = []) {
 		if (empty($data) ||
 			(!empty($data['bbcode_id']) && $data['bbcode_id'] > BBCODE_LIMIT)
@@ -93,30 +119,44 @@ class helper {
 
 	}
 
-	public function update_bbcode($id = 0, $data = []) {
-		if (empty($id) || empty($data)) {
+	/**
+	 * Update BBCode data if it already exists.
+	 * @param	int				$bbcode_id
+	 * @param	array			$data
+	 * @return	boolean|void
+	 */
+	public function update_bbcode($bbcode_id = 0, $data = []) {
+		if (empty($bbcode_id) || empty($data)) {
 			return false;
 		}
 
-		$id = (int) $id;
+		$bbcode_id = (int) $bbcode_id;
 		unset($data['bbcode_id']);
 
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
 			SET ' . $this->db->sql_build_array('UPDATE', $data) . '
-			WHERE bbcode_id = ' . $id;
+			WHERE bbcode_id = ' . $bbcode_id;
 		$this->db->sql_query($sql);
 	}
 
+	/**
+	 * Uninstall the BBCode from the database.
+	 * @return	boolean|void
+	 */
 	public function uninstall_bbcode() {
 		$data = $this->bbcode_data();
 		unset($data['bbcode_id']);
-		$id = $this->bbcode_exists($data['bbcode_tag']);
+		$bbcode_id = $this->bbcode_exists($data['bbcode_tag']);
 
 		$sql = 'DELETE FROM ' . BBCODES_TABLE . '
-			WHERE bbcode_id = ' . $id;
+			WHERE bbcode_id = ' . $bbcode_id;
 		$this->db->sql_query($sql);
 	}
 
+	/**
+	 * BBCode data used in the migration files.
+	 * @return	array
+	 */
 	public function bbcode_data() {
 		return [
 			'bbcode_tag'	=> 'spoiler=',
