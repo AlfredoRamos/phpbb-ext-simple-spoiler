@@ -5,13 +5,5 @@ services:
             - '@dbal.conn'
             - '%core.root_path%'
             - '%core.php_ext%'
-
     alfredoramos.simplespoiler.listener:
         class: alfredoramos\simplespoiler\event\listener
-        arguments:
-            - '@config'
-            - '@controller.helper'
-            - '@template'
-            - '@user'
-            - '%core.php_ext%'
-            - '@alfredoramos.simplespoiler.helper'
