@@ -35,11 +35,12 @@ First level
 **Preview:**
 
 [![Preview](https://i.imgur.com/NPzw8nkm.png)](https://i.imgur.com/NPzw8nk.png)
+
 *(Click to view in full size)*
 
 ### Configuration
 
-To add support for more styles simply copy the content of the `styles/prosilver/theme/` directory to `styles/<NEW_STYLE>/theme/`.
+To add support for more styles simply copy the content of the `styles/prosilver/theme/` directory into `styles/<NEW_STYLE>/theme/`.
 
 To customize the look and colors, edit the following files:
 
