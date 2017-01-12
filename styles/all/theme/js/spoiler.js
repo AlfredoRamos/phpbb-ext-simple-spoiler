@@ -10,8 +10,8 @@
 $(function() {
 	$.fn.initSpoilers = function($options = {}) {
 		// Debug
-		console.log(this.length);
-		console.log($options);
+		//console.log(this.length);
+		//console.log($options);
 
 		// Overwrite options
 		$options = $.extend({
