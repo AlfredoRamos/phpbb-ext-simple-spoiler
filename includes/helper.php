@@ -164,16 +164,18 @@ class helper {
 			'bbcode_tpl'	=> '<xsl:choose>'.
 				'<xsl:when test="@spoiler">'.
 				'<div class="spoiler">'.
-				'<div class="spoiler-header spoiler-trigger clearfix">'.
-				'{TEXT2} <span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
+				'<div class="spoiler-header spoiler-trigger">'.
+				'<span class="spoiler-title">{TEXT2}</span>'.
+				'<span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
 				'</div>'.
 				'<div class="spoiler-body">{TEXT1}</div>'.
 				'</div>'.
 				'</xsl:when>'.
 				'<xsl:otherwise>'.
 				'<div class="spoiler">'.
-				'<div class="spoiler-header spoiler-trigger clearfix">'.
-				'{L_SPOILER} <span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
+				'<div class="spoiler-header spoiler-trigger">'.
+				'<span class="spoiler-title">{L_SPOILER}</span>'.
+				'<span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
 				'</div>'.
 				'<div class="spoiler-body">{TEXT1}</div>'.
 				'</div>'.

@@ -6,9 +6,7 @@
  */
 
 .spoiler {
-	background-color: #fff;
 	border-width: 1px;
-	border-color: #ddd;
 	border-style: solid;
 	border-radius: 3px;
 }
@@ -19,26 +17,18 @@
 }
 
 .spoiler .spoiler-header {
-	background-color: #f3f3f3;
-	font-size: 80%;
-	font-weight: bold;
-	color: #333;
+	display: flex;
+	justify-content: space-between;
 }
 
 .spoiler .spoiler-header .spoiler-status {
-	background-color: #5cb85c;
 	padding: 0 4px;
 	border-radius: 3px;
-	color: #fff;
-	float: right;
+	font-size: 80%;
+	font-weight: bold;
 }
 
 .spoiler .spoiler-body {
 	border-width: 1px 0 0;
-	border-color: #ddd;
 	border-style: solid;
-}
-
-.spoiler-shown > .spoiler-header .spoiler-status {
-	background-color: #d9534f;
 }
