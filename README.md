@@ -2,6 +2,8 @@
 
 Simple Spoiler Extension for phpBB 3.2.x
 
+[![Build Status](https://img.shields.io/travis/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square&maxAge=3600)](https://travis-ci.org/AlfredoRamos/phpbb-ext-simple-spoiler) [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-simple-spoiler.svg?label=stable&style=flat-square&maxAge=3600)](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/releases) [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-simple-spoiler/master/LICENSE)
+
 ### Dependencies
 
 - `php` v5.6 or greater
@@ -34,7 +36,7 @@ First level
 
 **Preview:**
 
-[![Preview](https://i.imgur.com/NPzw8nkm.png)](https://i.imgur.com/NPzw8nk.png)
+[![Preview](https://i.imgur.com/kg8Wtw5m.png)](https://i.imgur.com/kg8Wtw5.png)
 
 *(Click to view in full size)*
 
@@ -58,4 +60,4 @@ Note: By default it's hidden from the posting box, if you want to show it follow
 
 - Go to your `Administration Control Panel` > `Customize` > `Manage extensions`
 - Click on `Disable` and confirm.
-- Go back to `Manage extensions` and click `Delete data` and confirm.
+- Go back to `Manage extensions` > `Simple Spoiler` > `Delete data` and confirm.
