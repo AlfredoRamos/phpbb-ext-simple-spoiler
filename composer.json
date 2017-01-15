@@ -26,6 +26,12 @@
 		"display-name": "Simple Spoiler",
 		"soft-require": {
 			"phpbb/phpbb": "~3.2"
+		},
+		"version-check": {
+			"host": "alfredoramos.github.io",
+			"directory": "/phpbb-extensions",
+			"filename": "simple-spoiler.json",
+			"ssl": true
 		}
 	}
 }
