@@ -40,11 +40,11 @@ class helper {
 	/**
 	 * Check whether BBCode already exists.
 	 * @param	string		$bbcode_tag
-	 * @return	boolean|int
+	 * @return	int
 	 */
 	public function bbcode_exists($bbcode_tag = '') {
 		if (empty($bbcode_tag)) {
-			return false;
+			return -1;
 		}
 
 		$sql = 'SELECT bbcode_id
@@ -147,6 +147,10 @@ class helper {
 		$data = $this->bbcode_data();
 		unset($data['bbcode_id']);
 		$bbcode_id = $this->bbcode_exists($data['bbcode_tag']);
+
+		if ($bbcode_id <= NUM_CORE_BBCODES) {
+			return false;
+		}
 
 		$sql = 'DELETE FROM ' . BBCODES_TABLE . '
 			WHERE bbcode_id = ' . $bbcode_id;
