@@ -6,10 +6,8 @@ Simple Spoiler Extension for phpBB 3.2.x
 
 ### Dependencies
 
-- `php` v5.6 or greater
-- `phpBB` v3.2 or greater
-- `jQuery`v1.11.0 or greater
-- A modern web browser with decent CSS3 support
+- `php` 5.6 or greater
+- `phpBB` 3.2.0 or greater
 
 ### Installation
 
