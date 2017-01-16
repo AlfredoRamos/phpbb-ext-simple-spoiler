@@ -59,3 +59,9 @@ Note: By default it's hidden from the posting box, if you want to show it follow
 - Go to your `Administration Control Panel` > `Customize` > `Manage extensions`
 - Click on `Disable` and confirm.
 - Go back to `Manage extensions` > `Simple Spoiler` > `Delete data` and confirm.
+
+### Translations
+
+Thanks to the following people for contributing with translations:
+
+- [Smayliks](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=185974) - Russian (`ru`) language
