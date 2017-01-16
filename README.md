@@ -7,7 +7,7 @@ Simple Spoiler Extension for phpBB 3.2.x
 ### Dependencies
 
 - `php` 5.6 or greater
-- `phpBB` 3.2.0 or greater
+- `phpBB` 3.2 or greater
 
 ### Installation
 
@@ -60,8 +60,8 @@ Note: By default it's hidden from the posting box, if you want to show it follow
 - Click on `Disable` and confirm.
 - Go back to `Manage extensions` > `Simple Spoiler` > `Delete data` and confirm.
 
-### Translations
+### Contributors
 
-Thanks to the following people for contributing with translations:
+Thanks to the following people for contributing to the extension:
 
 - [Smayliks](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=185974) - Russian (`ru`) language
