@@ -169,7 +169,16 @@ class helper {
 				'<xsl:when test="@spoiler">'.
 				'<div class="spoiler">'.
 				'<div class="spoiler-header spoiler-trigger">'.
-				'<span class="spoiler-title">{TEXT2}</span>'.
+				'<span class="spoiler-title">'.
+				'<xsl:choose>'.
+				'<xsl:when test="string-length(@spoiler) > 65">'.
+				'<xsl:value-of select="substring(@spoiler, 0, 65)"/>'.
+				'</xsl:when>'.
+				'<xsl:otherwise>'.
+				'<xsl:value-of select="@spoiler"/>'.
+				'</xsl:otherwise>'.
+				'</xsl:choose>'.
+				'</span>'.
 				'<span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
 				'</div>'.
 				'<div class="spoiler-body">{TEXT1}</div>'.
