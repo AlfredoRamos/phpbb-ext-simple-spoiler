@@ -33,15 +33,10 @@ env:
     - EPV="1"           # Extension Pre-Validator
     - PHPBB_BRANCH="3.2.x"
 
-
-# Regexp will match
-# phpBB/v3.2.x
-# phpbb/v3.1.10
-# phpbB/V4.0.X
 branches:
   only:
     - master
-    - /^(?i:phpBB)\/(?i:v)\d\.\d\.(?i:\d{1,2}|x)/
+    - /^phpBB\/v\d\.\d\.(?:\d{1,2}|x)/
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
