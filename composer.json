@@ -1,10 +1,10 @@
 {
 	"name": "alfredoramos/simplespoiler",
 	"type": "phpbb-extension",
-	"description": "Spoiler BBCode Extension for phpBB 3.2",
+	"description": "Spoiler BBCode Extension for phpBB 3.2.x",
 	"homepage": "https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler",
-	"version": "1.0.1",
-	"time": "2017-01-16",
+	"version": "1.0.2",
+	"time": "2017-01-18",
 	"keywords": ["phpbb", "extension", "spoiler", "bbcode"],
 	"license": "GPL-3.0+",
 	"authors": [
