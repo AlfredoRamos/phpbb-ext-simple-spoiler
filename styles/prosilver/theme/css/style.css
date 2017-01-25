@@ -38,3 +38,14 @@
 	border-width: 1px 0 0;
 	border-style: solid;
 }
+
+.bbcode-spoiler-::before {
+	content: "\f070";
+	font-style: normal;
+	font-variant: normal;
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 1;
+	font-family: FontAwesome;
+	text-rendering: normal;
+}
