@@ -38,8 +38,47 @@ class helper {
 	}
 
 	/**
+	 * Install the new BBCode adding it in the database or updating it
+	 * if it already exists.
+	 * @return	void
+	 */
+	public function install_bbcode() {
+		// Remove conflicting BBCode
+		$this->remove_bbcode('spoiler');
+
+		$data = $this->bbcode_data();
+		$data['bbcode_id'] = $this->bbcode_id();
+		$data = array_replace(
+			$data,
+			$this->acp_bbcodes->build_regexp(
+				$data['bbcode_match'],
+				$data['bbcode_tpl']
+			)
+		);
+
+		// Get old BBCode ID
+		$old_bbcode_id = $this->bbcode_exists($data['bbcode_tag']);
+
+		// Update or add BBCode
+		if ($old_bbcode_id > NUM_CORE_BBCODES) {
+			$this->update_bbcode($old_bbcode_id, $data);
+		} else {
+			$this->add_bbcode($data);
+		}
+	}
+
+	/**
+	 * Uninstall the BBCode from the database.
+	 * @return	boolean|void
+	 */
+	public function uninstall_bbcode() {
+		$data = $this->bbcode_data();
+		$this->remove_bbcode($data['bbcode_tag']);
+	}
+
+	/**
 	 * Check whether BBCode already exists.
-	 * @param	string		$bbcode_tag
+	 * @param	string	$bbcode_tag
 	 * @return	int
 	 */
 	public function bbcode_exists($bbcode_tag = '') {
@@ -54,6 +93,10 @@ class helper {
 		$bbcode_id = (int) $this->db->sql_fetchfield('bbcode_id');
 		$this->db->sql_freeresult($result);
 
+		// Set invalid index if BBCode doesn't exist to avoid
+		// getting the first record of the table (ID 0)
+		$bbcode_id = $bbcode_id > NUM_CORE_BBCODES ? $bbcode_id : -1;
+
 		return $bbcode_id;
 	}
 
@@ -65,9 +108,9 @@ class helper {
 		$sql = 'SELECT MAX(bbcode_id) as last_id
 			FROM ' . BBCODES_TABLE;
 		$result = $this->db->sql_query($sql);
-		$last_id = (int) $this->db->sql_fetchfield('last_id');
+		$bbcode_id = (int) $this->db->sql_fetchfield('last_id');
 		$this->db->sql_freeresult($result);
-		$bbcode_id = $last_id + 1;
+		$bbcode_id += 1;
 
 		if ($bbcode_id <= NUM_CORE_BBCODES) {
 			$bbcode_id = NUM_CORE_BBCODES + 1;
@@ -76,30 +119,6 @@ class helper {
 		return $bbcode_id;
 	}
 
-	/**
-	 * Install the new BBCode adding it in the database or updating it
-	 * if it already exists.
-	 * @return	void
-	 */
-	public function install_bbcode() {
-		$data = $this->bbcode_data();
-
-		$data['bbcode_id'] = $this->bbcode_id();
-
-		$data = array_replace(
-			$data,
-			$this->acp_bbcodes->build_regexp(
-				$data['bbcode_match'],
-				$data['bbcode_tpl']
-			)
-		);
-
-		if ($bbcode_id = $this->bbcode_exists($data['bbcode_tag'])) {
-			$this->update_bbcode($bbcode_id, $data);
-		} else {
-			$this->add_bbcode($data);
-		}
-	}
 
 	/**
 	 * Add the BBCode in the database.
@@ -120,39 +139,39 @@ class helper {
 	}
 
 	/**
+	 * Remove BBCode by tag
+	 * @param	string	$bbcode_tag
+	 */
+	public function remove_bbcode($bbcode_tag = '') {
+		if (empty($bbcode_tag)) {
+			return false;
+		}
+
+		$bbcode_id = $this->bbcode_exists($bbcode_tag);
+
+		// Remove only if exists
+		if ($bbcode_id > NUM_CORE_BBCODES) {
+			$sql = 'DELETE FROM ' . BBCODES_TABLE . '
+				WHERE bbcode_id = ' . $bbcode_id;
+			$this->db->sql_query($sql);
+		}
+	}
+
+	/**
 	 * Update BBCode data if it already exists.
 	 * @param	int				$bbcode_id
 	 * @param	array			$data
 	 * @return	boolean|void
 	 */
-	public function update_bbcode($bbcode_id = 0, $data = []) {
-		if (empty($bbcode_id) || empty($data)) {
+	public function update_bbcode($bbcode_id = -1, $data = []) {
+		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data)) {
 			return false;
 		}
 
-		$bbcode_id = (int) $bbcode_id;
 		unset($data['bbcode_id']);
 
 		$sql = 'UPDATE ' . BBCODES_TABLE . '
 			SET ' . $this->db->sql_build_array('UPDATE', $data) . '
-			WHERE bbcode_id = ' . $bbcode_id;
-		$this->db->sql_query($sql);
-	}
-
-	/**
-	 * Uninstall the BBCode from the database.
-	 * @return	boolean|void
-	 */
-	public function uninstall_bbcode() {
-		$data = $this->bbcode_data();
-		unset($data['bbcode_id']);
-		$bbcode_id = $this->bbcode_exists($data['bbcode_tag']);
-
-		if ($bbcode_id <= NUM_CORE_BBCODES) {
-			return false;
-		}
-
-		$sql = 'DELETE FROM ' . BBCODES_TABLE . '
 			WHERE bbcode_id = ' . $bbcode_id;
 		$this->db->sql_query($sql);
 	}
@@ -166,7 +185,8 @@ class helper {
 		return [
 			'bbcode_tag'	=> 'spoiler=',
 			'bbcode_match'	=> '[spoiler={TEXT2;optional}]{TEXT1}[/spoiler]',
-			'bbcode_tpl'	=> sprintf('<xsl:choose>'.
+			'bbcode_tpl'	=> sprintf(
+				'<xsl:choose>'.
 				'<xsl:when test="@spoiler">'.
 				'<div class="spoiler">'.
 				'<div class="spoiler-header spoiler-trigger">'.
@@ -194,7 +214,9 @@ class helper {
 				'<div class="spoiler-body">{TEXT1}</div>'.
 				'</div>'.
 				'</xsl:otherwise>'.
-				'</xsl:choose>', $title_length),
+				'</xsl:choose>',
+				$title_length
+			),
 			'bbcode_helpline'	=> 'SPOILER_HELPLINE',
 			'display_on_posting'	=> 0
 		];
