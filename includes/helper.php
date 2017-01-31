@@ -186,35 +186,32 @@ class helper {
 			'bbcode_tag'	=> 'spoiler=',
 			'bbcode_match'	=> '[spoiler={TEXT2;optional}]{TEXT1}[/spoiler]',
 			'bbcode_tpl'	=> sprintf(
-				'<xsl:choose>'.
-				'<xsl:when test="@spoiler">'.
 				'<div class="spoiler">'.
 				'<div class="spoiler-header spoiler-trigger">'.
 				'<span class="spoiler-title">'.
 				'<xsl:choose>'.
-				'<xsl:when test="string-length(@spoiler) > %1$d">'.
-				'<xsl:value-of select="concat(substring(@spoiler, 0, %1$d), \'...\')"/>'.
+				'<xsl:when test="@spoiler">'.
+				'<xsl:choose>'.
+				'<xsl:when test="string-length(normalize-space(@spoiler)) = 0">'.
+				'{L_SPOILER}'.
+				'</xsl:when>'.
+				'<xsl:when test="string-length(normalize-space(@spoiler)) > %1$d">'.
+				'<xsl:value-of select="concat(substring(normalize-space(@spoiler), 0, %1$d), \'…\')"/>'.
 				'</xsl:when>'.
 				'<xsl:otherwise>'.
-				'<xsl:value-of select="@spoiler"/>'.
+				'<xsl:value-of select="normalize-space(@spoiler)"/>'.
+				'</xsl:otherwise>'.
+				'</xsl:choose>'.
+				'</xsl:when>'.
+				'<xsl:otherwise>'.
+				'{L_SPOILER}'.
 				'</xsl:otherwise>'.
 				'</xsl:choose>'.
 				'</span>'.
 				'<span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
 				'</div>'.
 				'<div class="spoiler-body">{TEXT1}</div>'.
-				'</div>'.
-				'</xsl:when>'.
-				'<xsl:otherwise>'.
-				'<div class="spoiler">'.
-				'<div class="spoiler-header spoiler-trigger">'.
-				'<span class="spoiler-title">{L_SPOILER}</span>'.
-				'<span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
-				'</div>'.
-				'<div class="spoiler-body">{TEXT1}</div>'.
-				'</div>'.
-				'</xsl:otherwise>'.
-				'</xsl:choose>',
+				'</div>',
 				$title_length
 			),
 			'bbcode_helpline'	=> 'SPOILER_HELPLINE',
