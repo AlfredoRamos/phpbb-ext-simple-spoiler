@@ -2,13 +2,13 @@
  * Spoiler jQuery
  * https://github.com/AlfredoRamos/snippets/tree/master/javascript/spoiler
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
- * @version 0.1.0
+ * @version 0.1.1
  * @copyright (c) 2016 Alfredo Ramos
  * @license GNU GPL-3.0+
  */
 
 $(function() {
-	$.fn.initSpoilers = function($options = {}) {
+	$.fn.initSpoilers = function($options) {
 		// Debug
 		//console.log(this.length);
 		//console.log($options);
@@ -34,9 +34,7 @@ $(function() {
 
 				// Toggle status text
 				$spoiler.status.text(
-					$spoiler.body.is(':visible')
-						? $options.hideText
-						: $options.showText
+					$spoiler.body.is(':visible') ? $options.hideText : $options.showText
 				);
 			});
 		});
