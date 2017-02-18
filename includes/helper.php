@@ -9,7 +9,7 @@
 
 namespace alfredoramos\simplespoiler\includes;
 
-use phpbb\db\driver\factory;
+use phpbb\db\driver\factory as database;
 
 class helper {
 
@@ -20,12 +20,12 @@ class helper {
 
 	/**
 	 * Constructor of the helper class.
-	 * @param	\php\db\driver\factory	$db
-	 * @param	string					$phpbb_root_path
-	 * @param	string					$php_ext
+	 * @param	\phpbb\db\driver\factory	$db
+	 * @param	string						$phpbb_root_path
+	 * @param	string						$php_ext
 	 * @return	void
 	 */
-	public function __construct(factory $db, $phpbb_root_path, $php_ext) {
+	public function __construct(database $db, $phpbb_root_path, $php_ext) {
 		$this->db = $db;
 		$this->phpbb_root_path = $phpbb_root_path;
 		$this->php_ext = $php_ext;
@@ -94,7 +94,7 @@ class helper {
 		$this->db->sql_freeresult($result);
 
 		// Set invalid index if BBCode doesn't exist to avoid
-		// getting the first record of the table (ID 0)
+		// getting the first record of the table
 		$bbcode_id = $bbcode_id > NUM_CORE_BBCODES ? $bbcode_id : -1;
 
 		return $bbcode_id;
@@ -181,39 +181,14 @@ class helper {
 	 * @return	array
 	 */
 	public function bbcode_data() {
-		$title_length = 65;
+		$xsl = dirname(__FILE__) . '/../styles/all/template/spoiler_template.xsl';
+		$xsl = phpbb_realpath($xsl);
+		$template = file_exists($xsl) ? file_get_contents($xsl) : '';
+
 		return [
 			'bbcode_tag'	=> 'spoiler=',
 			'bbcode_match'	=> '[spoiler={TEXT2;optional}]{TEXT1}[/spoiler]',
-			'bbcode_tpl'	=> sprintf(
-				'<div class="spoiler">'.
-				'<div class="spoiler-header spoiler-trigger">'.
-				'<span class="spoiler-title">'.
-				'<xsl:choose>'.
-				'<xsl:when test="@spoiler">'.
-				'<xsl:choose>'.
-				'<xsl:when test="string-length(normalize-space(@spoiler)) = 0">'.
-				'{L_SPOILER}'.
-				'</xsl:when>'.
-				'<xsl:when test="string-length(normalize-space(@spoiler)) > %1$d">'.
-				'<xsl:value-of select="concat(substring(normalize-space(@spoiler), 0, %1$d), \'…\')"/>'.
-				'</xsl:when>'.
-				'<xsl:otherwise>'.
-				'<xsl:value-of select="normalize-space(@spoiler)"/>'.
-				'</xsl:otherwise>'.
-				'</xsl:choose>'.
-				'</xsl:when>'.
-				'<xsl:otherwise>'.
-				'{L_SPOILER}'.
-				'</xsl:otherwise>'.
-				'</xsl:choose>'.
-				'</span>'.
-				'<span class="spoiler-status">{L_SPOILER_SHOW}</span>'.
-				'</div>'.
-				'<div class="spoiler-body">{TEXT1}</div>'.
-				'</div>',
-				$title_length
-			),
+			'bbcode_tpl'	=> $template,
 			'bbcode_helpline'	=> 'SPOILER_HELPLINE',
 			'display_on_posting'	=> 0
 		];

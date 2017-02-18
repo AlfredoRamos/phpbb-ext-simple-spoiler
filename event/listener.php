@@ -20,7 +20,7 @@ class listener implements EventSubscriberInterface {
 	 */
 	static public function getSubscribedEvents() {
 		return [
-			'core.user_setup'	=> 'user_setup'
+			'core.user_setup' => 'user_setup'
 		];
 	}
 

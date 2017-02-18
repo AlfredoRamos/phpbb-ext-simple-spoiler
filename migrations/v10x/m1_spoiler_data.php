@@ -20,14 +20,17 @@ class m1_spoiler_data extends container_aware_migration {
 	 */
 	public function update_data() {
 		return [
-			['custom', [
+			[
+				'custom',
 				[
-					new spoiler_helper(
-						$this->container->get('dbal.conn'),
-						$this->container->getParameter('core.root_path'),
-						$this->container->getParameter('core.php_ext')
-					),
-					'install_bbcode']
+					[
+						new spoiler_helper(
+							$this->container->get('dbal.conn'),
+							$this->container->getParameter('core.root_path'),
+							$this->container->getParameter('core.php_ext')
+						),
+						'install_bbcode'
+					]
 				]
 			]
 		];
@@ -39,14 +42,17 @@ class m1_spoiler_data extends container_aware_migration {
 	 */
 	public function revert_data() {
 		return [
-			['custom', [
+			[
+				'custom',
 				[
-					new spoiler_helper(
-						$this->container->get('dbal.conn'),
-						$this->container->getParameter('core.root_path'),
-						$this->container->getParameter('core.php_ext')
-					),
-					'uninstall_bbcode']
+					[
+						new spoiler_helper(
+							$this->container->get('dbal.conn'),
+							$this->container->getParameter('core.root_path'),
+							$this->container->getParameter('core.php_ext')
+						),
+						'uninstall_bbcode'
+					]
 				]
 			]
 		];
