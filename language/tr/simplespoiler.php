@@ -2,7 +2,7 @@
 
 /**
  * Simple Spoiler Extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@yandex.com>
+ * @author pikachuturkey
  * @copyright 2017 Alfredo Ramos
  * @license GNU GPL-3.0+
  */
