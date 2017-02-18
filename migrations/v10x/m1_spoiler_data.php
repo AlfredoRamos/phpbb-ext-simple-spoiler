@@ -24,11 +24,7 @@ class m1_spoiler_data extends container_aware_migration {
 				'custom',
 				[
 					[
-						new spoiler_helper(
-							$this->container->get('dbal.conn'),
-							$this->container->getParameter('core.root_path'),
-							$this->container->getParameter('core.php_ext')
-						),
+						new spoiler_helper($this->container),
 						'install_bbcode'
 					]
 				]
@@ -46,11 +42,7 @@ class m1_spoiler_data extends container_aware_migration {
 				'custom',
 				[
 					[
-						new spoiler_helper(
-							$this->container->get('dbal.conn'),
-							$this->container->getParameter('core.root_path'),
-							$this->container->getParameter('core.php_ext')
-						),
+						new spoiler_helper($this->container),
 						'uninstall_bbcode'
 					]
 				]

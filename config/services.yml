@@ -7,6 +7,4 @@ services:
     alfredoramos.simplespoiler.helper:
         class: alfredoramos\simplespoiler\includes\helper
         arguments:
-            - '@dbal.conn'
-            - '%core.root_path%'
-            - '%core.php_ext%'
+            - '@service_container'
