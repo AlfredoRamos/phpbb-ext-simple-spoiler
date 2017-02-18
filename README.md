@@ -65,3 +65,4 @@ Note: By default it's hidden from the posting box, if you want to show it follow
 Thanks to the following people for contributing to the extension:
 
 - [Smayliks](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=185974) - Russian translation
+- [pikachuturkey](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=289380) - Turkish translation
