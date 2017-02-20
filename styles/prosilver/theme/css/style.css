@@ -29,9 +29,10 @@
 .spoiler .spoiler-header .spoiler-status {
 	padding: 0 4px;
 	border-radius: 3px;
-	font-size: 80%;
+	font-size: 0.8em;
 	font-weight: bold;
-	height: 100%;
+	height: 1.75em;
+	margin-left: 3px;
 }
 
 .spoiler .spoiler-body {
