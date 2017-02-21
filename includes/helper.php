@@ -196,7 +196,7 @@ class helper {
 	public function bbcode_data() {
 		// Return absolute path if file exists
 		$xsl = $this->filesystem->realpath(
-			dirname(__FILE__) . '/../styles/all/template/spoiler_template.xsl'
+			__DIR__ . '/../styles/all/template/spoiler_template.xsl'
 		);
 
 		// Store the (trimmed) file content if it is readable
