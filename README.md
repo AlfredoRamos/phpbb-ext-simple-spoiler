@@ -60,6 +60,13 @@ Note: By default it's hidden from the posting box, if you want to show it follow
 - Click on `Disable` and confirm.
 - Go back to `Manage extensions` > `Simple Spoiler` > `Delete data` and confirm.
 
+### Upgrade
+
+- Uninstall the extension.
+- Delete all the files inside `<PHPBB_ROOT>/alfredoramos/simplespoiler/`.
+- Download the new version.
+- Install the extension.
+
 ### Contributors
 
 Thanks to the following people for contributing to the extension:
