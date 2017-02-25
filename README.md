@@ -23,18 +23,11 @@ Write `[spoiler]text[/spoiler]` or `[spoiler=title]text[/spoiler]` and it will h
 
 You can nest `[spoiler]` and write unicode titles in `[spoiler=title]`.
 
-**Example:**
+### Preview
 
-```
-[spoiler=Nested spoilers]
-First level
-[spoiler=«µǹï¢øð€»]Second level
-[spoiler]Third level[/spoiler][/spoiler][/spoiler]
-```
+![Nested spoilers](https://i.imgur.com/IbQLEea.png)
 
-**Preview:**
-
-[![Preview](https://i.imgur.com/kg8Wtw5m.png)](https://i.imgur.com/kg8Wtw5.png)
+![Spoiler title with emojis](http://i.imgur.com/sS61esl.png)
 
 *(Click to view in full size)*
 
