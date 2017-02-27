@@ -1,4 +1,4 @@
-### Information
+### About
 
 Simple Spoiler Extension for phpBB 3.2.x
 
