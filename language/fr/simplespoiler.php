@@ -25,5 +25,5 @@ $lang = array_merge($lang, [
 	'SPOILER'			=> 'Spoiler',
 	'SPOILER_HELPLINE'	=> 'Utilisation : [spoiler]texte[/spoiler] ou [spoiler=titre]texte[/spoiler]',
 	'SPOILER_SHOW'		=> 'Afficher',
-	'SPOILER_HIDE'		=> 'Cacher'
+	'SPOILER_HIDE'		=> 'Masquer'
 ]);
