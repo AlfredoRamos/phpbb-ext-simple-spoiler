@@ -8,12 +8,12 @@
 	-->
 	<property name="has-dependencies" value="false" />
 
+	<!--
+	Remove some unnecessary files/directories
+	${dir}/ is the folder of your extension
+	example: ext/${vendor-name}/${extension-name}/
+	-->
 	<target name="clean-package">
-		<!--
-		Remove some unnecessary files/directories
-		${dir}/ is the folder of your extension
-		example: ext/${vendor-name}/${extension-name}/
-		-->
 		<delete dir="${dir}/tests" />
 		<delete dir="${dir}/travis" />
 		<delete file="${dir}/.gitignore" />
@@ -22,12 +22,19 @@
 		<delete file="${dir}/build.xml" />
 		<delete file="${dir}/phpunit.xml.dist" />
 		<delete file="${dir}/README.md" />
+		<delete file="${dir}/LICENSE" />
 	</target>
 
-	<!--
-	DO NOT EDIT BELOW THIS LINE!!!!
-	-->
+	<!-- Abide licensing terms -->
+	<target name="fix-license">
+		<echo msg="Fixing license headers" />
+		<exec command="find . -type f -path '*.php' -o -name composer.json | xargs sed -ri 's|(GPL-)3\.0\+|\12\.0|'" dir="${dir}" checkreturn="true" />
 
+		<echo msg="Dowloading license.txt" />
+		<exec command="wget https://www.gnu.org/licenses/gpl-2.0.txt -O license.txt" dir="${dir}" checkreturn="true" />
+	</target>
+
+	<!-- DO NOT EDIT BELOW THIS LINE -->
 	<property name="version" value="HEAD" override="true" />
 	<property name="build-directory" value="build" override="true" />
 	<property name="package-directory" value="${build-directory}/package/${vendor-name}/${extension-name}" />
@@ -35,16 +42,12 @@
 	<!-- These are the main targets which you will probably want to use -->
 	<target name="all" depends="prepare-structure,package" />
 
-	<!--
-	Clean up the build directory
-	-->
+	<!-- Clean up the build directory -->
 	<target name="clean">
 		<delete dir="${build-directory}" />
 	</target>
 
-	<!--
-	Recreate the necessary folders
-	-->
+	<!-- Recreate the necessary folders -->
 	<target name="prepare-structure" depends="clean">
 		<mkdir dir="${build-directory}" />
 		<mkdir dir="${build-directory}/checkout" />
@@ -54,9 +57,7 @@
 		<mkdir dir="${build-directory}/upload" />
 	</target>
 
-	<!--
-	The real packaging
-	-->
+	<!-- The real packaging -->
 	<target name="package">
 		<echo msg="Extracting ${version}" />
 
@@ -64,11 +65,14 @@
 			<property name="archive-version" value="${version}" />
 		</phingcall>
 
+		<phingcall target="fix-license">
+			<property name="dir" value="${package-directory}" />
+		</phingcall>
+
 		<if>
 			<equals arg1="${has-dependencies}" arg2="1" />
 			<then>
-				<exec dir="${package-directory}" command="php composer.phar install --no-dev"
-					  checkreturn="true" />
+				<exec dir="${package-directory}" command="composer install --prefer-dist" checkreturn="true" />
 			</then>
 		</if>
 
@@ -78,29 +82,25 @@
 
 		<!-- Try setting the package version property from composer.json -->
 		<exec dir="${package-directory}"
-			  command='php -r "\$j = json_decode(file_get_contents(\"composer.json\")); echo (isset(\$j->version) ? \$j->version : \"${version}\");"'
-			  checkreturn="true"
-			  outputProperty='package-version' />
+			command='php -r "\$j = json_decode(file_get_contents(\"composer.json\")); echo (isset(\$j->version) ? \$j->version : \"${version}\");"'
+			checkreturn="true"
+			outputProperty='package-version' />
 
 		<phingcall target="wrap-package">
 			<property name="destination-filename" value="${build-directory}/upload/${vendor-name}_${extension-name}_${package-version}" />
 		</phingcall>
 	</target>
 
-	<!--
-	Checkout a given version and install/clean the dependencies
-	-->
+	<!-- Checkout a given version and install/clean the dependencies -->
 	<target name="git-checkout">
 		<echo msg="Getting archive for ${archive-version}" />
 
 		<exec command="git archive ${archive-version} --format zip --output ${build-directory}/checkout/${archive-version}.zip"
-			  checkreturn="true" />
+			checkreturn="true" />
 		<unzip file="${build-directory}/checkout/${archive-version}.zip" todir="${package-directory}" />
 	</target>
 
-	<!--
-	Create the zip and tar ball
-	-->
+	<!-- Create the zip and tar ball -->
 	<target name="wrap-package">
 		<echo msg="Creating archives (${vendor-name}/${extension-name} ${version})" />
 		<zip basedir="${build-directory}/package/" destfile="${destination-filename}.zip" />
