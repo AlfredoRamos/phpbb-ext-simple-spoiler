@@ -15,7 +15,8 @@ use alfredoramos\simplespoiler\includes\helper as spoiler_helper;
 class m1_spoiler_data extends container_aware_migration {
 
 	/**
-	 * Install BBCode in database
+	 * Install BBCode in database.
+	 *
 	 * @return	array
 	 */
 	public function update_data() {
@@ -34,6 +35,7 @@ class m1_spoiler_data extends container_aware_migration {
 
 	/**
 	 * Uninstall BBCode from database.
+	 *
 	 * @return	array
 	 */
 	public function revert_data() {

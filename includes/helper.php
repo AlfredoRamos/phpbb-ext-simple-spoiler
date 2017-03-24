@@ -33,7 +33,9 @@ class helper {
 
 	/**
 	 * Constructor of the helper class.
+	 *
 	 * @param Symfony\Component\DependencyInjection\ContainerInterface $container
+	 *
 	 * @return	void
 	 */
 	public function __construct(Container $container) {
@@ -44,15 +46,15 @@ class helper {
 		$this->php_ext = $this->container->getParameter('core.php_ext');
 
 		if (!class_exists('acp_bbcodes')) {
-			require_once $this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext;
+			include($this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
 		}
 
 		$this->acp_bbcodes = new \acp_bbcodes;
 	}
 
 	/**
-	 * Install the new BBCode adding it in the database or updating it
-	 * if it already exists.
+	 * Install the new BBCode adding it in the database or updating it if it already exists.
+	 *
 	 * @return	void
 	 */
 	public function install_bbcode() {
@@ -82,7 +84,8 @@ class helper {
 
 	/**
 	 * Uninstall the BBCode from the database.
-	 * @return	boolean|void
+	 *
+	 * @return	void
 	 */
 	public function uninstall_bbcode() {
 		$data = $this->bbcode_data();
@@ -91,7 +94,9 @@ class helper {
 
 	/**
 	 * Check whether BBCode already exists.
+	 *
 	 * @param	string	$bbcode_tag
+	 *
 	 * @return	int
 	 */
 	public function bbcode_exists($bbcode_tag = '') {
@@ -115,6 +120,7 @@ class helper {
 
 	/**
 	 * Calculate the ID for the BBCode that is about to be installed.
+	 *
 	 * @return	int
 	 */
 	public function bbcode_id() {
@@ -135,14 +141,16 @@ class helper {
 
 	/**
 	 * Add the BBCode in the database.
+	 *
 	 * @param	array			$data
-	 * @return	boolean|void
+	 *
+	 * @return	void
 	 */
 	public function add_bbcode($data = []) {
 		if (empty($data) ||
 			(!empty($data['bbcode_id']) && $data['bbcode_id'] > BBCODE_LIMIT)
 		) {
-			return false;
+			return;
 		}
 
 		$sql = 'INSERT INTO ' . BBCODES_TABLE . ' ' .
@@ -152,12 +160,15 @@ class helper {
 	}
 
 	/**
-	 * Remove BBCode by tag
+	 * Remove BBCode by tag.
+	 *
 	 * @param	string	$bbcode_tag
+	 *
+	 * @return	void
 	 */
 	public function remove_bbcode($bbcode_tag = '') {
 		if (empty($bbcode_tag)) {
-			return false;
+			return;
 		}
 
 		$bbcode_id = $this->bbcode_exists($bbcode_tag);
@@ -172,13 +183,15 @@ class helper {
 
 	/**
 	 * Update BBCode data if it already exists.
+	 *
 	 * @param	int				$bbcode_id
 	 * @param	array			$data
-	 * @return	boolean|void
+	 *
+	 * @return	void
 	 */
 	public function update_bbcode($bbcode_id = -1, $data = []) {
 		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data)) {
-			return false;
+			return;
 		}
 
 		unset($data['bbcode_id']);
@@ -191,6 +204,7 @@ class helper {
 
 	/**
 	 * BBCode data used in the migration files.
+	 *
 	 * @return	array
 	 */
 	public function bbcode_data() {
