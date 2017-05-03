@@ -17,7 +17,7 @@ class m1_spoiler_data extends container_aware_migration {
 	/**
 	 * Install BBCode in database.
 	 *
-	 * @return	array
+	 * @return array
 	 */
 	public function update_data() {
 		return [
@@ -25,7 +25,12 @@ class m1_spoiler_data extends container_aware_migration {
 				'custom',
 				[
 					[
-						new spoiler_helper($this->container),
+						new spoiler_helper(
+							$this->container->get('dbal.conn'),
+							$this->container->get('filesystem'),
+							$this->container->getParameter('core.root_path'),
+							$this->container->getParameter('core.php_ext')
+						),
 						'install_bbcode'
 					]
 				]
@@ -36,7 +41,7 @@ class m1_spoiler_data extends container_aware_migration {
 	/**
 	 * Uninstall BBCode from database.
 	 *
-	 * @return	array
+	 * @return array
 	 */
 	public function revert_data() {
 		return [
@@ -44,7 +49,12 @@ class m1_spoiler_data extends container_aware_migration {
 				'custom',
 				[
 					[
-						new spoiler_helper($this->container),
+						new spoiler_helper(
+							$this->container->get('dbal.conn'),
+							$this->container->get('filesystem'),
+							$this->container->getParameter('core.root_path'),
+							$this->container->getParameter('core.php_ext')
+						),
 						'uninstall_bbcode'
 					]
 				]

@@ -18,7 +18,7 @@ class ext extends base {
 	/**
 	 * Check whether or not the extension can be enabled.
 	 *
-	 * @return	bool
+	 * @return bool
 	 */
 	public function is_enableable() {
 		$config = $this->container->get('config');

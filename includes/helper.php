@@ -9,12 +9,10 @@
 
 namespace alfredoramos\simplespoiler\includes;
 
-use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+use phpbb\db\driver\factory as database;
+use phpbb\filesystem\filesystem;
 
 class helper {
-
-	/** @var Symfony\Component\DependencyInjection\ContainerInterface $container */
-	protected $container;
 
 	/** @var \phpbb\db\driver\factory $db */
 	protected $db;
@@ -22,8 +20,8 @@ class helper {
 	/** @var \phpbb\filesystem\filesystem $filesystem */
 	protected $filesystem;
 
-	/** @var string $phpbb_root_path */
-	protected $phpbb_root_path;
+	/** @var string $root_path */
+	protected $root_path;
 
 	/** @var string $php_ext */
 	protected $php_ext;
@@ -34,19 +32,21 @@ class helper {
 	/**
 	 * Constructor of the helper class.
 	 *
-	 * @param Symfony\Component\DependencyInjection\ContainerInterface $container
+	 * @param \phpbb\db\driver\factory		$db
+	 * @param \phpbb\filesystem\filesystem	$filesystem
+	 * @param string						$root_path
+	 * @param string						$php_ext
 	 *
-	 * @return	void
+	 * @return void
 	 */
-	public function __construct(Container $container) {
-		$this->container = $container;
-		$this->db = $this->container->get('dbal.conn');
-		$this->filesystem = $this->container->get('filesystem');
-		$this->phpbb_root_path = $this->container->getParameter('core.root_path');
-		$this->php_ext = $this->container->getParameter('core.php_ext');
+	public function __construct(database $db, filesystem $filesystem, $root_path, $php_ext) {
+		$this->db = $db;
+		$this->filesystem = $filesystem;
+		$this->root_path = $root_path;
+		$this->php_ext = $php_ext;
 
 		if (!class_exists('acp_bbcodes')) {
-			include($this->phpbb_root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
+			include($this->root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
 		}
 
 		$this->acp_bbcodes = new \acp_bbcodes;
@@ -55,7 +55,7 @@ class helper {
 	/**
 	 * Install the new BBCode adding it in the database or updating it if it already exists.
 	 *
-	 * @return	void
+	 * @return void
 	 */
 	public function install_bbcode() {
 		// Remove conflicting BBCode
@@ -85,7 +85,7 @@ class helper {
 	/**
 	 * Uninstall the BBCode from the database.
 	 *
-	 * @return	void
+	 * @return void
 	 */
 	public function uninstall_bbcode() {
 		$data = $this->bbcode_data();
@@ -95,9 +95,9 @@ class helper {
 	/**
 	 * Check whether BBCode already exists.
 	 *
-	 * @param	string	$bbcode_tag
+	 * @param string	$bbcode_tag
 	 *
-	 * @return	int
+	 * @return int
 	 */
 	public function bbcode_exists($bbcode_tag = '') {
 		if (empty($bbcode_tag)) {
@@ -121,7 +121,7 @@ class helper {
 	/**
 	 * Calculate the ID for the BBCode that is about to be installed.
 	 *
-	 * @return	int
+	 * @return int
 	 */
 	public function bbcode_id() {
 		$sql = 'SELECT MAX(bbcode_id) as last_id
@@ -142,9 +142,9 @@ class helper {
 	/**
 	 * Add the BBCode in the database.
 	 *
-	 * @param	array			$data
+	 * @param array		$data
 	 *
-	 * @return	void
+	 * @return void
 	 */
 	public function add_bbcode($data = []) {
 		if (empty($data) ||
@@ -162,9 +162,9 @@ class helper {
 	/**
 	 * Remove BBCode by tag.
 	 *
-	 * @param	string	$bbcode_tag
+	 * @param string	$bbcode_tag
 	 *
-	 * @return	void
+	 * @return void
 	 */
 	public function remove_bbcode($bbcode_tag = '') {
 		if (empty($bbcode_tag)) {
@@ -184,10 +184,10 @@ class helper {
 	/**
 	 * Update BBCode data if it already exists.
 	 *
-	 * @param	int				$bbcode_id
-	 * @param	array			$data
+	 * @param int		$bbcode_id
+	 * @param array		$data
 	 *
-	 * @return	void
+	 * @return void
 	 */
 	public function update_bbcode($bbcode_id = -1, $data = []) {
 		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data)) {
@@ -205,7 +205,7 @@ class helper {
 	/**
 	 * BBCode data used in the migration files.
 	 *
-	 * @return	array
+	 * @return array
 	 */
 	public function bbcode_data() {
 		// Return absolute path if file exists

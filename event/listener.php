@@ -16,7 +16,7 @@ class listener implements EventSubscriberInterface {
 	/**
 	 * Assign functions defined in this class to event listeners in the core.
 	 *
-	 * @return	array
+	 * @return array
 	 */
 	static public function getSubscribedEvents() {
 		return [
@@ -27,9 +27,9 @@ class listener implements EventSubscriberInterface {
 	/**
 	 * Load language files and modify user data on every page.
 	 *
-	 * @param	object	$event
+	 * @param object	$event
 	 *
-	 * @return	void
+	 * @return void
 	 */
 	public function user_setup($event) {
 		$lang_set_ext = $event['lang_set_ext'];
