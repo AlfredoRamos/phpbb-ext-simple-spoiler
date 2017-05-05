@@ -68,3 +68,4 @@ Thanks to the following people for contributing to the extension:
 - [pikachuturkey](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=289380) - Turkish translation
 - [Nokorbis](https://github.com/Nokorbis) - French translation
 - [manicx](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=48162) - Greek translation
+- [ConeRX](https://github.com/ConeRX) - German translation
