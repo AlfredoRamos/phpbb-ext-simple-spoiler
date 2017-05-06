@@ -4,7 +4,7 @@
  * Simple Spoiler Extension for phpBB.
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @copyright 2017 Alfredo Ramos
- * @license GNU GPL-3.0+
+ * @license GNU GPL-2.0
  */
 
 namespace alfredoramos\simplespoiler\tests\event;

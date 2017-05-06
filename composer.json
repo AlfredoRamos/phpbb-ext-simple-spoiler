@@ -6,7 +6,7 @@
 	"version": "1.0.8",
 	"time": "2017-05-03",
 	"keywords": ["phpbb", "extension", "spoiler", "bbcode"],
-	"license": "GPL-3.0+",
+	"license": "GPL-2.0",
 	"authors": [
 		{
 			"name": "Alfredo Ramos",
