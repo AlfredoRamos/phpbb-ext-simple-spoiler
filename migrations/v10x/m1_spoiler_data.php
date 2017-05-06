@@ -12,14 +12,16 @@ namespace alfredoramos\simplespoiler\migrations\v10x;
 use phpbb\db\migration\container_aware_migration;
 use alfredoramos\simplespoiler\includes\helper as spoiler_helper;
 
-class m1_spoiler_data extends container_aware_migration {
+class m1_spoiler_data extends container_aware_migration
+{
 
 	/**
 	 * Install BBCode in database.
 	 *
 	 * @return array
 	 */
-	public function update_data() {
+	public function update_data()
+	{
 		return [
 			[
 				'custom',
@@ -43,7 +45,8 @@ class m1_spoiler_data extends container_aware_migration {
 	 *
 	 * @return array
 	 */
-	public function revert_data() {
+	public function revert_data()
+	{
 		return [
 			[
 				'custom',

@@ -11,7 +11,8 @@ namespace alfredoramos\simplespoiler;
 
 use phpbb\extension\base;
 
-class ext extends base {
+class ext extends base
+{
 
 	const PHPBB_VERSION = '3.2.0';
 
@@ -20,7 +21,8 @@ class ext extends base {
 	 *
 	 * @return bool
 	 */
-	public function is_enableable() {
+	public function is_enableable()
+	{
 		$config = $this->container->get('config');
 		return phpbb_version_compare($config['version'], self::PHPBB_VERSION, '>=');
 	}

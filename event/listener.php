@@ -11,14 +11,16 @@ namespace alfredoramos\simplespoiler\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class listener implements EventSubscriberInterface {
+class listener implements EventSubscriberInterface
+{
 
 	/**
 	 * Assign functions defined in this class to event listeners in the core.
 	 *
 	 * @return array
 	 */
-	static public function getSubscribedEvents() {
+	static public function getSubscribedEvents()
+	{
 		return [
 			'core.user_setup' => 'user_setup'
 		];
@@ -31,7 +33,8 @@ class listener implements EventSubscriberInterface {
 	 *
 	 * @return void
 	 */
-	public function user_setup($event) {
+	public function user_setup($event)
+	{
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [
 			'ext_name'	=> 'alfredoramos/simplespoiler',

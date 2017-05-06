@@ -12,7 +12,8 @@ namespace alfredoramos\simplespoiler\includes;
 use phpbb\db\driver\factory as database;
 use phpbb\filesystem\filesystem;
 
-class helper {
+class helper
+{
 
 	/** @var \phpbb\db\driver\factory $db */
 	protected $db;
@@ -39,13 +40,15 @@ class helper {
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, $root_path, $php_ext) {
+	public function __construct(database $db, filesystem $filesystem, $root_path, $php_ext)
+	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 
-		if (!class_exists('acp_bbcodes')) {
+		if (!class_exists('acp_bbcodes'))
+		{
 			include($this->root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
 		}
 
@@ -57,7 +60,8 @@ class helper {
 	 *
 	 * @return void
 	 */
-	public function install_bbcode() {
+	public function install_bbcode()
+	{
 		// Remove conflicting BBCode
 		$this->remove_bbcode('spoiler');
 
@@ -75,9 +79,12 @@ class helper {
 		$old_bbcode_id = $this->bbcode_exists($data['bbcode_tag']);
 
 		// Update or add BBCode
-		if ($old_bbcode_id > NUM_CORE_BBCODES) {
+		if ($old_bbcode_id > NUM_CORE_BBCODES)
+		{
 			$this->update_bbcode($old_bbcode_id, $data);
-		} else {
+		}
+		else
+		{
 			$this->add_bbcode($data);
 		}
 	}
@@ -87,7 +94,8 @@ class helper {
 	 *
 	 * @return void
 	 */
-	public function uninstall_bbcode() {
+	public function uninstall_bbcode()
+	{
 		$data = $this->bbcode_data();
 		$this->remove_bbcode($data['bbcode_tag']);
 	}
@@ -99,8 +107,10 @@ class helper {
 	 *
 	 * @return int
 	 */
-	public function bbcode_exists($bbcode_tag = '') {
-		if (empty($bbcode_tag)) {
+	public function bbcode_exists($bbcode_tag = '')
+	{
+		if (empty($bbcode_tag))
+		{
 			return -1;
 		}
 
@@ -123,7 +133,8 @@ class helper {
 	 *
 	 * @return int
 	 */
-	public function bbcode_id() {
+	public function bbcode_id()
+	{
 		$sql = 'SELECT MAX(bbcode_id) as last_id
 			FROM ' . BBCODES_TABLE;
 		$result = $this->db->sql_query($sql);
@@ -131,7 +142,8 @@ class helper {
 		$this->db->sql_freeresult($result);
 		$bbcode_id += 1;
 
-		if ($bbcode_id <= NUM_CORE_BBCODES) {
+		if ($bbcode_id <= NUM_CORE_BBCODES)
+		{
 			$bbcode_id = NUM_CORE_BBCODES + 1;
 		}
 
@@ -146,10 +158,11 @@ class helper {
 	 *
 	 * @return void
 	 */
-	public function add_bbcode($data = []) {
+	public function add_bbcode($data = [])
+	{
 		if (empty($data) ||
-			(!empty($data['bbcode_id']) && $data['bbcode_id'] > BBCODE_LIMIT)
-		) {
+			(!empty($data['bbcode_id']) && $data['bbcode_id'] > BBCODE_LIMIT))
+		{
 			return;
 		}
 
@@ -166,15 +179,18 @@ class helper {
 	 *
 	 * @return void
 	 */
-	public function remove_bbcode($bbcode_tag = '') {
-		if (empty($bbcode_tag)) {
+	public function remove_bbcode($bbcode_tag = '')
+	{
+		if (empty($bbcode_tag))
+		{
 			return;
 		}
 
 		$bbcode_id = $this->bbcode_exists($bbcode_tag);
 
 		// Remove only if exists
-		if ($bbcode_id > NUM_CORE_BBCODES) {
+		if ($bbcode_id > NUM_CORE_BBCODES)
+		{
 			$sql = 'DELETE FROM ' . BBCODES_TABLE . '
 				WHERE bbcode_id = ' . $bbcode_id;
 			$this->db->sql_query($sql);
@@ -189,8 +205,10 @@ class helper {
 	 *
 	 * @return void
 	 */
-	public function update_bbcode($bbcode_id = -1, $data = []) {
-		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data)) {
+	public function update_bbcode($bbcode_id = -1, $data = [])
+	{
+		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data))
+		{
 			return;
 		}
 
@@ -207,7 +225,8 @@ class helper {
 	 *
 	 * @return array
 	 */
-	public function bbcode_data() {
+	public function bbcode_data()
+	{
 		// Return absolute path if file exists
 		$xsl = $this->filesystem->realpath(
 			__DIR__ . '/../styles/all/template/spoiler_template.xsl'

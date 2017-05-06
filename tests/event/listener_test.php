@@ -13,16 +13,19 @@ use phpbb_test_case;
 use alfredoramos\simplespoiler\event\listener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
-class listener_test extends phpbb_test_case {
+class listener_test extends phpbb_test_case
+{
 
-	public function test_instance() {
+	public function test_instance()
+	{
 		$this->assertInstanceOf(
 			EventSubscriberInterface::class,
 			new listener
 		);
 	}
 
-	public function test_suscribed_events() {
+	public function test_suscribed_events()
+	{
 		$this->assertSame(
 			['core.user_setup'],
 			array_keys(listener::getSubscribedEvents())
