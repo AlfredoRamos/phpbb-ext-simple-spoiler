@@ -68,7 +68,7 @@
 		<if>
 			<equals arg1="${has-dependencies}" arg2="1" />
 			<then>
-				<exec dir="${package-directory}" command="composer install --prefer-dist" checkreturn="true" />
+				<exec dir="${package-directory}" command="composer install --prefer-dist --no-dev" checkreturn="true" />
 			</then>
 		</if>
 
