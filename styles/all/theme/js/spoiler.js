@@ -7,7 +7,9 @@
  * @license GNU GPL-2.0
  */
 
-$(function() {
+(function($) {
+	'use strict';
+
 	$.fn.initSpoilers = function($options) {
 		// Overwrite options
 		$options = $.extend({
@@ -35,4 +37,4 @@ $(function() {
 			});
 		});
 	};
-});
+})(jQuery);
