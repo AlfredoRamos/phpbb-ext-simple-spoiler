@@ -27,3 +27,11 @@
 .spoiler-shown > .spoiler-header .spoiler-status {
 	background-color: #d9534f;
 }
+
+.bbcode-spoiler- {
+	color: transparent;
+}
+
+.bbcode-spoiler-::before {
+	color: #8f8f8f;
+}

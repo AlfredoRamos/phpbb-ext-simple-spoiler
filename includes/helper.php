@@ -240,7 +240,7 @@ class helper
 			'bbcode_match'	=> '[spoiler={TEXT2;optional}]{TEXT1}[/spoiler]',
 			'bbcode_tpl'	=> $template,
 			'bbcode_helpline'	=> 'SPOILER_HELPLINE',
-			'display_on_posting'	=> 0
+			'display_on_posting'	=> 1
 		];
 	}
 }

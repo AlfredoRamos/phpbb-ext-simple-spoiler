@@ -40,13 +40,20 @@
 	border-style: solid;
 }
 
+.bbcode-spoiler- {
+	font-size: 0;
+	letter-spacing: -1px;
+}
+
 .bbcode-spoiler-::before {
 	content: "\f070";
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
 	font-size: 14px;
-	line-height: 1;
+	line-height: 1.3;
 	font-family: FontAwesome;
 	text-rendering: normal;
+	letter-spacing: normal;
+	padding: 0 2px;
 }
