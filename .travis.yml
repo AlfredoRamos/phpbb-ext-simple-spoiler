@@ -24,7 +24,7 @@ env:
 branches:
   only:
     - master
-    - /^phpBB\/v\d\.\d\.(?:\d{1,2}|x)/
+    - /^v\d\.\d\.(?:\d{1,2}|x)/
 
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
