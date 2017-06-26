@@ -1,12 +1,13 @@
 {% if not INCLUDED_SPOILER_JS %}
 {% INCLUDEJS '@alfredoramos_simplespoiler/js/spoiler.js' %}
 <script type="text/javascript">
-$(function() {
+(function($) {
+	'use strict';
 	$('.spoiler').initSpoilers({
 		showText: '{{ lang("SPOILER_SHOW")|escape("js") }}',
 		hideText: '{{ lang("SPOILER_HIDE")|escape("js") }}'
 	});
-});
+})(jQuery);
 </script>
 {% set INCLUDED_SPOILER_JS = true %}
 {% endif %}
