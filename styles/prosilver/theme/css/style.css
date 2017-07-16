@@ -46,7 +46,7 @@
 }
 
 .bbcode-spoiler-::before {
-	content: "\f070";
+	content: "\f070"; /* eye-slash */
 	font-style: normal;
 	font-variant: normal;
 	font-weight: normal;
