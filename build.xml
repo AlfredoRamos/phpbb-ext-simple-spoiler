@@ -24,12 +24,6 @@
 		<delete file="${dir}/README.md" />
 	</target>
 
-	<!-- Abide licensing terms -->
-	<target name="fix-license">
-		<echo msg="Renaming license file" />
-		<move file="${dir}/LICENSE" tofile="${dir}/license.txt" />
-	</target>
-
 	<!-- DO NOT EDIT BELOW THIS LINE -->
 	<property name="version" value="HEAD" override="true" />
 	<property name="build-directory" value="build" override="true" />
@@ -59,10 +53,6 @@
 
 		<phingcall target="git-checkout">
 			<property name="archive-version" value="${version}" />
-		</phingcall>
-
-		<phingcall target="fix-license">
-			<property name="dir" value="${package-directory}" />
 		</phingcall>
 
 		<if>
