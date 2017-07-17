@@ -20,7 +20,7 @@ env:
     - GITREPO="AlfredoRamos/phpbb-ext-simple-spoiler"   # GitHub repository
     - SNIFF="1"         # Code sniffer switch
     - IMAGE_ICC="1"     # ICC profile sniffer switch
-    - EPV="0"           # Extension pre-validator switch
+    - EPV="1"           # Extension pre-validator switch
     - PHPBB_BRANCH="3.2.x"
 
 branches:
