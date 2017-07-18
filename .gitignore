@@ -1,5 +1,4 @@
 build/
 vendor/
-composer.*
-!composer.json
+composer.lock
 .DS_Store
