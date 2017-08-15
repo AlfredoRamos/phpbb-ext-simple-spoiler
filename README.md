@@ -13,9 +13,9 @@ Simple Spoiler Extension for phpBB 3.2.x
 
 - Download the [latest release](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/releases)
 - Decompress the `*.zip` or `*.tar.gz` file
-- Copy the files and directories inside `<PHPBB_ROOT>/ext/alfredoramos/simplespoiler/`
+- Copy the files and directories inside `{PHPBB_ROOT}/ext/alfredoramos/simplespoiler/`
 - Go to your `Administration Control Panel` > `Customize` > `Manage extensions`
-- Click on `Enable` and confirm.
+- Click on `Enable` and confirm
 
 ### Usage
 
@@ -33,32 +33,25 @@ You can nest `[spoiler]` and write unicode titles in `[spoiler=title]`.
 
 ### Configuration
 
-To add support for more styles simply copy the content of the `styles/prosilver/theme/` directory into `styles/<NEW_STYLE>/theme/`.
+To add support for more styles simply copy the content of the `styles/prosilver/theme/` directory into `styles/{NEW_STYLE}/theme/`
 
 To customize the look and colors, edit the following files:
 
-- `styles/<STYLE>/theme/css/style.css`
-- `styles/<STYLE>/theme/css/colors.css`
-
-Note: By default it's hidden from the posting box, if you want to show it follow these steps:
-
-- Go to your `Administration Control Panel` > `Posting` > `BBCodes`
-- Click on the `Edit` button (green gear)
-- Go to `Settings` and check the option `Display on posting`
-- Click on `Submit`
+- `styles/{STYLE}/theme/css/style.css`
+- `styles/{STYLE}/theme/css/colors.css`
 
 ### Uninstallation
 
 - Go to your `Administration Control Panel` > `Customize` > `Manage extensions`
-- Click on `Disable` and confirm.
-- Go back to `Manage extensions` > `Simple Spoiler` > `Delete data` and confirm.
+- Click on `Disable` and confirm
+- Go back to `Manage extensions` > `Simple Spoiler` > `Delete data` and confirm
 
 ### Upgrade
 
-- Uninstall the extension.
-- Delete all the files inside `<PHPBB_ROOT>/alfredoramos/simplespoiler/`.
-- Download the new version.
-- Install the extension.
+- Uninstall the extension
+- Delete all the files inside `{PHPBB_ROOT}/alfredoramos/simplespoiler/`
+- Download the new version
+- Install the extension
 
 ### Contributors
 
