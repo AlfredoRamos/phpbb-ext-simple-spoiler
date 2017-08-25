@@ -24,7 +24,7 @@
 	border-color: #ddd;
 }
 
-.spoiler-shown > .spoiler-header .spoiler-status {
+.spoiler-show > .spoiler-header .spoiler-status {
 	background-color: #d9534f;
 }
 

@@ -4,8 +4,10 @@
 (function($) {
 	'use strict';
 	$('.spoiler').initSpoilers({
-		showText: '{{ lang("SPOILER_SHOW")|escape("js") }}',
-		hideText: '{{ lang("SPOILER_HIDE")|escape("js") }}'
+		lang: {
+			show: '{{ lang("SPOILER_SHOW")|escape("js") }}',
+			hide: '{{ lang("SPOILER_HIDE")|escape("js") }}'
+		}
 	});
 })(jQuery);
 </script>

@@ -17,6 +17,6 @@
 	display: none;
 }
 
-.spoiler-shown > .spoiler-body {
+.spoiler-show > .spoiler-body {
 	display: block;
 }

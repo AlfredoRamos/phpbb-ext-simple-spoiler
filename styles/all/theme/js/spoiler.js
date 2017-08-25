@@ -13,8 +13,10 @@
 	$.fn.initSpoilers = function($options) {
 		// Overwrite options
 		$options = $.extend({
-			showText: 'Show',
-			hideText: 'Hide',
+			lang: {
+				show: 'Show',
+				hide: 'Hide'
+			},
 			selector: '.' + this.attr('class')
 		}, $options);
 
@@ -28,11 +30,11 @@
 
 			$spoiler.trigger.on('click', function() {
 				// Toggle CSS class
-				$spoiler.wrapper.toggleClass($options.selector.replace('.', '') + '-shown');
+				$spoiler.wrapper.toggleClass($options.selector.replace('.', '') + '-show');
 
 				// Toggle status text
 				$spoiler.status.text(
-					$spoiler.body.is(':visible') ? $options.hideText : $options.showText
+					$spoiler.body.is(':visible') ? $options.lang.hide : $options.lang.show
 				);
 			});
 		});
