@@ -28,6 +28,10 @@ branches:
     - master
     - /^v\d\.\d\.(?:\d{1,2}|x)/
 
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
   - cd ../../phpBB3
