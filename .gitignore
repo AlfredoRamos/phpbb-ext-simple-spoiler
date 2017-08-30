@@ -1,5 +1,8 @@
 build/
 vendor/
+.bundle/
 composer.*
 !composer.json
 .DS_Store
+Gemfile.lock
+*.tmp
