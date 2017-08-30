@@ -7,7 +7,9 @@ $stdout.sync = $stderr.sync = true
 namespace :build do
   desc 'Build CSS files'
   task :css do
-    files = Dir.glob('styles/*/theme/css/*.css')
+    files = [
+      'styles/prosilver/theme/css/style.css'
+    ]
 
     files.each do |css_file|
       css = File.read(css_file)
