@@ -7,9 +7,7 @@ $stdout.sync = $stderr.sync = true
 namespace :build do
   desc 'Build CSS files'
   task :css do
-    files = [
-      'styles/prosilver/theme/css/style.css'
-    ]
+    files = Dir.glob('styles/*/theme/css/*.css')
 
     files.each do |css_file|
       css = File.read(css_file)
@@ -18,6 +16,7 @@ namespace :build do
       File.open(tmp, 'w') do |f|
         f.puts AutoprefixerRails.process(css, {
           map: false,
+          cascade: false,
           from: tmp,
           to: css_file,
           browsers: [
