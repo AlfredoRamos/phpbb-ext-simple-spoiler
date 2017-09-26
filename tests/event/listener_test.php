@@ -13,6 +13,9 @@ use phpbb_test_case;
 use alfredoramos\simplespoiler\event\listener;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
+/**
+ * @group event
+ */
 class listener_test extends phpbb_test_case
 {
 
