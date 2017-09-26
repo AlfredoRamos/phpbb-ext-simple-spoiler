@@ -31,7 +31,7 @@ env:
 branches:
   only:
     - master
-    - /^v\d\.\d\.(?:\d{1,2}|x)/
+    - /^\d\.\d\.(?:\d{1,2}|x)/
 
 cache:
   directories:
