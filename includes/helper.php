@@ -66,6 +66,12 @@ class helper
 		$this->remove_bbcode('spoiler');
 
 		$data = $this->bbcode_data();
+
+		if (empty($data))
+		{
+			return;
+		}
+
 		$data['bbcode_id'] = $this->bbcode_id();
 		$data = array_replace(
 			$data,
@@ -97,6 +103,12 @@ class helper
 	public function uninstall_bbcode()
 	{
 		$data = $this->bbcode_data();
+
+		if (empty($data))
+		{
+			return;
+		}
+
 		$this->remove_bbcode($data['bbcode_tag']);
 	}
 
@@ -234,6 +246,12 @@ class helper
 
 		// Store the (trimmed) file content if it is readable
 		$template = $this->filesystem->is_readable($xsl) ? trim(file_get_contents($xsl)) : '';
+
+		// The spoiler template should not be empty
+		if (empty($template))
+		{
+			return [];
+		}
 
 		return [
 			'bbcode_tag'	=> 'spoiler=',
