@@ -229,7 +229,7 @@ class helper
 	{
 		// Return absolute path if file exists
 		$xsl = $this->filesystem->realpath(
-			__DIR__ . '/../styles/all/template/spoiler_template.xsl'
+			__DIR__ . '/../styles/all/template/spoiler.xsl'
 		);
 
 		// Store the (trimmed) file content if it is readable
