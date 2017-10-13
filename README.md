@@ -62,3 +62,4 @@ Thanks to the following people for contributing to the extension:
 - [Nokorbis](https://github.com/Nokorbis) - French translation
 - [manicx](https://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=48162) - Greek translation
 - [ConeRX](https://github.com/ConeRX) - German translation
+- [alhitary](https://github.com/alhitary) - Arabic translation

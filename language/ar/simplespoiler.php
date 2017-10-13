@@ -2,11 +2,9 @@
 
 /**
  * Simple Spoiler Extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@yandex.com>
+ * @author Bassel Taha Alhitary <http://www.alhitary.net>
  * @copyright 2017 Alfredo Ramos
  * @license GNU GPL-2.0
- *
- * Translated by Bassel Taha Alhitary - www.alhitary.net
  */
 
 /**
