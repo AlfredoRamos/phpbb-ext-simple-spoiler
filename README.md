@@ -33,12 +33,12 @@ You can nest `[spoiler]` and write unicode titles in `[spoiler=title]`.
 
 ### Configuration
 
-To add support for more styles simply copy the content of the `styles/prosilver/theme/` directory into `styles/{NEW_STYLE}/theme/`
+To add support for more styles:
 
-To customize the look and colors, edit the following files:
-
-- `styles/{STYLE}/theme/css/style.css`
-- `styles/{STYLE}/theme/css/colors.css`
+- Copy the `styles/prosilver/` directory into `styles/{NEW_STYLE}/`
+- Edit the following files as needed
+	- `styles/{NEW_STYLE}/theme/css/style.css`
+	- `styles/{NEW_STYLE}/theme/css/colors.css`
 
 ### Uninstallation
 
