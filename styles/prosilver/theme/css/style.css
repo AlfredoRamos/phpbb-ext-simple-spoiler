@@ -44,14 +44,12 @@
 	border-style: solid;
 }
 
-.bbcode-spoiler,
-.bbcode-spoiler- {
+.bbcode-spoiler {
 	font-size: 0;
 	letter-spacing: -1px;
 }
 
-.bbcode-spoiler::before,
-.bbcode-spoiler-::before {
+.bbcode-spoiler::before {
 	content: "\f070"; /* eye-slash */
 	font-style: normal;
 	font-variant: normal;
