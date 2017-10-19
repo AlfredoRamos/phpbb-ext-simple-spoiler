@@ -16,7 +16,7 @@
 }
 
 .spoiler .spoiler-header .spoiler-status {
-	background-color: #5cb85c;
+	background-color: #d9534f;
 	color: #fff;
 }
 
@@ -25,7 +25,7 @@
 }
 
 .spoiler-show > .spoiler-header .spoiler-status {
-	background-color: #d9534f;
+	background-color: #5cb85c;
 }
 
 .bbcode-spoiler- {
