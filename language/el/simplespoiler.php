@@ -4,7 +4,7 @@
  * Simple Spoiler Extension for phpBB.
  * @author manicx
  * @copyright 2017 Alfredo Ramos
- * @license GNU GPL-2.0
+ * @license GPL-2.0
  */
 
 /**
