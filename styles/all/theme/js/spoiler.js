@@ -23,9 +23,9 @@
 			// Spoiler elements relative to the object that is pointed to
 			var $elements = {
 				wrapper: $(this).parents($settings.selector).first(),
-				status: $(this).parents($settings.selector)
+				status: $(this).parents($settings.selector).first()
 					.find($settings.selector + '-status').first(),
-				body: $(this).parents($settings.selector)
+				body: $(this).parents($settings.selector).first()
 					.children($settings.selector + '-body').first()
 			};
 
