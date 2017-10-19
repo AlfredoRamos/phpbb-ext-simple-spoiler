@@ -2,7 +2,8 @@
 	<div class="spoiler-header spoiler-trigger">
 		<span class="spoiler-title">
 			<xsl:choose>
-				<!-- [spoiler=title]text[/spoiler] (deprecated) -->
+				<!-- deprecated:start -->
+				<!-- kept just for backward compatibility -->
 				<xsl:when test="@spoiler">
 					<xsl:choose>
 						<xsl:when test="string-length(normalize-space(@spoiler)) > 0">
@@ -18,7 +19,7 @@
 						<xsl:otherwise>{L_SPOILER}</xsl:otherwise>
 					</xsl:choose>
 				</xsl:when>
-				<!-- [spoiler title=text]text[/spoiler] -->
+				<!-- deprecated:end -->
 				<xsl:when test="@title">
 					<xsl:choose>
 						<xsl:when test="string-length(normalize-space(@title)) > 0">
