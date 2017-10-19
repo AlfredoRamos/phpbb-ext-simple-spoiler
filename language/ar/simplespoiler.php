@@ -25,7 +25,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 	'SPOILER'			=> 'مُحتوى مَخفِي',
-	'SPOILER_HELPLINE'	=> 'الإستخدام : [spoiler]النص[/spoiler] أو [spoiler=العنوان]النص[/spoiler]',
+	'SPOILER_HELPLINE'	=> 'الإستخدام : [spoiler]النص[/spoiler] أو [spoiler title=العنوان]النص[/spoiler]',
 	'SPOILER_SHOW'		=> 'عرض',
 	'SPOILER_HIDE'		=> 'إخفاء'
 ]);
