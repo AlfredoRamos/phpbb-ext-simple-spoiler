@@ -19,15 +19,24 @@ Simple Spoiler Extension for phpBB 3.2.x
 
 ### Usage
 
-Write `[spoiler]text[/spoiler]` or `[spoiler=title]text[/spoiler]` and it will hide the content on anywhere that you can render BBCodes.
+Write `[spoiler]text[/spoiler]` or `[spoiler title=title]text[/spoiler]` and it will hide the content on anywhere that you can render BBCodes.
 
-You can nest `[spoiler]` and write unicode titles in `[spoiler=title]`.
+You can nest `[spoiler]` and write unicode titles in `[spoiler title=title]`.
 
 ### Preview
 
 ![Nested spoilers](https://i.imgur.com/IbQLEea.png)
 
+```
+[spoiler title=Nested spoilers]First level
+[spoiler title=«µǹï¢øð€»]Second level[/spoiler][/spoiler]
+```
+
 ![Spoiler title with emojis](http://i.imgur.com/sS61esl.png)
+
+```
+[spoiler title=🇩🇪 🇲🇽 🇺🇸 Title with emojis 😁 🤗 🔱]Some text 🦏[/spoiler]
+```
 
 *(Click to view in full size)*
 

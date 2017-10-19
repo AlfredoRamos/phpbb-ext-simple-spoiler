@@ -63,7 +63,7 @@ class helper
 	public function install_bbcode()
 	{
 		// Remove conflicting BBCode
-		$this->remove_bbcode('spoiler');
+		$this->remove_bbcode('spoiler=');
 
 		$data = $this->bbcode_data();
 
@@ -254,8 +254,8 @@ class helper
 		}
 
 		return [
-			'bbcode_tag'	=> 'spoiler=',
-			'bbcode_match'	=> '[spoiler={TEXT2;optional}]{TEXT1}[/spoiler]',
+			'bbcode_tag'	=> 'spoiler',
+			'bbcode_match'	=> '[spoiler title={TEXT2;optional}]{TEXT1}[/spoiler]',
 			'bbcode_tpl'	=> $template,
 			'bbcode_helpline'	=> 'SPOILER_HELPLINE',
 			'display_on_posting'	=> 1

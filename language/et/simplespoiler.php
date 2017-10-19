@@ -25,7 +25,7 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 	'SPOILER'			=> 'Spoiler',
-	'SPOILER_HELPLINE'	=> 'Kasutamine: [spoiler]tekst[/spoiler] või [spoiler=title]tekst[/spoiler]',
+	'SPOILER_HELPLINE'	=> 'Kasutamine: [spoiler]tekst[/spoiler] või [spoiler title=pealkiri]tekst[/spoiler]',
 	'SPOILER_SHOW'		=> 'Näita',
 	'SPOILER_HIDE'		=> 'Peida'
 ]);
