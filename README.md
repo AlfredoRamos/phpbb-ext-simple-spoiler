@@ -25,14 +25,14 @@ You can nest `[spoiler]` and write unicode titles in `[spoiler title=title]`.
 
 ### Preview
 
-![Nested spoilers](https://i.imgur.com/IbQLEea.png)
+![Nested spoilers](https://i.imgur.com/5NrtAoS.png)
 
 ```
 [spoiler title=Nested spoilers]First level
 [spoiler title=«µǹï¢øð€»]Second level[/spoiler][/spoiler]
 ```
 
-![Spoiler title with emojis](http://i.imgur.com/sS61esl.png)
+![Spoiler title with emojis](https://i.imgur.com/HXLkNm4.png)
 
 ```
 [spoiler title=🇩🇪 🇲🇽 🇺🇸 Title with emojis 😁 🤗 🔱]Some text 🦏[/spoiler]
