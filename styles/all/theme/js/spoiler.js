@@ -2,7 +2,7 @@
  * Spoiler jQuery
  * https://github.com/AlfredoRamos/snippets/tree/master/javascript/spoiler
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
- * @version 0.2.0
+ * @version 0.2.1
  * @copyright (c) 2016 Alfredo Ramos
  * @license GPL-2.0
  */
