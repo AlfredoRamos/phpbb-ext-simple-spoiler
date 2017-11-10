@@ -128,7 +128,9 @@ class helper
 
 		$sql = 'SELECT bbcode_id
 			FROM ' . BBCODES_TABLE . '
-			WHERE bbcode_tag = "' . $this->db->sql_escape($bbcode_tag) .'"';
+			WHERE ' . $this->db->sql_build_array('SELECT', [
+				'bbcode_tag' => $bbcode_tag
+			]);
 		$result = $this->db->sql_query($sql);
 		$bbcode_id = (int) $this->db->sql_fetchfield('bbcode_id');
 		$this->db->sql_freeresult($result);
