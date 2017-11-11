@@ -16,6 +16,13 @@ use phpbb_functional_test_case;
  */
 class spoiler_test extends phpbb_functional_test_case
 {
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->login();
+	}
+
 	static protected function setup_extensions()
 	{
 		return ['alfredoramos/simplespoiler'];
@@ -23,8 +30,6 @@ class spoiler_test extends phpbb_functional_test_case
 
 	public function test_spoiler_bbcode()
 	{
-		$this->login();
-
 		$post = $this->create_topic(
 			2,
 			'Spoiler Functional Test 1',
@@ -48,14 +53,12 @@ class spoiler_test extends phpbb_functional_test_case
 			$post['topic_id']
 		));
 
-		$this->assertGreaterThan(0, $result->count());
+		$this->assertSame(1, $result->count());
 		$this->assertContains($expected, $result->html());
 	}
 
 	public function test_spoiler_title_bbcode()
 	{
-		$this->login();
-
 		$post = $this->create_topic(
 			2,
 			'Spoiler Functional Test 2',
@@ -79,14 +82,12 @@ class spoiler_test extends phpbb_functional_test_case
 			$post['topic_id']
 		));
 
-		$this->assertGreaterThan(0, $result->count());
+		$this->assertSame(1, $result->count());
 		$this->assertContains($expected, $result->html());
 	}
 
 	public function test_deprecated_spoiler_title_bbcode()
 	{
-		$this->login();
-
 		$post = $this->create_topic(
 			2,
 			'Spoiler Functional Test 3',
@@ -110,7 +111,7 @@ class spoiler_test extends phpbb_functional_test_case
 			$post['topic_id']
 		));
 
-		$this->assertGreaterThan(0, $result->count());
+		$this->assertSame(1, $result->count());
 		$this->assertContains($expected, $result->html());
 	}
 }
