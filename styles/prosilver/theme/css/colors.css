@@ -28,10 +28,10 @@
 	background-color: #5cb85c;
 }
 
-.bbcode-spoiler- {
+.bbcode-spoiler {
 	color: transparent;
 }
 
-.bbcode-spoiler-::before {
+.bbcode-spoiler::before {
 	color: #8f8f8f;
 }

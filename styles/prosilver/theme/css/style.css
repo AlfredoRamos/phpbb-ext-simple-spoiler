@@ -24,6 +24,7 @@
 	flex-wrap: wrap;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
+	align-items: center;
 }
 
 .spoiler .spoiler-header .spoiler-title {
@@ -35,7 +36,6 @@
 	border-radius: 3px;
 	font-size: 0.8em;
 	font-weight: bold;
-	height: 1.75em;
 	margin-left: 3px;
 }
 
