@@ -72,7 +72,7 @@ class helper
 			return;
 		}
 
-		$data['bbcode_id'] = $this->bbcode_id();
+		$data['bbcode_id'] = (int) $this->bbcode_id();
 		$data = array_replace(
 			$data,
 			$this->acp_bbcodes->build_regexp(
@@ -82,7 +82,7 @@ class helper
 		);
 
 		// Get old BBCode ID
-		$old_bbcode_id = $this->bbcode_exists($data['bbcode_tag']);
+		$old_bbcode_id = (int) $this->bbcode_exists($data['bbcode_tag']);
 
 		// Update or add BBCode
 		if ($old_bbcode_id > NUM_CORE_BBCODES)
@@ -175,7 +175,7 @@ class helper
 	public function add_bbcode($data = [])
 	{
 		if (empty($data) ||
-			(!empty($data['bbcode_id']) && $data['bbcode_id'] > BBCODE_LIMIT))
+			(!empty($data['bbcode_id']) && (int) $data['bbcode_id'] > BBCODE_LIMIT))
 		{
 			return;
 		}
@@ -200,7 +200,7 @@ class helper
 			return;
 		}
 
-		$bbcode_id = $this->bbcode_exists($bbcode_tag);
+		$bbcode_id = (int) $this->bbcode_exists($bbcode_tag);
 
 		// Remove only if exists
 		if ($bbcode_id > NUM_CORE_BBCODES)
@@ -221,6 +221,8 @@ class helper
 	 */
 	public function update_bbcode($bbcode_id = -1, $data = [])
 	{
+		$bbcode_id = (int) $bbcode_id;
+
 		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data))
 		{
 			return;
