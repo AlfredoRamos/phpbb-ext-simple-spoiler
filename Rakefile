@@ -1,5 +1,4 @@
 # encoding: UTF-8
-require 'rake/testtask'
 require 'autoprefixer-rails'
 
 $stdout.sync = $stderr.sync = true
