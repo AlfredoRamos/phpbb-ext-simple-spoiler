@@ -29,7 +29,7 @@ class listener implements EventSubscriberInterface
 	/**
 	 * Load language files and modify user data on every page.
 	 *
-	 * @param object	$event
+	 * @param object $event
 	 *
 	 * @return void
 	 */

@@ -115,7 +115,7 @@ class helper
 	/**
 	 * Check whether BBCode already exists.
 	 *
-	 * @param string	$bbcode_tag
+	 * @param string $bbcode_tag
 	 *
 	 * @return int
 	 */
@@ -128,9 +128,7 @@ class helper
 
 		$sql = 'SELECT bbcode_id
 			FROM ' . BBCODES_TABLE . '
-			WHERE ' . $this->db->sql_build_array('SELECT', [
-				'bbcode_tag' => $bbcode_tag
-			]);
+			WHERE ' . $this->db->sql_build_array('SELECT', ['bbcode_tag' => $bbcode_tag]);
 		$result = $this->db->sql_query($sql);
 		$bbcode_id = (int) $this->db->sql_fetchfield('bbcode_id');
 		$this->db->sql_freeresult($result);
@@ -168,7 +166,7 @@ class helper
 	/**
 	 * Add the BBCode in the database.
 	 *
-	 * @param array		$data
+	 * @param array $data
 	 *
 	 * @return void
 	 */
@@ -180,8 +178,8 @@ class helper
 			return;
 		}
 
-		$sql = 'INSERT INTO ' . BBCODES_TABLE . ' ' .
-			$this->db->sql_build_array('INSERT', $data);
+		$sql = 'INSERT INTO ' . BBCODES_TABLE . '
+			' . $this->db->sql_build_array('INSERT', $data);
 		$this->db->sql_query($sql);
 
 	}
@@ -189,7 +187,7 @@ class helper
 	/**
 	 * Remove BBCode by tag.
 	 *
-	 * @param string	$bbcode_tag
+	 * @param string $bbcode_tag
 	 *
 	 * @return void
 	 */
@@ -214,8 +212,8 @@ class helper
 	/**
 	 * Update BBCode data if it already exists.
 	 *
-	 * @param int		$bbcode_id
-	 * @param array		$data
+	 * @param int	$bbcode_id
+	 * @param array	$data
 	 *
 	 * @return void
 	 */
