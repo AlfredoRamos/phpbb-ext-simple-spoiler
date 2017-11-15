@@ -9,7 +9,7 @@
 						<xsl:when test="string-length(normalize-space(@spoiler)) > 0">
 							<xsl:choose>
 								<xsl:when test="string-length(normalize-space(@spoiler)) > 65">
-									<xsl:value-of select="concat(substring(normalize-space(@spoiler), 0, 65), '…')"/>
+									<xsl:value-of select="concat(normalize-space(substring(normalize-space(@spoiler), 0, 65)), '…')"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="normalize-space(@spoiler)"/>
@@ -25,7 +25,7 @@
 						<xsl:when test="string-length(normalize-space(@title)) > 0">
 							<xsl:choose>
 								<xsl:when test="string-length(normalize-space(@title)) > 65">
-									<xsl:value-of select="concat(substring(normalize-space(@title), 0, 65), '…')"/>
+									<xsl:value-of select="concat(normalize-space(substring(normalize-space(@title), 0, 65)), '…')"/>
 								</xsl:when>
 								<xsl:otherwise>
 									<xsl:value-of select="normalize-space(@title)"/>
