@@ -49,7 +49,7 @@ To customize the look and feel:
 	- `styles/{NEW_STYLE}/theme/css/style.css`
 	- `styles/{NEW_STYLE}/theme/css/colors.css`
 
-*Note:* If your style doesn't inherit from `prosilver`, you should follow the steps above even if you don't want to change any file.
+**Note:** If your style doesn't inherit from `prosilver`, you should follow the steps above even if you don't want to change any file.
 
 ### Uninstallation
 
