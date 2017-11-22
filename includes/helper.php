@@ -15,19 +15,19 @@ use phpbb\filesystem\filesystem;
 class helper
 {
 
-	/** @var \phpbb\db\driver\factory $db */
+	/** @var \phpbb\db\driver\factory */
 	protected $db;
 
-	/** @var \phpbb\filesystem\filesystem $filesystem */
+	/** @var \phpbb\filesystem\filesystem */
 	protected $filesystem;
 
-	/** @var string $root_path */
+	/** @var string */
 	protected $root_path;
 
-	/** @var string $php_ext */
+	/** @var string */
 	protected $php_ext;
 
-	/** @var \acp_bbcodes $acp_bbcodes */
+	/** @var \acp_bbcodes */
 	protected $acp_bbcodes;
 
 	/**
@@ -117,7 +117,7 @@ class helper
 	 *
 	 * @param string $bbcode_tag
 	 *
-	 * @return int
+	 * @return integer
 	 */
 	public function bbcode_exists($bbcode_tag = '')
 	{
@@ -143,7 +143,7 @@ class helper
 	/**
 	 * Calculate the ID for the BBCode that is about to be installed.
 	 *
-	 * @return int
+	 * @return integer
 	 */
 	public function bbcode_id()
 	{
@@ -212,8 +212,8 @@ class helper
 	/**
 	 * Update BBCode data if it already exists.
 	 *
-	 * @param int	$bbcode_id
-	 * @param array	$data
+	 * @param integer	$bbcode_id
+	 * @param array		$data
 	 *
 	 * @return void
 	 */
@@ -263,4 +263,5 @@ class helper
 			'display_on_posting'	=> 1
 		];
 	}
+
 }
