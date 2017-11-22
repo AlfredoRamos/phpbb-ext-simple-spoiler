@@ -36,6 +36,7 @@ env:
     - IMAGE_ICC="1"     # ICC profile sniffer switch
     - EPV="1"           # Extension pre-validator switch
     - PHPBB_BRANCH="3.2.x"
+    - EXTDEPS="0"       # Extension dependencies switch
 
 branches:
   only:
@@ -51,7 +52,8 @@ install:
   - cd ../../phpBB3
   - travis/prepare-extension.sh $EXTNAME $PHPBB_BRANCH
   - travis/setup-phpbb.sh $DB $TRAVIS_PHP_VERSION $NOTESTS
-  - sh -c "if [ '$EPV' != '0' ]; then ../$GITREPO/travis/prepare-epv.sh $EPV $NOTESTS; fi"
+  - ../$GITREPO/travis/prepare-epv.sh $EPV $NOTESTS
+  - ../$GITREPO/travis/setup-extension-dependencies.sh $EXTNAME $EXTDEPS
 
 before_script:
   - travis/setup-database.sh $DB $TRAVIS_PHP_VERSION $NOTESTS
