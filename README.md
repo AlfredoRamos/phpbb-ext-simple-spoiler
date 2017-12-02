@@ -44,10 +44,11 @@ You can nest `[spoiler]` and write unicode titles in `[spoiler title=title]`.
 
 To customize the look and feel:
 
-- Copy the `styles/prosilver/` directory into `styles/{STYLE}/`
+- Move into `{PHPBB_ROOT}/ext/alfredoramos/simplespoiler/`
+- Copy the `styles/prosilver/` directory to `styles/{STYLE}/`
 - Edit the following files as needed
-	- `styles/{NEW_STYLE}/theme/css/style.css`
-	- `styles/{NEW_STYLE}/theme/css/colors.css`
+	- `styles/{STYLE}/theme/css/style.css`
+	- `styles/{STYLE}/theme/css/colors.css`
 
 **Note:** If your style doesn't inherit from `prosilver`, you should follow the steps above even if you don't want to change any file.
 
@@ -60,7 +61,7 @@ To customize the look and feel:
 ### Upgrade
 
 - Uninstall the extension
-- Delete all the files inside `{PHPBB_ROOT}/alfredoramos/simplespoiler/`
+- Delete all the files inside `{PHPBB_ROOT}/ext/alfredoramos/simplespoiler/`
 - Download the new version
 - Install the extension
 
