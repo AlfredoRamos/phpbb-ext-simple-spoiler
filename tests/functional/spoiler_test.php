@@ -53,7 +53,7 @@ class spoiler_test extends phpbb_functional_test_case
 			$post['topic_id']
 		));
 
-		$this->assertSame(1, $result->count());
+		$this->assertSame(1, $result->filter('.spoiler')->count());
 		$this->assertContains($expected, $result->html());
 	}
 
@@ -82,7 +82,7 @@ class spoiler_test extends phpbb_functional_test_case
 			$post['topic_id']
 		));
 
-		$this->assertSame(1, $result->count());
+		$this->assertSame(1, $result->filter('.spoiler')->count());
 		$this->assertContains($expected, $result->html());
 	}
 
@@ -111,7 +111,7 @@ class spoiler_test extends phpbb_functional_test_case
 			$post['topic_id']
 		));
 
-		$this->assertSame(1, $result->count());
+		$this->assertSame(1, $result->filter('.spoiler')->count());
 		$this->assertContains($expected, $result->html());
 	}
 }
