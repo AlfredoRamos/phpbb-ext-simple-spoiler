@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby RUBY_VERSION
 
-gem 'rake'
-gem 'autoprefixer-rails'
-gem 'mini_racer'
+group :development do
+  gem 'rake'
+  gem 'autoprefixer-rails'
+  gem 'mini_racer'
+end
