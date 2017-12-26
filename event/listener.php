@@ -10,9 +10,21 @@
 namespace alfredoramos\simplespoiler\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use alfredoramos\simplespoiler\includes\helper as helper;
 
 class listener implements EventSubscriberInterface
 {
+
+	/** @var \alfredoramos\simplespoiler\includes\helper */
+	protected $helper;
+
+	/**
+	 * Listener constructor.
+	 */
+	public function __construct(helper $helper)
+	{
+		$this->helper = $helper;
+	}
 
 	/**
 	 * Assign functions defined in this class to event listeners in the core.
@@ -22,7 +34,8 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return [
-			'core.user_setup' => 'user_setup'
+			'core.user_setup' => 'user_setup',
+			'core.help_manager_add_block_before' => 'bbcode_help'
 		];
 	}
 
@@ -41,6 +54,18 @@ class listener implements EventSubscriberInterface
 			'lang_set'	=> 'simplespoiler'
 		];
 		$event['lang_set_ext'] = $lang_set_ext;
+	}
+
+	/**
+	 * Add a new FAQ block
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
+	public function bbcode_help($event)
+	{
+		$this->helper->add_bbcode_help($event['block_name']);
 	}
 
 }

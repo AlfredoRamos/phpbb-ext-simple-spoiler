@@ -1,6 +1,8 @@
 services:
     alfredoramos.simplespoiler.listener:
         class: alfredoramos\simplespoiler\event\listener
+        arguments:
+            - '@alfredoramos.simplespoiler.helper'
         tags:
             - { name: event.listener }
 
@@ -9,5 +11,7 @@ services:
         arguments:
             - '@dbal.conn'
             - '@filesystem'
+            - '@language'
+            - '@template'
             - '%core.root_path%'
             - '%core.php_ext%'

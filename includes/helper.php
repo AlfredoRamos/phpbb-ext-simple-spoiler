@@ -11,6 +11,8 @@ namespace alfredoramos\simplespoiler\includes;
 
 use phpbb\db\driver\factory as database;
 use phpbb\filesystem\filesystem;
+use phpbb\language\language;
+use phpbb\template\template;
 
 class helper
 {
@@ -20,6 +22,10 @@ class helper
 
 	/** @var \phpbb\filesystem\filesystem */
 	protected $filesystem;
+
+	protected $language;
+
+	protected $template;
 
 	/** @var string */
 	protected $root_path;
@@ -40,10 +46,12 @@ class helper
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, $root_path, $php_ext)
+	public function __construct(database $db, filesystem $filesystem, language $language, template $template, $root_path, $php_ext)
 	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
+		$this->language = $language;
+		$this->template = $template;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 
@@ -232,6 +240,58 @@ class helper
 			SET ' . $this->db->sql_build_array('UPDATE', $data) . '
 			WHERE bbcode_id = ' . $bbcode_id;
 		$this->db->sql_query($sql);
+	}
+
+	public function add_bbcode_help($block_name = '')
+	{
+		if (empty($block_name) || $block_name !== 'HELP_BBCODE_BLOCK_OTHERS')
+		{
+			return;
+		}
+
+		// Load language keys
+		$this->language->add_lang('help', 'alfredoramos/simplespoiler');
+
+		// FAQ helper, it just stores language keys
+		$faq = [
+			'title' => 'HELP_BBCODE_BLOCK_SPOILERS',
+			'questions' => [
+				'HELP_BBCODE_SPOILERS_BASIC_QUESTION'	=> 'HELP_BBCODE_SPOILERS_BASIC_ANSWER',
+				'HELP_BBCODE_SPOILERS_TITLE_QUESTION'	=> 'HELP_BBCODE_SPOILERS_TITLE_ANSWER'
+			]
+		];
+
+		// Add help block
+		$this->template->assign_block_vars('faq_block', [
+			'BLOCK_TITLE'	=> $this->language->lang($faq['title']),
+			'SWITCH_COLUMN'	=> false
+		]);
+
+		// Arguments for functions generate_text_for_{storage,display}()
+		$uid = $bitfield = $flags = null;
+
+		// Generate questions and answers
+		foreach ($faq['questions'] as $key => $value)
+		{
+			$has_title = (strpos($key, 'TITLE') !== false);
+			$text = sprintf(
+				'[spoiler%2$s]%1$s[/spoiler]',
+				$this->language->lang('HELP_BBCODE_SPOILERS_DEMO_BODY'),
+				$has_title ? sprintf(' title=%s', $this->language->lang('HELP_BBCODE_SPOILERS_DEMO_TITLE')) : ''
+			);
+			generate_text_for_storage($text, $uid, $bitfield, $flags, true, true, true);
+			$parsed_text = generate_text_for_display($text, $uid, $bitfield, $flags);
+
+			$this->template->assign_block_vars('faq_block.faq_row', [
+				'FAQ_QUESTION'	=> $this->language->lang($key),
+				'FAQ_ANSWER'	=> $this->language->lang(
+					$value,
+					$parsed_text,
+					$this->language->lang('HELP_BBCODE_SPOILERS_DEMO_BODY'),
+					($has_title ? $this->language->lang('HELP_BBCODE_SPOILERS_DEMO_TITLE') : null)
+				)
+			]);
+		}
 	}
 
 	/**

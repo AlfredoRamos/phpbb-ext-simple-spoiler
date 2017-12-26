@@ -62,3 +62,7 @@
 	letter-spacing: normal;
 	padding: 0 2px;
 }
+
+.faq .spoiler {
+	max-width: 650px;
+}
