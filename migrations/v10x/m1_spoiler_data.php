@@ -15,6 +15,7 @@ use alfredoramos\simplespoiler\includes\helper as spoiler_helper;
 class m1_spoiler_data extends container_aware_migration
 {
 
+
 	/**
 	 * Install BBCode in database.
 	 *
@@ -30,6 +31,8 @@ class m1_spoiler_data extends container_aware_migration
 						new spoiler_helper(
 							$this->container->get('dbal.conn'),
 							$this->container->get('filesystem'),
+							$this->container->get('language'),
+							$this->container->get('template'),
 							$this->container->getParameter('core.root_path'),
 							$this->container->getParameter('core.php_ext')
 						),
@@ -55,6 +58,8 @@ class m1_spoiler_data extends container_aware_migration
 						new spoiler_helper(
 							$this->container->get('dbal.conn'),
 							$this->container->get('filesystem'),
+							$this->container->get('language'),
+							$this->container->get('template'),
 							$this->container->getParameter('core.root_path'),
 							$this->container->getParameter('core.php_ext')
 						),
