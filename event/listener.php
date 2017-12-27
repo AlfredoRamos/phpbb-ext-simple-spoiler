@@ -20,6 +20,10 @@ class listener implements EventSubscriberInterface
 
 	/**
 	 * Listener constructor.
+	 *
+	 * @param \alfredoramos\simplespoiler\includes\helper $helper
+	 *
+	 * @return void
 	 */
 	public function __construct(helper $helper)
 	{

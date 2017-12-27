@@ -23,8 +23,10 @@ class helper
 	/** @var \phpbb\filesystem\filesystem */
 	protected $filesystem;
 
+	/** @var \phpbb\language\language */
 	protected $language;
 
+	/** @var \phpbb\template\template */
 	protected $template;
 
 	/** @var string */
@@ -41,6 +43,8 @@ class helper
 	 *
 	 * @param \phpbb\db\driver\factory		$db
 	 * @param \phpbb\filesystem\filesystem	$filesystem
+	 * @param \phpbb\language\language		$language
+	 * @param \phpbb\template\template		$template
 	 * @param string						$root_path
 	 * @param string						$php_ext
 	 *
@@ -242,6 +246,13 @@ class helper
 		$this->db->sql_query($sql);
 	}
 
+	/**
+	 * Add a new entry in the BBCode FAQ.
+	 *
+	 * @param string $block_name
+	 *
+	 * @return void
+	 */
 	public function add_bbcode_help($block_name = '')
 	{
 		if (empty($block_name) || $block_name !== 'HELP_BBCODE_BLOCK_OTHERS')
