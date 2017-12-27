@@ -261,7 +261,7 @@ class helper
 		}
 
 		// Load language keys
-		$this->language->add_lang('help', 'alfredoramos/simplespoiler');
+		$this->language->add_lang('help/bbcode', 'alfredoramos/simplespoiler');
 
 		// FAQ helper, it just stores language keys
 		$faq = [

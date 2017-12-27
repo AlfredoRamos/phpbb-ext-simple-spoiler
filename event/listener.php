@@ -55,7 +55,7 @@ class listener implements EventSubscriberInterface
 		$lang_set_ext = $event['lang_set_ext'];
 		$lang_set_ext[] = [
 			'ext_name'	=> 'alfredoramos/simplespoiler',
-			'lang_set'	=> 'simplespoiler'
+			'lang_set'	=> 'posting'
 		];
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
