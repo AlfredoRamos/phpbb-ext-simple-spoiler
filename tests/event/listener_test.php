@@ -11,6 +11,7 @@ namespace alfredoramos\simplespoiler\tests\event;
 
 use phpbb_test_case;
 use alfredoramos\simplespoiler\event\listener;
+use alfredoramos\simplespoiler\includes\helper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -19,11 +20,22 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 class listener_test extends phpbb_test_case
 {
 
+	/** @var \alfredoramos\simplespoiler\includes\helper */
+	protected $helper;
+
+	public function setUp()
+	{
+		parent::setUp();
+
+		$this->helper = $this->getMockBuilder(helper::class)
+			->disableOriginalConstructor()->getMock();
+	}
+
 	public function test_instance()
 	{
 		$this->assertInstanceOf(
 			EventSubscriberInterface::class,
-			new listener
+			new listener($this->helper)
 		);
 	}
 
