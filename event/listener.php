@@ -61,7 +61,7 @@ class listener implements EventSubscriberInterface
 	}
 
 	/**
-	 * Add a new FAQ block
+	 * Add a new BBCode FAQ entry.
 	 *
 	 * @param object $event
 	 *

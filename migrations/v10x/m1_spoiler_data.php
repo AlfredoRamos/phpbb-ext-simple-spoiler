@@ -15,7 +15,6 @@ use alfredoramos\simplespoiler\includes\helper as spoiler_helper;
 class m1_spoiler_data extends container_aware_migration
 {
 
-
 	/**
 	 * Install BBCode in database.
 	 *
