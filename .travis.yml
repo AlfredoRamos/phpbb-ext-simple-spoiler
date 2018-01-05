@@ -24,7 +24,6 @@ matrix:
     - php: nightly
       env: DB=mariadb
   allow_failures:
-    - php: 7.2
     - php: nightly
   fast_finish: true
 
@@ -51,9 +50,9 @@ install:
   - travis/prepare-phpbb.sh $EXTNAME $PHPBB_BRANCH
   - cd ../../phpBB3
   - travis/prepare-extension.sh $EXTNAME $PHPBB_BRANCH
+  - ../$GITREPO/travis/setup-extension-dependencies.sh $EXTNAME $EXTDEPS
   - travis/setup-phpbb.sh $DB $TRAVIS_PHP_VERSION $NOTESTS
   - ../$GITREPO/travis/prepare-epv.sh $EPV $NOTESTS
-  - ../$GITREPO/travis/setup-extension-dependencies.sh $EXTNAME $EXTDEPS
 
 before_script:
   - travis/setup-database.sh $DB $TRAVIS_PHP_VERSION $NOTESTS
