@@ -4,7 +4,7 @@
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @version 0.2.2
  * @copyright 2016 Alfredo Ramos
- * @license GPL-2.0
+ * @license GPL-2.0-only
  */
 (function($) {
 	'use strict';
