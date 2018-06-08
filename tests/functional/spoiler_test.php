@@ -16,18 +16,18 @@ use phpbb_functional_test_case;
  */
 class spoiler_test extends phpbb_functional_test_case
 {
-	protected static $spoiler_html;
+	static protected $spoiler_html;
 
-	public static function setUpBeforeClass()
+	static public function setUpBeforeClass()
 	{
 		parent::setUpBeforeClass();
 
-		self::$spoiler_html = '<section class="spoiler">'.PHP_EOL.
-									'<header class="spoiler-header spoiler-trigger">'.PHP_EOL.
-										'<div class="spoiler-title">%1$s</div>'.
-										'<div class="spoiler-status">Show</div>'.PHP_EOL.
-									'</header>'.PHP_EOL.
-									'<div class="spoiler-body">%2$s</div>'.PHP_EOL.
+		self::$spoiler_html = '<section class="spoiler">'.
+									'<header class="spoiler-header spoiler-trigger">'.
+										'<div class="spoiler-title">%1$s</div>'.PHP_EOL.
+										'<div class="spoiler-status">Show</div>'.
+									'</header>'.
+									'<div class="spoiler-body">%2$s</div>'.
 								'</section>';
 	}
 
