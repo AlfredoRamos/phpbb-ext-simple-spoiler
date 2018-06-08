@@ -24,20 +24,39 @@
 	flex-wrap: wrap;
 	-ms-flex-pack: justify;
 	justify-content: space-between;
-	-ms-flex-align: center;
-	align-items: center;
+	-ms-flex-align: start;
+	align-items: flex-start;
 }
 
 .spoiler .spoiler-header .spoiler-title {
 	word-break: break-all;
+	/* .col-xs */
+	-ms-flex-preferred-size: 0;
+	flex-basis: 0;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	max-width: 100%;
 }
 
 .spoiler .spoiler-header .spoiler-status {
-	padding: 1px 4px;
 	border-radius: 3px;
 	font-size: 0.8em;
 	font-weight: bold;
 	margin-left: 3px;
+	text-align: center;
+	/* .col-xs-2 */
+	-ms-flex: 0 0 16.6666666667%;
+	flex: 0 0 16.6666666667%;
+	max-width: 16.6666666667%;
+}
+
+@media only screen and (min-width: 700px) {
+	.spoiler .spoiler-header .spoiler-status {
+		/* .col-md-1 */
+		-ms-flex: 0 0 8.3333333333%;
+		flex: 0 0 8.3333333333%;
+		max-width: 8.3333333333%;
+	}
 }
 
 .spoiler .spoiler-body {

@@ -16,6 +16,21 @@ use phpbb_functional_test_case;
  */
 class spoiler_test extends phpbb_functional_test_case
 {
+	protected static $spoiler_html;
+
+	public static function setUpBeforeClass()
+	{
+		parent::setUpBeforeClass();
+
+		self::$spoiler_html = '<section class="spoiler">'.PHP_EOL.
+									'<header class="spoiler-header spoiler-trigger">'.PHP_EOL.
+										'<div class="spoiler-title">%1$s</div>'.
+										'<div class="spoiler-status">Show</div>'.PHP_EOL.
+									'</header>'.PHP_EOL.
+									'<div class="spoiler-body">%2$s</div>'.PHP_EOL.
+								'</section>';
+	}
+
 	public function setUp()
 	{
 		parent::setUp();
@@ -41,13 +56,10 @@ class spoiler_test extends phpbb_functional_test_case
 			$this->sid
 		));
 
-		$expected =	'<div class="spoiler">'.PHP_EOL.
-						'<div class="spoiler-header spoiler-trigger">'.PHP_EOL.
-							'<span class="spoiler-title">Spoiler</span>'.
-							'<span class="spoiler-status">Show</span>'.PHP_EOL.
-						'</div>'.PHP_EOL.
-						'<div class="spoiler-body">Hidden text</div>'.PHP_EOL.
-						'</div>';
+		$expected = vsprintf(self::$spoiler_html, [
+			'Spoiler',
+			'Hidden text'
+		]);
 		$result = $crawler->filter(sprintf(
 			'#post_content%d .content',
 			$post['topic_id']
@@ -70,13 +82,10 @@ class spoiler_test extends phpbb_functional_test_case
 			$this->sid
 		));
 
-		$expected =	'<div class="spoiler">'.PHP_EOL.
-						'<div class="spoiler-header spoiler-trigger">'.PHP_EOL.
-							'<span class="spoiler-title">Spoiler title</span>'.
-							'<span class="spoiler-status">Show</span>'.PHP_EOL.
-						'</div>'.PHP_EOL.
-						'<div class="spoiler-body">Hidden text</div>'.PHP_EOL.
-						'</div>';
+		$expected = vsprintf(self::$spoiler_html, [
+			'Spoiler title',
+			'Hidden text'
+		]);
 		$result = $crawler->filter(sprintf(
 			'#post_content%d .content',
 			$post['topic_id']
@@ -99,13 +108,10 @@ class spoiler_test extends phpbb_functional_test_case
 			$this->sid
 		));
 
-		$expected =	'<div class="spoiler">'.PHP_EOL.
-						'<div class="spoiler-header spoiler-trigger">'.PHP_EOL.
-							'<span class="spoiler-title">Spoiler title</span>'.
-							'<span class="spoiler-status">Show</span>'.PHP_EOL.
-						'</div>'.PHP_EOL.
-						'<div class="spoiler-body">Deprecated markup</div>'.PHP_EOL.
-						'</div>';
+		$expected = vsprintf(self::$spoiler_html, [
+			'Spoiler title',
+			'Deprecated markup'
+		]);
 		$result = $crawler->filter(sprintf(
 			'#post_content%d .content',
 			$post['topic_id']
