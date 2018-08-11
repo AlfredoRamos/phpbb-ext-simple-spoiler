@@ -25,8 +25,11 @@ namespace :build do
         from: args[:opts][:input],
         to: args[:opts][:output],
         browsers: [
+          '>= 1%',
+          'last 1 major version',
+          'not dead',
           'Chrome >= 45',
-          'Firefox ESR',
+          'Firefox >= 38',
           'Edge >= 12',
           'Explorer >= 10',
           'iOS >= 9',
