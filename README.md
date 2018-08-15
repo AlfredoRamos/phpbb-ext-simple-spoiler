@@ -2,12 +2,12 @@
 
 Simple Spoiler Extension for phpBB 3.2.x
 
-[![Build Status](https://img.shields.io/travis/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square&maxAge=3600)](https://travis-ci.org/AlfredoRamos/phpbb-ext-simple-spoiler) [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-simple-spoiler.svg?label=stable&style=flat-square&maxAge=3600)](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/releases) [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-simple-spoiler/master/license.txt)
+[![Build Status](https://img.shields.io/travis/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square&maxAge=3600)](https://travis-ci.org/AlfredoRamos/phpbb-ext-simple-spoiler) [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-simple-spoiler.svg?label=stable&style=flat-square&maxAge=3600)](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/releases) [![Code Quality](https://img.shields.io/codacy/grade/336cd95436314ad38b183572a5ce098e.svg?style=flat-square)](https://app.codacy.com/app/AlfredoRamos/phpbb-ext-simple-spoiler) [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-simple-spoiler/master/license.txt)
 
 ### Dependencies
 
-- `php` 5.6 or greater
-- `phpBB` 3.2 or greater
+- PHP 5.6 or greater
+- phpBB 3.2 or greater
 
 ### Installation
 
