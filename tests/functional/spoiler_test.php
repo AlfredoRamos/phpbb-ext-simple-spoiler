@@ -120,4 +120,40 @@ class spoiler_test extends phpbb_functional_test_case
 		$this->assertSame(1, $result->filter('.spoiler')->count());
 		$this->assertContains($expected, $result->html());
 	}
+
+	public function test_spoiler_nesting_depth()
+	{
+		$post = $this->create_topic(
+			2,
+			'Spoiler Functional Test 4',
+			'[spoiler][spoiler][spoiler][spoiler]Text[/spoiler][/spoiler][/spoiler][/spoiler]'
+		);
+		$crawler = self::request('GET', sprintf(
+			'viewtopic.php?t=%d&sid=%s',
+			$post['topic_id'],
+			$this->sid
+		));
+
+		$result = $crawler->filter(sprintf(
+			'#post_content%d .content',
+			$post['topic_id']
+		));
+
+		$this->assertSame(3, $result->filter('.spoiler')->count());
+	}
+
+	public function test_spoiler_nesting_depth_acp_form()
+	{
+		$this->admin_login();
+
+		$crawler = self::request('GET', sprintf(
+			'adm/index.php?i=acp_board&mode=post&sid=%s',
+			$this->sid
+		));
+
+		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
+
+		$this->assertTrue($form->has('config[max_spoiler_depth]'));
+		$this->assertSame(3, (int) $form->get('config[max_spoiler_depth]')->getValue());
+	}
 }
