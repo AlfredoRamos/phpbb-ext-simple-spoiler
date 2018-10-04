@@ -88,10 +88,7 @@ class listener implements EventSubscriberInterface
 			return;
 		}
 
-		$event['display_vars'] = $this->helper->add_acp_config(
-			$event['mode'],
-			$event['display_vars']
-		);
+		$event['display_vars'] = $this->helper->add_acp_config($event['display_vars']);
 	}
 
 	/**
