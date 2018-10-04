@@ -16,6 +16,15 @@ class m1_spoiler_data extends container_aware_migration
 {
 
 	/**
+	 * Check if the migration should run.
+	 *
+	 * @return bool
+	 */
+	public function effectively_installed()
+	{
+	}
+
+	/**
 	 * Install BBCode in database.
 	 *
 	 * @return array
@@ -32,6 +41,9 @@ class m1_spoiler_data extends container_aware_migration
 							$this->container->get('filesystem'),
 							$this->container->get('language'),
 							$this->container->get('template'),
+							$this->container->get('config'),
+							$this->container->get('text_formatter.parser'),
+							$this->container->get('text_formatter.utils'),
 							$this->container->getParameter('core.root_path'),
 							$this->container->getParameter('core.php_ext')
 						),
@@ -59,6 +71,9 @@ class m1_spoiler_data extends container_aware_migration
 							$this->container->get('filesystem'),
 							$this->container->get('language'),
 							$this->container->get('template'),
+							$this->container->get('config'),
+							$this->container->get('text_formatter.parser'),
+							$this->container->get('text_formatter.utils'),
 							$this->container->getParameter('core.root_path'),
 							$this->container->getParameter('core.php_ext')
 						),

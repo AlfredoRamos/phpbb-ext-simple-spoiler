@@ -13,5 +13,8 @@ services:
             - '@filesystem'
             - '@language'
             - '@template'
+            - '@config'
+            - '@text_formatter.parser'
+            - '@text_formatter.utils'
             - '%core.root_path%'
             - '%core.php_ext%'

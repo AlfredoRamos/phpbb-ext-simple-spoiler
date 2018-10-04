@@ -44,7 +44,9 @@ class listener_test extends phpbb_test_case
 		$this->assertSame(
 			[
 				'core.user_setup',
-				'core.help_manager_add_block_before'
+				'core.help_manager_add_block_before',
+				'core.acp_board_config_edit_add',
+				'core.message_parser_check_message'
 			],
 			array_keys(listener::getSubscribedEvents())
 		);

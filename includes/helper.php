@@ -13,6 +13,9 @@ use phpbb\db\driver\factory as database;
 use phpbb\filesystem\filesystem;
 use phpbb\language\language;
 use phpbb\template\template;
+use phpbb\config\config;
+use phpbb\textformatter\s9e\parser;
+use phpbb\textformatter\s9e\utils;
 
 class helper
 {
@@ -29,6 +32,15 @@ class helper
 	/** @var \phpbb\template\template */
 	protected $template;
 
+	/** @var \phpbb\config\config */
+	protected $config;
+
+	/** @var \phpbb\textformatter\s9e\parser */
+	protected $parser;
+
+	/** @var \phpbb\textformatter\s9e\utils */
+	protected $utils;
+
 	/** @var string */
 	protected $root_path;
 
@@ -41,21 +53,27 @@ class helper
 	/**
 	 * Constructor of the helper class.
 	 *
-	 * @param \phpbb\db\driver\factory		$db
-	 * @param \phpbb\filesystem\filesystem	$filesystem
-	 * @param \phpbb\language\language		$language
-	 * @param \phpbb\template\template		$template
-	 * @param string						$root_path
-	 * @param string						$php_ext
+	 * @param \phpbb\db\driver\factory			$db
+	 * @param \phpbb\filesystem\filesystem		$filesystem
+	 * @param \phpbb\language\language			$language
+	 * @param \phpbb\template\template			$template
+	 * @param \phpbb\config\config				$config
+	 * @param \phpbb\textformatter\s9e\parser	$parser
+	 * @param \phpbb\textformatter\s9e\parser	$utils
+	 * @param string							$root_path
+	 * @param string							$php_ext
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, language $language, template $template, $root_path, $php_ext)
+	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, parser $parser, utils $utils, $root_path, $php_ext)
 	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
 		$this->language = $language;
 		$this->template = $template;
+		$this->config = $config;
+		$this->parser = $parser;
+		$this->utils = $utils;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 
@@ -303,6 +321,64 @@ class helper
 				)
 			]);
 		}
+	}
+
+	/**
+	 * Add ACP configuration data.
+	 *
+	 * @return array
+	 */
+	public function add_acp_config($display_vars = [])
+	{
+		if (empty($display_vars))
+		{
+			return [];
+		}
+
+		$add_config_vars = [
+			'max_spoiler_depth' => [
+				'lang' => 'SPOILER_DEPTH_LIMIT',
+				'validate' => 'int:0:9999',
+				'type' => 'number:0:9999',
+				'explain' => true
+			]
+		];
+		$where = ['after' => 'max_quote_depth'];
+
+		$display_vars['vars'] = phpbb_insert_config_array(
+			$display_vars['vars'],
+			$add_config_vars,
+			$where
+		);
+
+		return $display_vars;
+	}
+
+	/**
+	 * Remove nested spoilers at given depth.
+	 *
+	 * @return string
+	 */
+	public function remove_nested_spoilers($message = '')
+	{
+		if (empty($message))
+		{
+			return '';
+		}
+
+		$max_depth = (int) $this->config['max_spoiler_depth'];
+		$data = $this->bbcode_data();
+
+		if ($max_depth <= 0)
+		{
+			return $message;
+		}
+
+		return $this->utils->unparse($this->utils->remove_bbcode(
+			$this->parser->parse($message),
+			$data['bbcode_tag'],
+			$max_depth
+		));
 	}
 
 	/**
