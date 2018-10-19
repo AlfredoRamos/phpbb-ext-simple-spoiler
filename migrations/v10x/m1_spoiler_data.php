@@ -16,15 +16,6 @@ class m1_spoiler_data extends container_aware_migration
 {
 
 	/**
-	 * Check if the migration should run.
-	 *
-	 * @return bool
-	 */
-	public function effectively_installed()
-	{
-	}
-
-	/**
 	 * Install BBCode in database.
 	 *
 	 * @return array
