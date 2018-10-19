@@ -59,7 +59,7 @@ class helper
 	 * @param \phpbb\template\template			$template
 	 * @param \phpbb\config\config				$config
 	 * @param \phpbb\textformatter\s9e\parser	$parser
-	 * @param \phpbb\textformatter\s9e\parser	$utils
+	 * @param \phpbb\textformatter\s9e\utils	$utils
 	 * @param string							$root_path
 	 * @param string							$php_ext
 	 *
