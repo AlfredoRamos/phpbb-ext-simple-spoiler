@@ -14,6 +14,9 @@ use alfredoramos\simplespoiler\includes\helper as spoiler_helper;
 
 class m1_spoiler_data extends container_aware_migration
 {
+	/** @var \alfredoramos\simplespoiler\includes\helper */
+	private $spoiler = null;
+
 	/**
 	 * Install BBCode in database.
 	 *
@@ -25,20 +28,7 @@ class m1_spoiler_data extends container_aware_migration
 			[
 				'custom',
 				[
-					[
-						new spoiler_helper(
-							$this->container->get('dbal.conn'),
-							$this->container->get('filesystem'),
-							$this->container->get('language'),
-							$this->container->get('template'),
-							$this->container->get('config'),
-							$this->container->get('text_formatter.parser'),
-							$this->container->get('text_formatter.utils'),
-							$this->container->getParameter('core.root_path'),
-							$this->container->getParameter('core.php_ext')
-						),
-						'install_bbcode'
-					]
+					[$this->get_helper(), 'install_bbcode']
 				]
 			]
 		];
@@ -55,22 +45,34 @@ class m1_spoiler_data extends container_aware_migration
 			[
 				'custom',
 				[
-					[
-						new spoiler_helper(
-							$this->container->get('dbal.conn'),
-							$this->container->get('filesystem'),
-							$this->container->get('language'),
-							$this->container->get('template'),
-							$this->container->get('config'),
-							$this->container->get('text_formatter.parser'),
-							$this->container->get('text_formatter.utils'),
-							$this->container->getParameter('core.root_path'),
-							$this->container->getParameter('core.php_ext')
-						),
-						'uninstall_bbcode'
-					]
+					[$this->get_helper(), 'uninstall_bbcode']
 				]
 			]
 		];
+	}
+
+	/**
+	 * Spoiler helper.
+	 *
+	 * @return \alfredoramos\simplespoiler\includes\helper
+	 */
+	private function get_helper()
+	{
+		if ($this->spoiler === null)
+		{
+			$this->spoiler = new spoiler_helper(
+				$this->container->get('dbal.conn'),
+				$this->container->get('filesystem'),
+				$this->container->get('language'),
+				$this->container->get('template'),
+				$this->container->get('config'),
+				$this->container->get('text_formatter.parser'),
+				$this->container->get('text_formatter.utils'),
+				$this->container->getParameter('core.root_path'),
+				$this->container->getParameter('core.php_ext')
+			);
+		}
+
+		return $this->spoiler;
 	}
 }
