@@ -1,0 +1,11 @@
+{%- if not INCLUDED_SPOILER_CONFIG -%}
+<script>
+var $spoiler = {
+	lang: {
+		show: '{{ lang("SPOILER_SHOW")|escape("js") }}',
+		hide: '{{ lang("SPOILER_HIDE")|escape("js") }}'
+	}
+};
+</script>
+{%- set INCLUDED_SPOILER_CONFIG = true -%}
+{%- endif -%}
