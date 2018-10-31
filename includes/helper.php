@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Simple Spoiler Extension for phpBB.
+ * Simple Spoiler extension for phpBB.
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
@@ -19,7 +19,6 @@ use phpbb\textformatter\s9e\utils;
 
 class helper
 {
-
 	/** @var \phpbb\db\driver\factory */
 	protected $db;
 
@@ -410,5 +409,4 @@ class helper
 			'display_on_posting'	=> 1
 		];
 	}
-
 }

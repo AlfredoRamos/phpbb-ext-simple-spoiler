@@ -6,6 +6,7 @@
  * @copyright 2016 Alfredo Ramos
  * @license GPL-2.0-only
  */
+
 (function($) {
 	'use strict';
 	$.fn.initSpoilers = function($settings) {

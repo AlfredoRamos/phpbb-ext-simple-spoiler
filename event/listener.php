@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Simple Spoiler Extension for phpBB.
+ * Simple Spoiler extension for phpBB.
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
@@ -14,7 +14,6 @@ use alfredoramos\simplespoiler\includes\helper as helper;
 
 class listener implements EventSubscriberInterface
 {
-
 	/** @var \alfredoramos\simplespoiler\includes\helper */
 	protected $helper;
 
@@ -102,5 +101,4 @@ class listener implements EventSubscriberInterface
 	{
 		$event['message'] = $this->helper->remove_nested_spoilers($event['message']);
 	}
-
 }
