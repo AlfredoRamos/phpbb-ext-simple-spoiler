@@ -3,8 +3,8 @@
 	"type": "phpbb-extension",
 	"description": "Spoiler BBCode Extension for phpBB 3.2.x",
 	"homepage": "https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler",
-	"version": "1.3.0",
-	"time": "2018-09-14",
+	"version": "1.3.1-dev",
+	"time": "2018-10-31",
 	"keywords": ["phpbb", "extension", "spoiler", "bbcode"],
 	"license": "GPL-2.0-only",
 	"authors": [
