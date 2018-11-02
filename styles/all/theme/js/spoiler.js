@@ -2,7 +2,7 @@
  * Spoiler jQuery
  * https://github.com/AlfredoRamos/snippets/tree/master/javascript/spoiler
  * @author Alfredo Ramos <alfredo.ramos@yandex.com>
- * @version 0.3.0
+ * @version 0.3.1
  * @copyright 2016 Alfredo Ramos
  * @license GPL-2.0-only
  */
@@ -11,8 +11,10 @@
 	'use strict';
 
 	// Ensure settings exist
-	if (typeof $spoiler === 'undefined') {
-		$spoiler = {};
+	if (typeof window.$spoiler === 'undefined') {
+		var $spoiler = {};
+	} else {
+		$spoiler = window.$spoiler;
 	}
 
 	// Overwrite settings
