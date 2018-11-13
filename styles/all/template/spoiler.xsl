@@ -30,5 +30,5 @@
 		</div>
 		<div class="spoiler-status">{L_SPOILER_SHOW}</div>
 	</header>
-	<div class="spoiler-body">{TEXT1}</div>
+	<div class="spoiler-body"><xsl:apply-templates/></div>
 </section>
