@@ -325,6 +325,8 @@ class helper
 	/**
 	 * Add ACP configuration data.
 	 *
+	 * @param array $display_vars
+	 *
 	 * @return array
 	 */
 	public function add_acp_config($display_vars = [])
@@ -356,6 +358,8 @@ class helper
 	/**
 	 * Remove nested spoilers at given depth.
 	 *
+	 * @param string $message
+	 *
 	 * @return string
 	 */
 	public function remove_nested_spoilers($message = '')
@@ -378,6 +382,38 @@ class helper
 			$data['bbcode_tag'],
 			$max_depth
 		));
+	}
+
+	/**
+	 * Remove spoilers from post description.
+	 *
+	 * @param string $description
+	 *
+	 * @see \alfredoramos\seometadata\includes\helper::clean_description()
+	 *
+	 * @return string
+	 */
+	public function remove_description_spoilers($description = '')
+	{
+		if (empty($description))
+		{
+			return '';
+		}
+
+		$dom = new \DOMDocument;
+		$dom->preserveWhiteSpace = false;
+		$dom->loadXML($description);
+		$xpath = new \DOMXPath($dom);
+
+		// Remove spoilers
+		foreach ($xpath->query('/*/SPOILER') as $node)
+		{
+			$node->parentNode->removeChild($node);
+		}
+
+		$description = $dom->saveXML($dom->documentElement);
+
+		return $description;
 	}
 
 	/**

@@ -40,7 +40,8 @@ class listener implements EventSubscriberInterface
 			'core.user_setup' => 'user_setup',
 			'core.help_manager_add_block_before' => 'bbcode_help',
 			'core.acp_board_config_edit_add' => 'acp_config_add',
-			'core.message_parser_check_message' => 'parser_check_message'
+			'core.message_parser_check_message' => 'parser_check_message',
+			'alfredoramos.seometadata.clean_description_after' => 'clean_description_after'
 		];
 	}
 
@@ -100,5 +101,17 @@ class listener implements EventSubscriberInterface
 	public function parser_check_message($event)
 	{
 		$event['message'] = $this->helper->remove_nested_spoilers($event['message']);
+	}
+
+	/**
+	 * Remove spoilers from post description.
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
+	public function clean_description_after($event)
+	{
+		$event['description'] = $this->helper->remove_description_spoilers($event['description']);
 	}
 }
