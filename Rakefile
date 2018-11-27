@@ -1,16 +1,15 @@
-# encoding: UTF-8
+# frozen_string_literal: true
+
 require 'autoprefixer-rails'
 
 $stdout.sync = $stderr.sync = true
 
 namespace :build do
-  files = Dir.glob('styles/*/theme/css/*.css')
+  files = Dir.glob('styles/**/theme/css/*.css')
 
   desc 'Base build'
   task :base, [:opts] do |_t, args|
-    unless args[:opts].key?(:output)
-      args[:opts][:output] = args[:opts][:input]
-    end
+    args[:opts][:output] = args[:opts][:input] unless args[:opts].key?(:output)
 
     if args[:opts][:output].eql?(args[:opts][:input])
       args[:opts][:output] += '.tmp'
@@ -19,7 +18,8 @@ namespace :build do
     File.open(args[:opts][:output], 'w') do |f|
       css = File.read(args[:opts][:input])
 
-      f.puts AutoprefixerRails.process(css, {
+      f.puts AutoprefixerRails.process(
+        css,
         map: false,
         cascade: false,
         from: args[:opts][:input],
@@ -37,7 +37,7 @@ namespace :build do
           'Android >= 4.4',
           'Opera >= 30'
         ]
-      }).css
+      ).css
 
       if args[:opts][:output].index(/\.tmp$/).to_i.positive?
         File.delete(args[:opts][:input])
