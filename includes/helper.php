@@ -408,6 +408,11 @@ class helper
 		// Remove spoilers
 		foreach ($xpath->query('/*/SPOILER') as $node)
 		{
+			if (empty($node->nodeType) || empty($node->parentNode))
+			{
+				continue;
+			}
+
 			$node->parentNode->removeChild($node);
 		}
 
