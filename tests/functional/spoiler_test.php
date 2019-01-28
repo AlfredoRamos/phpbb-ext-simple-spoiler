@@ -59,4 +59,30 @@ class spoiler_test extends phpbb_functional_test_case
 		$this->assertTrue($form->has('config[max_spoiler_depth]'));
 		$this->assertSame('3', $form->get('config[max_spoiler_depth]')->getValue());
 	}
+
+	public function test_post_spoiler_bbcode()
+	{
+		$post = $this->create_topic(
+			2,
+			'Spoiler functional test 1',
+			'[spoiler]Hidden text[/spoiler]'
+		);
+
+		$crawler = self::request('GET', sprintf(
+			'viewtopic.php?t=%d&sid=%s',
+			$post['topic_id'],
+			$this->sid
+		));
+
+		$expected = <<<EOT
+<section class="spoiler spoiler-show"><header class="spoiler-header spoiler-trigger"><div class="spoiler-title">Spoiler</div><div class="spoiler-status">Hide</div></header><div class="spoiler-body">Hidden text</div></section>
+EOT;
+
+		$result = $crawler->filter(sprintf(
+			'#post_content%d .content',
+			$post['topic_id']
+		));
+
+		$this->assertContains($expected, $result->html());
+	}
 }
