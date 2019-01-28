@@ -19,6 +19,11 @@ class spoiler_test extends phpbb_functional_test_case
 	/** @var string */
 	static protected $spoiler_html;
 
+	static protected function setup_extensions()
+	{
+		return ['alfredoramos/simplespoiler'];
+	}
+
 	static public function setUpBeforeClass()
 	{
 		parent::setUpBeforeClass();
@@ -39,111 +44,7 @@ class spoiler_test extends phpbb_functional_test_case
 		$this->login();
 	}
 
-	static protected function setup_extensions()
-	{
-		return ['alfredoramos/simplespoiler'];
-	}
-
-	public function test_spoiler_bbcode()
-	{
-		$post = $this->create_topic(
-			2,
-			'Spoiler Functional Test 1',
-			'[spoiler]Hidden text[/spoiler]'
-		);
-		$crawler = self::request('GET', sprintf(
-			'viewtopic.php?t=%d&sid=%s',
-			$post['topic_id'],
-			$this->sid
-		));
-
-		$expected = vsprintf(self::$spoiler_html, [
-			'Spoiler',
-			'Hidden text'
-		]);
-		$result = $crawler->filter(sprintf(
-			'#post_content%d .content',
-			$post['topic_id']
-		));
-
-		$this->assertSame(1, $result->filter('.spoiler')->count());
-		$this->assertContains($expected, $result->html());
-	}
-
-	public function test_spoiler_title_bbcode()
-	{
-		$post = $this->create_topic(
-			2,
-			'Spoiler Functional Test 2',
-			'[spoiler title=Spoiler title]Hidden text[/spoiler]'
-		);
-		$crawler = self::request('GET', sprintf(
-			'viewtopic.php?t=%d&sid=%s',
-			$post['topic_id'],
-			$this->sid
-		));
-
-		$expected = vsprintf(self::$spoiler_html, [
-			'Spoiler title',
-			'Hidden text'
-		]);
-		$result = $crawler->filter(sprintf(
-			'#post_content%d .content',
-			$post['topic_id']
-		));
-
-		$this->assertSame(1, $result->filter('.spoiler')->count());
-		$this->assertContains($expected, $result->html());
-	}
-
-	public function test_deprecated_spoiler_title_bbcode()
-	{
-		$post = $this->create_topic(
-			2,
-			'Spoiler Functional Test 3',
-			'[spoiler=Spoiler title]Deprecated markup[/spoiler]'
-		);
-		$crawler = self::request('GET', sprintf(
-			'viewtopic.php?t=%d&sid=%s',
-			$post['topic_id'],
-			$this->sid
-		));
-
-		$expected = vsprintf(self::$spoiler_html, [
-			'Spoiler title',
-			'Deprecated markup'
-		]);
-		$result = $crawler->filter(sprintf(
-			'#post_content%d .content',
-			$post['topic_id']
-		));
-
-		$this->assertSame(1, $result->filter('.spoiler')->count());
-		$this->assertContains($expected, $result->html());
-	}
-
-	public function test_spoiler_nesting_depth()
-	{
-		$post = $this->create_topic(
-			2,
-			'Spoiler Functional Test 4',
-			'[spoiler][spoiler][spoiler][spoiler]Text[/spoiler][/spoiler][/spoiler][/spoiler]'
-		);
-		$crawler = self::request('GET', sprintf(
-			'viewtopic.php?t=%d&sid=%s',
-			$post['topic_id'],
-			$this->sid
-		));
-
-		$result = $crawler->filter(sprintf(
-			'#post_content%d .content',
-			$post['topic_id']
-		));
-
-		$this->assertSame(3, $result->filter('.spoiler')->count());
-	}
-
-	public function test_spoiler_nesting_depth_acp_form()
+	public function test_acp_post_settings()
 	{
 		$this->admin_login();
 
@@ -154,7 +55,8 @@ class spoiler_test extends phpbb_functional_test_case
 
 		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
 
+		$this->assertSame(1, $crawler->filter('#max_spoiler_depth')->count());
 		$this->assertTrue($form->has('config[max_spoiler_depth]'));
-		$this->assertSame(3, (int) $form->get('config[max_spoiler_depth]')->getValue());
+		$this->assertSame('3', $form->get('config[max_spoiler_depth]')->getValue());
 	}
 }
