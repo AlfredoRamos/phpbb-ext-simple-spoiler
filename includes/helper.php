@@ -406,7 +406,7 @@ class helper
 		$xpath = new \DOMXPath($dom);
 
 		// Remove spoilers
-		foreach ($xpath->query('/*/SPOILER') as $node)
+		foreach ($xpath->query('//SPOILER') as $node)
 		{
 			if (empty($node->nodeType) || empty($node->parentNode))
 			{
