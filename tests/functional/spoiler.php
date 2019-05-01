@@ -23,13 +23,13 @@ class spoiler_test extends phpbb_functional_test_case
 	{
 		parent::setUpBeforeClass();
 
-		self::$spoiler_html = '<section class="spoiler">'.
-									'<header class="spoiler-header spoiler-trigger">'.
+		self::$spoiler_html = '<div class="spoiler">'.
+									'<div class="spoiler-header spoiler-trigger">'.
 										'<div class="spoiler-title">%1$s</div>'.PHP_EOL.
 										'<div class="spoiler-status">Show</div>'.
-									'</header>'.
+									'</div>'.
 									'<div class="spoiler-body">%2$s</div>'.
-								'</section>';
+								'</div>';
 	}
 
 	public function setUp()
