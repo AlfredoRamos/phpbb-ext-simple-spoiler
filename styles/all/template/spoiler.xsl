@@ -12,7 +12,7 @@
 			</xsl:choose>
 		</div>
 		<div class="spoiler-status">
-			<i class="icon fa-eye-slash fa-fw" aria-hidden="true" title="{L_SPOILER_SHOW}"></i>
+			<i class="icon fa-eye fa-fw" aria-hidden="true"></i>
 			<span>{L_SPOILER_SHOW}</span>
 		</div>
 	</div>
