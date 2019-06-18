@@ -91,15 +91,15 @@ class helper
 	 */
 	public function install_bbcode()
 	{
-		// Remove conflicting BBCode
-		$this->remove_bbcode('spoiler=');
-
 		$data = $this->bbcode_data();
 
 		if (empty($data))
 		{
 			return;
 		}
+
+		// Remove conflicting BBCode
+		$this->remove_bbcode('spoiler=');
 
 		$data['bbcode_id'] = (int) $this->bbcode_id();
 		$data = array_replace(

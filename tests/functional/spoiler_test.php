@@ -27,7 +27,7 @@ class spoiler_test extends phpbb_functional_test_case
 									'<div class="spoiler-header spoiler-trigger">'.PHP_EOL.
 										'<div class="spoiler-title">%1$s</div>'.PHP_EOL.
 										'<div class="spoiler-status">'.PHP_EOL.
-											'<i class="icon fa-eye-slash fa-fw" aria-hidden="true" title="%3$s"></i>'.
+											'<i class="icon fa-eye fa-fw" aria-hidden="true"></i>'.
 											'<span>%3$s</span>'.PHP_EOL.
 										'</div>'.PHP_EOL.
 									'</div>'.PHP_EOL.

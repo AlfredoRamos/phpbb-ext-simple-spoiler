@@ -45,13 +45,11 @@
 			var $iconClass = 'fa-eye';
 
 			if ($elements.body.is(':visible')) {
-				$(this).removeClass($iconClass + '-slash');
-				$(this).prop('title', $spoiler.lang.hide);
-				return $iconClass;
-			} else {
 				$(this).removeClass($iconClass);
-				$(this).prop('title', $spoiler.lang.show);
 				return $iconClass + '-slash';
+			} else {
+				$(this).removeClass($iconClass + '-slash');
+				return $iconClass;
 			}
 		});
 
