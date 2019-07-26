@@ -284,8 +284,8 @@ class helper
 		$faq = [
 			'title' => 'HELP_BBCODE_BLOCK_SPOILERS',
 			'questions' => [
-				'HELP_BBCODE_SPOILERS_BASIC_QUESTION'	=> 'HELP_BBCODE_SPOILERS_BASIC_ANSWER',
-				'HELP_BBCODE_SPOILERS_TITLE_QUESTION'	=> 'HELP_BBCODE_SPOILERS_TITLE_ANSWER'
+				'HELP_BBCODE_SPOILERS_BASIC_QUESTION' => 'HELP_BBCODE_SPOILERS_BASIC_ANSWER',
+				'HELP_BBCODE_SPOILERS_TITLE_QUESTION' => 'HELP_BBCODE_SPOILERS_TITLE_ANSWER'
 			]
 		];
 
@@ -331,25 +331,27 @@ class helper
 	 */
 	public function add_acp_config($display_vars = [])
 	{
-		if (empty($display_vars))
+		if (empty($display_vars) || empty($display_vars['vars']))
 		{
 			return [];
 		}
 
-		$add_config_vars = [
-			'max_spoiler_depth' => [
-				'lang' => 'SPOILER_DEPTH_LIMIT',
-				'validate' => 'int:0:9999',
-				'type' => 'number:0:9999',
-				'explain' => true
-			]
-		];
-		$where = ['after' => 'max_quote_depth'];
+		if (!function_exists('phpbb_insert_config_array'))
+		{
+			include($this->root_path . 'includes/functions_acp.' . $this->php_ext);
+		}
 
 		$display_vars['vars'] = phpbb_insert_config_array(
 			$display_vars['vars'],
-			$add_config_vars,
-			$where
+			[
+				'max_spoiler_depth' => [
+					'lang' => 'SPOILER_DEPTH_LIMIT',
+					'validate' => 'int:0:9999',
+					'type' => 'number:0:9999',
+					'explain' => true
+				]
+			],
+			['after' => 'max_quote_depth']
 		);
 
 		return $display_vars;
