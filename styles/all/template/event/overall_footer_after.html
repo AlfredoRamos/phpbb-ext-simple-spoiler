@@ -1,4 +1,4 @@
-{%- if not INCLUDED_SPOILER_CONFIG -%}
+{% if INCLUDED_SPOILER_CONFIG is not defined %}
 <script>
 var $spoiler = {
 	lang: {
@@ -8,4 +8,4 @@ var $spoiler = {
 };
 </script>
 {%- set INCLUDED_SPOILER_CONFIG = true -%}
-{%- endif -%}
+{% endif %}
