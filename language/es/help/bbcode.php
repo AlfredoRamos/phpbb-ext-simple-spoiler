@@ -27,10 +27,10 @@ $lang = array_merge($lang, [
 	'HELP_BBCODE_BLOCK_SPOILERS' => 'Creando Spoilers',
 
 	'HELP_BBCODE_SPOILERS_BASIC_QUESTION'	=> 'Agregando un spoiler en un mensaje',
-	'HELP_BBCODE_SPOILERS_BASIC_ANSWER'		=> 'Un spoiler básico consiste en texto encapsulado entre las etiquetas <strong>[spoiler][/spoiler]</strong>. Por ejemplo:<br /><br /><strong>[spoiler]</strong>%2$s<strong>[/spoiler]</strong><br /><br />Esto generará:<br />%1$s',
+	'HELP_BBCODE_SPOILERS_BASIC_ANSWER'		=> 'Un spoiler básico consiste en texto encapsulado entre las etiquetas <strong>[spoiler][/spoiler]</strong>. Por ejemplo:<br><br><strong>[spoiler]</strong>%2$s<strong>[/spoiler]</strong><br><br>Esto generará:<br>%1$s',
 
 	'HELP_BBCODE_SPOILERS_TITLE_QUESTION'	=> 'Agregando un spoiler con título en un mensaje',
-	'HELP_BBCODE_SPOILERS_TITLE_ANSWER'		=> 'Un spoiler opcionalmente puedemostrar un título personalizado, para hacerlo el texto necesita ser encapsulado entre las etiquetas <strong>[spoiler title=][/spoiler]</strong>. Por ejemplo:<br /><br /><strong>[spoiler title=</strong>%3$s<strong>]</strong>%2$s<strong>[/spoiler]</strong><br /><br />Esto generará:<br />%1$s',
+	'HELP_BBCODE_SPOILERS_TITLE_ANSWER'		=> 'Un spoiler opcionalmente puedemostrar un título personalizado, para hacerlo el texto necesita ser encapsulado entre las etiquetas <strong>[spoiler title=][/spoiler]</strong>. Por ejemplo:<br><br><strong>[spoiler title=</strong>%3$s<strong>]</strong>%2$s<strong>[/spoiler]</strong><br><br>Esto generará:<br>%1$s',
 
 	'HELP_BBCODE_SPOILERS_DEMO_TITLE'	=> 'Resumen de la trama',
 	'HELP_BBCODE_SPOILERS_DEMO_BODY'	=> 'Detalles de la narrativa de la película'
