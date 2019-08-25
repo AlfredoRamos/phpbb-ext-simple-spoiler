@@ -75,13 +75,6 @@ class helper
 		$this->utils = $utils;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
-
-		if (!class_exists('acp_bbcodes'))
-		{
-			include($this->root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
-		}
-
-		$this->acp_bbcodes = new \acp_bbcodes;
 	}
 
 	/**
@@ -96,6 +89,17 @@ class helper
 		if (empty($data))
 		{
 			return;
+		}
+
+		// Lazy load BBCodes helper
+		if (!isset($this->acp_bbcodes))
+		{
+			if (!class_exists('acp_bbcodes'))
+			{
+				include($this->root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
+			}
+
+			$this->acp_bbcodes = new \acp_bbcodes;
 		}
 
 		// Remove conflicting BBCode
