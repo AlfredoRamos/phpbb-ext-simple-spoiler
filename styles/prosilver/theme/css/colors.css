@@ -10,21 +10,21 @@
 }
 
 .spoiler,
-.spoiler[open] > .spoiler-title {
+.spoiler-header {
 	border-color: #ddd;
 }
 
-.spoiler .spoiler-title {
+.spoiler-header {
 	background-color: #f3f3f3;
 	color: #333;
 }
 
-.spoiler .spoiler-title::after {
+.spoiler .spoiler-status::after {
 	background-color: #d9534f;
 	color: #fff;
 }
 
-.spoiler[open] > .spoiler-title::after {
+.spoiler[open] > .spoiler-header > .spoiler-status::after {
 	background-color: #5cb85c;
 }
 

@@ -12,25 +12,25 @@
 }
 
 .spoiler,
-.spoiler .spoiler-title {
+.spoiler-header {
 	padding: 3px 5px;
 }
 
 .spoiler,
-.spoiler .spoiler-title::after {
+.spoiler-status::after {
 	border-radius: 4px;
 }
 
-.spoiler .spoiler-title {
+.spoiler-header {
 	margin: -3px -5px;
 }
 
-.spoiler[open] > .spoiler-title {
+.spoiler[open] > .spoiler-header {
 	margin-bottom: 5px;
 	border-width: 0 0 1px;
 	border-style: solid;
 }
 
-.spoiler .spoiler-title::after {
+.spoiler .spoiler-status::after {
 	padding: 1px 4px;
 }
