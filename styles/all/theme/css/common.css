@@ -15,8 +15,11 @@
 }
 
 .spoiler .spoiler-title {
+	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-align: start;
 	align-items: flex-start;
+	-ms-flex-pack: justify;
 	justify-content: space-between;
 	overflow: hidden;
 	text-overflow: ellipsis;
@@ -33,6 +36,7 @@
 	font-family: FontAwesome;
 	text-rendering: normal;
 	letter-spacing: normal;
+	-ms-flex-item-align: end;
 	align-self: flex-end;
 }
 
