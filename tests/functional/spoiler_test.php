@@ -23,16 +23,7 @@ class spoiler_test extends phpbb_functional_test_case
 	{
 		parent::setUpBeforeClass();
 
-		self::$spoiler_html = '<div class="spoiler">'.PHP_EOL.
-									'<div class="spoiler-header spoiler-trigger">'.PHP_EOL.
-										'<div class="spoiler-title">%1$s</div>'.PHP_EOL.
-										'<div class="spoiler-status">'.PHP_EOL.
-											'<i class="icon fa-eye fa-fw" aria-hidden="true"></i>'.
-											'<span>%3$s</span>'.PHP_EOL.
-										'</div>'.PHP_EOL.
-									'</div>'.PHP_EOL.
-									'<div class="spoiler-body">%2$s</div>'.PHP_EOL.
-								'</div>';
+		self::$spoiler_html = '<details class="spoiler"><summary class="spoiler-header"><span class="spoiler-title">%1$s</span><span class="spoiler-status"></span></summary>%2$s</details>';
 	}
 
 	public function setUp()
@@ -64,8 +55,7 @@ class spoiler_test extends phpbb_functional_test_case
 
 		$expected = vsprintf(self::$spoiler_html, [
 			'Spoiler',
-			'Hidden text',
-			$this->lang('SPOILER_SHOW')
+			'Hidden text'
 		]);
 		$result = $crawler->filter(sprintf(
 			'#post_content%d .content',
@@ -91,8 +81,7 @@ class spoiler_test extends phpbb_functional_test_case
 
 		$expected = vsprintf(self::$spoiler_html, [
 			'Spoiler title',
-			'Hidden text',
-			$this->lang('SPOILER_SHOW')
+			'Hidden text'
 		]);
 		$result = $crawler->filter(sprintf(
 			'#post_content%d .content',
@@ -118,8 +107,7 @@ class spoiler_test extends phpbb_functional_test_case
 
 		$expected = vsprintf(self::$spoiler_html, [
 			'Spoiler title',
-			'Deprecated markup',
-			$this->lang('SPOILER_SHOW')
+			'Deprecated markup'
 		]);
 		$result = $crawler->filter(sprintf(
 			'#post_content%d .content',

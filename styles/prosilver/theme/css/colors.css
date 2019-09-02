@@ -7,24 +7,24 @@
 
 .spoiler {
 	background-color: #fff;
+}
+
+.spoiler,
+.spoiler-header {
 	border-color: #ddd;
 }
 
-.spoiler .spoiler-header {
+.spoiler-header {
 	background-color: #f3f3f3;
 	color: #333;
 }
 
-.spoiler .spoiler-header .spoiler-status {
+.spoiler .spoiler-status::after {
 	background-color: #d9534f;
 	color: #fff;
 }
 
-.spoiler .spoiler-body {
-	border-color: #ddd;
-}
-
-.spoiler-show > .spoiler-header .spoiler-status {
+.spoiler[open] > .spoiler-header > .spoiler-status::after {
 	background-color: #5cb85c;
 }
 
