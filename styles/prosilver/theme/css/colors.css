@@ -19,7 +19,7 @@
 	color: #333;
 }
 
-.spoiler .spoiler-status::after {
+.spoiler-status::after {
 	background-color: #d9534f;
 	color: #fff;
 }
