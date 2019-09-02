@@ -18,6 +18,16 @@ class m1_spoiler_data extends container_aware_migration
 	private $spoiler = null;
 
 	/**
+	 * Migration dependencies.
+	 *
+	 * @return array
+	 */
+	static public function depends_on()
+	{
+		return ['\alfredoramos\simplespoiler\migrations\v13x\m1_spoiler_data'];
+	}
+
+	/**
 	 * Install BBCode in database.
 	 *
 	 * @return array
