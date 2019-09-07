@@ -27,5 +27,5 @@
 		</span>
 		<span class="spoiler-status"></span>
 	</summary>
-	<xsl:apply-templates/>
+	<div class="spoiler-body"><xsl:apply-templates/></div>
 </details>
