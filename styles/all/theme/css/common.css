@@ -81,9 +81,12 @@
 }
 
 /* Polyfill */
-.spoiler > .spoiler-header::before,
-.spoiler[open] > .spoiler-header::before {
-	content: "";
+.spoiler-header::before {
 	padding-right: 0;
 	font-size: 1em;
+}
+
+.spoiler-header::before,
+.spoiler[open] > .spoiler-header::before {
+	content: "";
 }
