@@ -1,0 +1,8 @@
+{% if not INCLUDED_DETAILS_POLYFILL_JS %}
+{%-if S_ALLOW_CDN -%}
+{% INCLUDEJS 'https://rawcdn.githack.com/javan/details-element-polyfill/2.4.0/dist/details-element-polyfill.js' %}
+{%- else -%}
+{% INCLUDEJS '@alfredoramos_simplespoiler/js/details-element-polyfill.js' %}
+{%- endif -%}
+{%- set INCLUDED_DETAILS_POLYFILL_JS = true -%}
+{% endif %}

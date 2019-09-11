@@ -79,3 +79,14 @@
 .faq .spoiler {
 	max-width: 650px;
 }
+
+/* Polyfill */
+.spoiler-header::before {
+	padding-right: 0;
+	font-size: 1em;
+}
+
+.spoiler-header::before,
+.spoiler[open] > .spoiler-header::before {
+	content: "";
+}
