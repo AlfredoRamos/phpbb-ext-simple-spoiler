@@ -30,7 +30,7 @@
 		},
 		"version-check": {
 			"host": "alfredoramos.github.io",
-			"directory": "/phpbb-extensions",
+			"directory": "/phpbb-extensions/versions",
 			"filename": "simple-spoiler.json",
 			"ssl": true
 		}
