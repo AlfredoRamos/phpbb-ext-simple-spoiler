@@ -4,7 +4,7 @@
 	"description": "Simple Spoiler BBCode extension for phpBB",
 	"homepage": "https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler",
 	"version": "2.0.0-dev",
-	"time": "2019-09-11",
+	"time": "2019-10-01",
 	"keywords": ["phpbb", "extension", "spoiler", "bbcode", "html5"],
 	"license": "GPL-2.0-only",
 	"authors": [
@@ -26,7 +26,7 @@
 	"extra": {
 		"display-name": "Simple Spoiler",
 		"soft-require": {
-			"phpbb/phpbb": "~3.2.8-RC1"
+			"phpbb/phpbb": "~3.2.8"
 		},
 		"version-check": {
 			"host": "alfredoramos.github.io",
