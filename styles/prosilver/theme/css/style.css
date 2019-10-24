@@ -34,3 +34,13 @@
 .spoiler-status::after {
 	padding: 1px 4px;
 }
+
+.ie .spoiler-title {
+	-ms-flex-positive: 35;
+	flex-grow: 35;
+}
+
+.ie .spoiler-status {
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
