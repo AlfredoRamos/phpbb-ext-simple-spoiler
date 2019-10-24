@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 
 require 'autoprefixer-rails'
+require 'rubocop/rake_task'
 
 $stdout.sync = $stderr.sync = true
+
+# Tests
+RuboCop::RakeTask.new
 
 namespace :build do
   files = Dir.glob('styles/**/theme/css/*.css')
@@ -11,9 +15,7 @@ namespace :build do
   task :base, [:opts] do |_t, args|
     args[:opts][:output] = args[:opts][:input] unless args[:opts].key?(:output)
 
-    if args[:opts][:output].eql?(args[:opts][:input])
-      args[:opts][:output] += '.tmp'
-    end
+    args[:opts][:output] += '.tmp' if args[:opts][:output].eql?(args[:opts][:input])
 
     File.open(args[:opts][:output], 'w') do |f|
       css = File.read(args[:opts][:input])

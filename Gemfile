@@ -8,3 +8,7 @@ group :development do
   gem 'mini_racer'
   gem 'rake'
 end
+
+group :test do
+  gem 'rubocop', require: false
+end
