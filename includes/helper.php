@@ -14,7 +14,6 @@ use phpbb\filesystem\filesystem;
 use phpbb\language\language;
 use phpbb\template\template;
 use phpbb\config\config;
-use phpbb\textformatter\s9e\parser;
 use phpbb\textformatter\s9e\utils;
 
 class helper
@@ -33,9 +32,6 @@ class helper
 
 	/** @var \phpbb\config\config */
 	protected $config;
-
-	/** @var \phpbb\textformatter\s9e\parser */
-	protected $parser;
 
 	/** @var \phpbb\textformatter\s9e\utils */
 	protected $utils;
@@ -57,21 +53,19 @@ class helper
 	 * @param \phpbb\language\language			$language
 	 * @param \phpbb\template\template			$template
 	 * @param \phpbb\config\config				$config
-	 * @param \phpbb\textformatter\s9e\parser	$parser
 	 * @param \phpbb\textformatter\s9e\utils	$utils
 	 * @param string							$root_path
 	 * @param string							$php_ext
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, parser $parser, utils $utils, $root_path, $php_ext)
+	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, utils $utils, $root_path, $php_ext)
 	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
 		$this->language = $language;
 		$this->template = $template;
 		$this->config = $config;
-		$this->parser = $parser;
 		$this->utils = $utils;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
@@ -364,30 +358,31 @@ class helper
 	/**
 	 * Remove nested spoilers at given depth.
 	 *
-	 * @param string $message
+	 * @param string $xml
 	 *
 	 * @return string
 	 */
-	public function remove_nested_spoilers($message = '')
+	public function remove_nested_spoilers($xml = '')
 	{
-		if (empty($message))
+		if (empty($xml))
 		{
 			return '';
 		}
 
 		$max_depth = (int) $this->config['max_spoiler_depth'];
-		$data = $this->bbcode_data();
 
 		if ($max_depth <= 0)
 		{
-			return $message;
+			return $xml;
 		}
 
-		return $this->utils->unparse($this->utils->remove_bbcode(
-			$this->parser->parse($message),
+		$data = $this->bbcode_data();
+
+		return $this->utils->remove_bbcode(
+			$xml,
 			$data['bbcode_tag'],
 			$max_depth
-		));
+		);
 	}
 
 	/**
