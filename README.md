@@ -67,3 +67,7 @@ To customize the look and feel:
 - Delete all the files inside `{PHPBB_ROOT}/ext/alfredoramos/simplespoiler/`
 - Download the new version
 - Install the extension
+
+### Credits
+
+File `view-hide.svg` from [Zoondicons](https://www.zondicons.com/) by [Steve Schoger](https://twitter.com/steveschoger) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
