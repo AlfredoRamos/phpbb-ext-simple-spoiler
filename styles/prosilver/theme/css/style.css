@@ -44,3 +44,9 @@
 	-ms-flex-positive: 1;
 	flex-grow: 1;
 }
+
+.bbcode-spoiler.abbc3_button {
+	background-image: url('../../../all/theme/images/view-hide.svg');
+	background-size: 95%;
+	background-position: 50% 50%;
+}

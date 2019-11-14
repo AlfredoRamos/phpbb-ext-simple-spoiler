@@ -66,7 +66,6 @@ class m1_spoiler_data extends container_aware_migration
 				$this->container->get('language'),
 				$this->container->get('template'),
 				$this->container->get('config'),
-				$this->container->get('text_formatter.parser'),
 				$this->container->get('text_formatter.utils'),
 				$this->container->getParameter('core.root_path'),
 				$this->container->getParameter('core.php_ext')

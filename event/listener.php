@@ -38,9 +38,10 @@ class listener implements EventSubscriberInterface
 	{
 		return [
 			'core.user_setup' => 'user_setup',
+			'core.text_formatter_s9e_configure_after' => 'configure_spoiler',
+			'core.text_formatter_s9e_parse_after' => 'parser_check_message',
 			'core.help_manager_add_block_before' => 'bbcode_help',
 			'core.acp_board_config_edit_add' => 'acp_config_add',
-			'core.message_parser_check_message' => 'parser_check_message',
 			'alfredoramos.seometadata.clean_description_after' => 'clean_description_after'
 		];
 	}
@@ -60,6 +61,39 @@ class listener implements EventSubscriberInterface
 			'lang_set'	=> 'posting'
 		];
 		$event['lang_set_ext'] = $lang_set_ext;
+	}
+
+	public function configure_spoiler($event)
+	{
+		$configurator = $event['configurator'];
+		$spoiler = $this->helper->bbcode_data();
+
+		if (empty($spoiler))
+		{
+			return;
+		}
+
+		// Remove previous definitions
+		unset($configurator->BBCodes[$spoiler['bbcode_tag']]);
+		unset($configurator->tags[$spoiler['bbcode_tag']]);
+
+		// Create spoiler BBCode
+		$configurator->BBCodes->addCustom(
+			$spoiler['bbcode_match'],
+			$spoiler['bbcode_tpl']
+		);
+	}
+
+	/**
+	 * Remove spoilers that are nested too deep.
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
+	public function parser_check_message($event)
+	{
+		$event['xml'] = $this->helper->remove_nested_spoilers($event['xml']);
 	}
 
 	/**
@@ -89,18 +123,6 @@ class listener implements EventSubscriberInterface
 		}
 
 		$event['display_vars'] = $this->helper->add_acp_config($event['display_vars']);
-	}
-
-	/**
-	 * Remove spoilers that are nested too deep.
-	 *
-	 * @param object $event
-	 *
-	 * @return void
-	 */
-	public function parser_check_message($event)
-	{
-		$event['message'] = $this->helper->remove_nested_spoilers($event['message']);
 	}
 
 	/**
