@@ -63,12 +63,23 @@ class listener implements EventSubscriberInterface
 		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
+	/**
+	 * Add BBCode.
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
 	public function configure_spoiler($event)
 	{
 		$configurator = $event['configurator'];
 		$spoiler = $this->helper->bbcode_data();
 
-		if (empty($spoiler))
+		// Spoiler data must not be empty
+		if (empty($spoiler) ||
+			empty($spoiler['bbcode_tag']) ||
+			empty($spoiler['bbcode_match']) ||
+			empty($spoiler['bbcode_tpl']))
 		{
 			return;
 		}
