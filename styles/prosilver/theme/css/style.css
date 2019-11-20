@@ -11,13 +11,17 @@
 	margin: 1em 0;
 }
 
+.spoiler .spoiler:last-child {
+	margin-bottom: 5px;
+}
+
 .spoiler,
 .spoiler-header {
 	padding: 3px 5px;
 }
 
 .spoiler,
-.spoiler-status::after {
+.spoiler-status {
 	border-radius: 4px;
 }
 
@@ -31,18 +35,8 @@
 	border-style: solid;
 }
 
-.spoiler-status::after {
+.spoiler-status {
 	padding: 1px 4px;
-}
-
-.ie .spoiler-title {
-	-ms-flex-positive: 35;
-	flex-grow: 35;
-}
-
-.ie .spoiler-status {
-	-ms-flex-positive: 1;
-	flex-grow: 1;
 }
 
 .bbcode-spoiler.abbc3_button {

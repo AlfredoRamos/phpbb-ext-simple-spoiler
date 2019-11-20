@@ -39,24 +39,27 @@
 	-ms-flex-positive: 0;
 	flex-grow: 0;
 	margin-left: 3px;
-}
-
-.spoiler-status::after {
-	content: "\f06e"; /* eye */
-	font-style: normal;
-	font-variant: normal;
-	font-weight: normal;
-	font-size: 14px;
-	line-height: 1.3;
-	font-family: FontAwesome;
-	text-rendering: normal;
-	letter-spacing: normal;
 	-ms-flex-item-align: end;
 	align-self: flex-end;
+	text-align: center;
 }
 
-.spoiler[open] > .spoiler-header > .spoiler-status::after {
-	content: "\f070"; /* eye-slash */
+.spoiler-status > .icon {
+	vertical-align: middle;
+}
+
+.ie .spoiler-title {
+	-ms-flex-positive: 35;
+	flex-grow: 35;
+}
+
+.ie .spoiler-status {
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+}
+
+.ie .spoiler-status > .icon {
+	vertical-align: baseline;
 }
 
 .faq .spoiler {
@@ -71,5 +74,5 @@
 
 .spoiler-header::before,
 .spoiler[open] > .spoiler-header::before {
-	content: "";
+	content: '';
 }
