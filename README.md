@@ -10,7 +10,7 @@ Simple Spoiler BBCode extension for phpBB.
 ### Dependencies
 
 - PHP 5.6 or greater
-- phpBB 3.2 or greater
+- phpBB 3.3 or greater
 
 ### Installation
 
