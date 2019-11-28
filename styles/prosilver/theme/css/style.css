@@ -5,17 +5,17 @@
  * @license GPL-2.0-only
  */
 
-.spoiler {
+details.spoiler {
 	border-width: 1px;
 	border-style: solid;
 	margin: 1em 0;
 }
 
-.spoiler .spoiler:last-child {
+details.spoiler .spoiler:last-child {
 	margin-bottom: 5px;
 }
 
-.spoiler,
+details.spoiler,
 .spoiler-header {
 	padding: 3px 5px;
 }
