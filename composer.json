@@ -26,7 +26,7 @@
 	"extra": {
 		"display-name": "Simple Spoiler",
 		"soft-require": {
-			"phpbb/phpbb": "~3.2.8"
+			"phpbb/phpbb": "~3.3.0"
 		},
 		"version-check": {
 			"host": "alfredoramos.github.io",
