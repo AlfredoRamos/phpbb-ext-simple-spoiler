@@ -21,7 +21,7 @@ jobs:
         ruby-version: 2.6.x
     - name: Install gems
       run: |
-        gem install bundler
+        gem install -N bundler
         bundle install --jobs 4 --retry 3
         gem cleanup
     - name: Test Ruby
