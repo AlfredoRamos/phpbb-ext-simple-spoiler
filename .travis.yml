@@ -27,7 +27,7 @@ matrix:
       env: DB=mariadb
       services:
         - mysql
-    - php: 7.4
+    - php: 7.4snapshot
       env: DB=mariadb
       services:
         - mysql
@@ -36,7 +36,6 @@ matrix:
       services:
         - mysql
   allow_failures:
-    - php: 7.4
     - php: nightly
   fast_finish: true
 
