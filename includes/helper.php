@@ -45,6 +45,9 @@ class helper
 	/** @var \acp_bbcodes */
 	protected $acp_bbcodes;
 
+	/** array */
+	protected $tables;
+
 	/**
 	 * Constructor of the helper class.
 	 *
@@ -56,10 +59,11 @@ class helper
 	 * @param \phpbb\textformatter\s9e\utils	$utils
 	 * @param string							$root_path
 	 * @param string							$php_ext
+	 * @param string							$bbcodes_table
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, utils $utils, $root_path, $php_ext)
+	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, utils $utils, $root_path, $php_ext, $bbcodes_table)
 	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
@@ -69,6 +73,14 @@ class helper
 		$this->utils = $utils;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
+
+		// Assign tables
+		if (empty($this->tables))
+		{
+			$this->tables = [
+				'bbcodes' => $bbcodes_table
+			];
+		}
 	}
 
 	/**
@@ -154,7 +166,7 @@ class helper
 		}
 
 		$sql = 'SELECT bbcode_id
-			FROM ' . BBCODES_TABLE . '
+			FROM ' . $this->tables['bbcodes'] . '
 			WHERE ' . $this->db->sql_build_array('SELECT', ['bbcode_tag' => $bbcode_tag]);
 		$result = $this->db->sql_query($sql);
 		$bbcode_id = (int) $this->db->sql_fetchfield('bbcode_id');
@@ -175,7 +187,7 @@ class helper
 	public function bbcode_id()
 	{
 		$sql = 'SELECT MAX(bbcode_id) as last_id
-			FROM ' . BBCODES_TABLE;
+			FROM ' . $this->tables['bbcodes'];
 		$result = $this->db->sql_query($sql);
 		$bbcode_id = (int) $this->db->sql_fetchfield('last_id');
 		$this->db->sql_freeresult($result);
@@ -205,7 +217,7 @@ class helper
 			return;
 		}
 
-		$sql = 'INSERT INTO ' . BBCODES_TABLE . '
+		$sql = 'INSERT INTO ' . $this->tables['bbcodes'] . '
 			' . $this->db->sql_build_array('INSERT', $data);
 		$this->db->sql_query($sql);
 
@@ -230,7 +242,7 @@ class helper
 		// Remove only if exists
 		if ($bbcode_id > NUM_CORE_BBCODES)
 		{
-			$sql = 'DELETE FROM ' . BBCODES_TABLE . '
+			$sql = 'DELETE FROM ' . $this->tables['bbcodes'] . '
 				WHERE bbcode_id = ' . $bbcode_id;
 			$this->db->sql_query($sql);
 		}
@@ -255,7 +267,7 @@ class helper
 
 		unset($data['bbcode_id']);
 
-		$sql = 'UPDATE ' . BBCODES_TABLE . '
+		$sql = 'UPDATE ' . $this->tables['bbcodes'] . '
 			SET ' . $this->db->sql_build_array('UPDATE', $data) . '
 			WHERE bbcode_id = ' . $bbcode_id;
 		$this->db->sql_query($sql);
