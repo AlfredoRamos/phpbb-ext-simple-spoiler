@@ -45,7 +45,7 @@ class helper
 	/** @var \acp_bbcodes */
 	protected $acp_bbcodes;
 
-	/** array */
+	/** @var array */
 	protected $tables;
 
 	/**
