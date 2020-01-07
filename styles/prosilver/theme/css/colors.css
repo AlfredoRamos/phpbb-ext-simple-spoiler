@@ -5,11 +5,11 @@
  * @license GPL-2.0-only
  */
 
-.spoiler {
+details.spoiler {
 	background-color: #fff;
 }
 
-.spoiler,
+details.spoiler,
 .spoiler-header {
 	border-color: #ddd;
 }
@@ -24,6 +24,6 @@
 	color: #fff;
 }
 
-.spoiler[open] > .spoiler-header > .spoiler-status {
+details.spoiler[open] > .spoiler-header > .spoiler-status {
 	background-color: #5cb85c;
 }
