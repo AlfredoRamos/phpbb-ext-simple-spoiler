@@ -15,9 +15,6 @@
 			icon: $(this).find('.spoiler-status > .icon').first()
 		};
 
-		console.log($elements.container.attr('open'));
-		console.log($elements.icon.attr('class'));
-
 		if (typeof $elements.container.attr('open') === 'undefined') {
 			// Is opened
 			$elements.icon.removeClass('fa-eye');
