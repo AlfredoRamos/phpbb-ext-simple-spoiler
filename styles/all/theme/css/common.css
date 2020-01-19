@@ -28,42 +28,31 @@
 }
 
 .spoiler-title {
-	-ms-flex-positive: 1;
-	flex-grow: 1;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 }
 
 .spoiler-status {
-	-ms-flex-positive: 0;
-	flex-grow: 0;
 	margin-left: 3px;
 	-ms-flex-item-align: end;
 	align-self: flex-end;
 	text-align: center;
 }
 
-.spoiler-status > .icon {
-	vertical-align: middle;
-}
-
-.ie .spoiler-title {
-	-ms-flex-positive: 35;
-	flex-grow: 35;
-}
-
-.ie .spoiler-status {
-	-ms-flex-positive: 1;
-	flex-grow: 1;
-}
-
-.ie .spoiler-status > .icon {
-	vertical-align: baseline;
-}
-
 .faq details.spoiler {
 	max-width: 650px;
+}
+
+/* IE */
+.spoiler-title {
+	-ms-flex-positive: 40;
+	flex-grow: 40;
+}
+
+.spoiler-status {
+	-ms-flex-positive: 1;
+	flex-grow: 1;
 }
 
 /* Polyfill */
