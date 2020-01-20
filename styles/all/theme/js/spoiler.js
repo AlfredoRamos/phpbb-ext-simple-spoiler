@@ -5,24 +5,52 @@
  * @license GPL-2.0-only
  */
 
-(function($) {
+(function() {
 	'use strict';
 
+	// Polyfill for Element.matches()
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches#Polyfill
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
+
+	// Polyfill for Element.closest()
+	// https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
+	if (!Element.prototype.closest) {
+		Element.prototype.closest = function(s) {
+			let el = this;
+
+			do {
+				if (el.matches(s)) {
+					return el;
+				}
+
+				el = el.parentElement || el.parentNode;
+			} while (el !== null && el.nodeType === 1);
+
+			return null;
+		};
+	}
+
 	// Toggle status icon
-	$(document.body).on('click', '.spoiler-header', function() {
-		var $elements = {
-			container: $(this).parent('.spoiler').first(),
-			icon: $(this).find('.spoiler-status > .icon').first()
+	document.body.addEventListener('click', function(e) {
+		// Trigger event on the spoiler header
+		if (!e.target.closest('.spoiler-header')) {
+			return;
+		}
+
+		// Generate elements
+		let elements = {
+			container: e.target.closest('.spoiler')
 		};
 
-		if (typeof $elements.container.attr('open') === 'undefined') {
-			// Is opened
-			$elements.icon.removeClass('fa-eye');
-			$elements.icon.addClass('fa-eye-slash');
-		} else {
-			// Is closed
-			$elements.icon.removeClass('fa-eye-slash');
-			$elements.icon.addClass('fa-eye');
-		}
+		elements.icon = elements.container.querySelector('.spoiler-status > .icon');
+
+		// Check if spoiler is opened
+		let isOpen = elements.container.hasAttribute('open');
+
+		// Toggle FontAwesome icon
+		elements.icon.classList.toggle('fa-eye', isOpen);
+		elements.icon.classList.toggle('fa-eye-slash', !isOpen);
 	});
-})(jQuery);
+})();
