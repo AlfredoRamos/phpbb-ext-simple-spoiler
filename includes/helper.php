@@ -413,25 +413,8 @@ class helper
 			return '';
 		}
 
-		$dom = new \DOMDocument;
-		$dom->preserveWhiteSpace = false;
-		$dom->loadXML($description);
-		$xpath = new \DOMXPath($dom);
-
-		// Remove spoilers
-		foreach ($xpath->query('//SPOILER') as $node)
-		{
-			if (empty($node->nodeType) || empty($node->parentNode))
-			{
-				continue;
-			}
-
-			$node->parentNode->removeChild($node);
-		}
-
-		$description = $dom->saveXML($dom->documentElement);
-
-		return $description;
+		// Remove spoilers at any depth
+		return $this->utils->remove_bbcode($description, 'SPOILER', 0);
 	}
 
 	/**
