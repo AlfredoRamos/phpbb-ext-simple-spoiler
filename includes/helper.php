@@ -388,13 +388,7 @@ class helper
 			return $xml;
 		}
 
-		$data = $this->bbcode_data();
-
-		return $this->utils->remove_bbcode(
-			$xml,
-			$data['bbcode_tag'],
-			$max_depth
-		);
+		return $this->utils->remove_bbcode($xml, 'SPOILER', $max_depth);
 	}
 
 	/**
