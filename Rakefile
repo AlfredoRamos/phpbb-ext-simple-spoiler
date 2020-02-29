@@ -2,8 +2,16 @@
 
 require 'autoprefixer-rails'
 require 'rubocop/rake_task'
+require 'logger'
 
 $stdout.sync = $stderr.sync = true
+
+# Logger
+logger = Logger.new($stdout)
+logger.datetime_format = '%F %T %:z'
+logger.formatter = proc do |severity, datetime, _progname, msg|
+  "#{datetime} | #{severity} | #{msg}\n"
+end
 
 # Tests
 RuboCop::RakeTask.new
@@ -11,11 +19,12 @@ RuboCop::RakeTask.new
 namespace :build do
   files = Dir.glob('styles/**/theme/css/*.css')
 
-  desc 'Base build'
+  # Base build
   task :base, [:opts] do |_t, args|
     args[:opts][:output] = args[:opts][:input] unless args[:opts].key?(:output)
-
     args[:opts][:output] += '.tmp' if args[:opts][:output].eql?(args[:opts][:input])
+
+    logger.info(format('Processing file: %<filename>s', filename: args[:opts][:input]))
 
     File.open(args[:opts][:output], 'w') do |f|
       css = File.read(args[:opts][:input])
@@ -42,6 +51,7 @@ namespace :build do
       ).css
 
       if args[:opts][:output].index(/\.tmp$/).to_i.positive?
+        logger.warn(format('Overwriting file: %<filename>s', filename: args[:opts][:input]))
         File.delete(args[:opts][:input])
         File.rename(args[:opts][:output], args[:opts][:input])
       end
