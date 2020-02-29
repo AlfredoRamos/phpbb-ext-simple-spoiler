@@ -21,6 +21,10 @@ details.spoiler,
 
 .spoiler-status {
 	background-color: #d9534f;
+}
+
+.spoiler-status,
+.spoiler-status > .icon {
 	color: #fff;
 }
 
