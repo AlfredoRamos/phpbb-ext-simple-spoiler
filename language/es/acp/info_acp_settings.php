@@ -25,5 +25,5 @@ if (empty($lang) || !is_array($lang))
 
 $lang = array_merge($lang, [
 	'SPOILER_DEPTH_LIMIT' => 'Profundidad máxima de anidamiento para spoilers',
-	'SPOILER_DEPTH_LIMIT_EXPLAIN' => 'Profundidad máxima de anidamiento en spoilers por mensaje. Ajuste este valor en <samp>0</samp> para una profundidad ilimitada.'
+	'SPOILER_DEPTH_LIMIT_EXPLAIN' => 'Profundidad máxima de anidamiento para spoilers por mensaje. Ajuste este valor en <samp>0</samp> para una profundidad ilimitada.'
 ]);
