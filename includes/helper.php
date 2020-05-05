@@ -434,8 +434,12 @@ class helper
 
 		return [
 			'bbcode_tag'	=> 'spoiler',
-			'bbcode_match'	=> '[spoiler title={TEXT2;optional}]{TEXT1}[/spoiler]',
-			'bbcode_tpl'	=> $template
+			'bbcode_match'	=> '[spoiler={PARSE=/(?<title>.+)/} title={TEXT2;optional}]{TEXT1}[/spoiler]',
+			'bbcode_tpl'	=> $template,
+
+			// Kept for backwards compatibility
+			'bbcode_helpline'		=> 'SPOILER_HELPLINE',
+			'display_on_posting'	=> 1
 		];
 	}
 }
