@@ -2,16 +2,6 @@
 	<summary class="spoiler-header">
 		<span class="spoiler-title">
 			<xsl:choose>
-				<xsl:when test="@spoiler and string-length(normalize-space(@spoiler)) > 0">
-					<xsl:choose>
-						<xsl:when test="string-length(normalize-space(@spoiler)) > 140">
-							<xsl:value-of select="concat(normalize-space(substring(normalize-space(@spoiler), 0, 140)), '…')"/>
-						</xsl:when>
-						<xsl:otherwise>
-							<xsl:value-of select="normalize-space(@spoiler)"/>
-						</xsl:otherwise>
-					</xsl:choose>
-				</xsl:when>
 				<xsl:when test="@title and string-length(normalize-space(@title)) > 0">
 					<xsl:choose>
 						<xsl:when test="string-length(normalize-space(@title)) > 140">

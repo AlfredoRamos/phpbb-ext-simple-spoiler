@@ -141,14 +141,7 @@ class helper
 	 */
 	public function uninstall_bbcode()
 	{
-		$data = $this->bbcode_data();
-
-		if (empty($data))
-		{
-			return;
-		}
-
-		$this->remove_bbcode($data['bbcode_tag']);
+		$this->remove_bbcode('spoiler');
 	}
 
 	/**
@@ -434,8 +427,12 @@ class helper
 
 		return [
 			'bbcode_tag'	=> 'spoiler',
-			'bbcode_match'	=> '[spoiler title={TEXT2;optional}]{TEXT1}[/spoiler]',
-			'bbcode_tpl'	=> $template
+			'bbcode_match'	=> '[spoiler={PARSE=/(?<title>.+)/} title={TEXT2;optional}]{TEXT1}[/spoiler]',
+			'bbcode_tpl'	=> $template,
+
+			// Kept for backwards compatibility
+			'bbcode_helpline'		=> 'SPOILER_HELPLINE',
+			'display_on_posting'	=> 1
 		];
 	}
 }
