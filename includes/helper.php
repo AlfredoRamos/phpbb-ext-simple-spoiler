@@ -141,14 +141,7 @@ class helper
 	 */
 	public function uninstall_bbcode()
 	{
-		$data = $this->bbcode_data();
-
-		if (empty($data))
-		{
-			return;
-		}
-
-		$this->remove_bbcode($data['bbcode_tag']);
+		$this->remove_bbcode('spoiler');
 	}
 
 	/**

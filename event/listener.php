@@ -85,8 +85,10 @@ class listener implements EventSubscriberInterface
 		}
 
 		// Remove previous definitions
-		unset($configurator->BBCodes[$spoiler['bbcode_tag']]);
-		unset($configurator->tags[$spoiler['bbcode_tag']]);
+		unset(
+			$configurator->BBCodes[$spoiler['bbcode_tag']],
+			$configurator->tags[$spoiler['bbcode_tag']]
+		);
 
 		// Create spoiler BBCode
 		$configurator->BBCodes->addCustom(
