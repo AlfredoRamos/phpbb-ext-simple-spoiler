@@ -24,6 +24,6 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'SPOILER_DEPTH_LIMIT' => 'Maximum nesting depth for spoilers',
-	'SPOILER_DEPTH_LIMIT_EXPLAIN' => 'Maximum spoiler nesting depth in a post. Set to <samp>0</samp> for unlimited depth.'
+	'SPOILER_DEPTH_LIMIT' => 'Nombre maximum d\'imbrication pour les spoilers',
+	'SPOILER_DEPTH_LIMIT_EXPLAIN' => 'Profondeur maximum d\'imbrication de spoiler dans un post. Réglez sur <samp>0</samp> pour une profondeur illimitée.'
 ]);
