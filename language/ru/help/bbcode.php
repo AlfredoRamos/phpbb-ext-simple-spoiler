@@ -24,14 +24,14 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, [
-	'HELP_BBCODE_BLOCK_SPOILERS' => 'Generating Spoilers',
+	'HELP_BBCODE_BLOCK_SPOILERS' => 'Создание спойлеров',
 
-	'HELP_BBCODE_SPOILERS_BASIC_QUESTION'	=> 'Adding a spoiler into a post',
-	'HELP_BBCODE_SPOILERS_BASIC_ANSWER'		=> 'A basic spoiler consist in a text wrapped in <strong>[spoiler][/spoiler]</strong>. For example:<br><br><strong>[spoiler]</strong>%2$s<strong>[/spoiler]</strong><br><br>This would generate:<br>%1$s',
+	'HELP_BBCODE_SPOILERS_BASIC_QUESTION'	=> 'Добавление спойлера в сообщение',
+	'HELP_BBCODE_SPOILERS_BASIC_ANSWER'		=> 'Простой спойлер состоит из текста, заключенного в теги <strong>[spoiler][/spoiler]</strong>. Например:<br><br><strong>[spoiler]</strong>%2$s<strong>[/spoiler]</strong><br><br>Это выведет:<br>%1$s',
 
-	'HELP_BBCODE_SPOILERS_TITLE_QUESTION'	=> 'Adding a spoiler with title into a post',
-	'HELP_BBCODE_SPOILERS_TITLE_ANSWER'		=> 'A spoiler can optionally show a custom title, to do so the text need to be wrapped in <strong>[spoiler title=][/spoiler]</strong>. For example:<br><br><strong>[spoiler title=</strong>%3$s<strong>]</strong>%2$s<strong>[/spoiler]</strong><br><br>This would generate:<br>%1$s',
+	'HELP_BBCODE_SPOILERS_TITLE_QUESTION'	=> 'Добавление спойлера с названием в сообщение',
+	'HELP_BBCODE_SPOILERS_TITLE_ANSWER'		=> 'Спойлер может иметь произвольное название, для этого текст заключается в теги <strong>[spoiler title=][/spoiler]</strong>. Например:<br><br><strong>[spoiler title=</strong>%3$s<strong>]</strong>%2$s<strong>[/spoiler]</strong><br><br>Это выведет:<br>%1$s',
 
-	'HELP_BBCODE_SPOILERS_DEMO_TITLE'	=> 'Plot summary',
-	'HELP_BBCODE_SPOILERS_DEMO_BODY'	=> 'Details about the movie narrative'
+	'HELP_BBCODE_SPOILERS_DEMO_TITLE'	=> 'Краткий сюжет',
+	'HELP_BBCODE_SPOILERS_DEMO_BODY'	=> 'Подробности о сюжете фильма'
 ]);
