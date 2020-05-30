@@ -5,6 +5,7 @@ Simple Spoiler BBCode extension for phpBB.
 [![Build Status](https://img.shields.io/travis/com/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square)](https://travis-ci.com/AlfredoRamos/phpbb-ext-simple-spoiler)
 [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-simple-spoiler.svg?label=stable&style=flat-square)](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/releases)
 [![Code Quality](https://img.shields.io/codefactor/grade/github/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square)](https://www.codefactor.io/repository/github/alfredoramos/phpbb-ext-simple-spoiler)
+[![Translation Progress](https://badges.crowdin.net/phpbb-ext-simple-spoiler/localized.svg)](https://crowdin.com/project/phpbb-ext-simple-spoiler)
 [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-simple-spoiler/master/license.txt)
 
 ### Dependencies
