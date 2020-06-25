@@ -48,12 +48,6 @@ If you like or found my work useful and want to show some appreciation, you can 
 - Go to your `Administration Control Panel` > `Customize` > `Manage extensions`
 - Click on `Enable` and confirm
 
-### Usage
-
-Write `[spoiler]text[/spoiler]` or `[spoiler title=title]text[/spoiler]` and it will hide the content on anywhere that you can render BBCodes.
-
-You can nest `[spoiler]` and write unicode titles in `[spoiler title=title]`.
-
 ### Preview
 
 ![Nested spoilers](https://i.imgur.com/5NrtAoS.png)
