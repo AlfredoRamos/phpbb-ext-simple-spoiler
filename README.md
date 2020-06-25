@@ -8,10 +8,37 @@ Simple Spoiler BBCode extension for phpBB.
 [![Translation Progress](https://badges.crowdin.net/phpbb-ext-simple-spoiler/localized.svg)](https://crowdin.com/project/phpbb-ext-simple-spoiler)
 [![License](https://img.shields.io/github/license/AlfredoRamos/phpbb-ext-simple-spoiler.svg?style=flat-square)](https://raw.githubusercontent.com/AlfredoRamos/phpbb-ext-simple-spoiler/master/license.txt)
 
-### Dependencies
+Allows you to write `[spoiler]text[/spoiler]` or `[spoiler title=title]text[/spoiler]` and it will hide the content on anywhere that you can render BBCodes.
+
+You can nest `[spoiler]` and write unicode titles in `[spoiler title=title]`.
+
+### Features
+
+- BBCodes can be nested
+- Full Unicode support in title for the `[spoiler title=]` BBCode
+- It's easily extensible and customizable for new styles
+- HTML5 markup
+
+### Requirements
 
 - PHP 7.1.3 or greater
 - phpBB 3.3 or greater
+
+### Support
+
+- [**Download page**](https://www.phpbb.com/customise/db/extension/simple_spoiler_bbcode/)
+- [FAQ](https://www.phpbb.com/customise/db/extension/simple_spoiler_bbcode/faq)
+- [Support area](https://www.phpbb.com/customise/db/extension/simple_spoiler_bbcode/support)
+- [GitHub issues](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/issues)
+- [Crowdin translations](https://crowdin.com/project/phpbb-ext-simple-spoiler)
+
+### Donate
+
+If you like or found my work useful and want to show some appreciation, you can consider supporting its development by giving a donation.
+
+[![Donate with PayPal](https://alfredoramos.github.io/assets/images/donate.png)](https://alfredoramos.github.io/donate/)
+
+[![Donate with PayPal](https://www.paypalobjects.com/webstatic/i/logo/rebrand/ppcom.svg)](https://alfredoramos.github.io/donate/)
 
 ### Installation
 
