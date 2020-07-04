@@ -113,6 +113,9 @@
 			checkreturn="true"
 			outputProperty='package-version' />
 
+		<!-- Build and ninify assets -->
+		<exec command="bundle exec rake build:all" checkreturn="true" />
+
 		<phingcall target="wrap-package">
 			<property name="destination-filename" value="${build-directory}/upload/${vendor-name}_${extension-name}_${package-version}" />
 		</phingcall>

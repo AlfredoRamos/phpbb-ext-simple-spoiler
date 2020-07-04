@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require 'sassc'
 require 'autoprefixer-rails'
+require 'uglifier'
+require 'oj'
 require 'rubocop/rake_task'
 require 'logger'
 
@@ -16,25 +19,31 @@ end
 # Tests
 RuboCop::RakeTask.new
 
-namespace :build do
-  files = Dir.glob('styles/**/theme/css/*.css')
+# Helper
+class Helper
+  attr_reader :ext
 
-  # Base build
-  task :base, [:opts] do |_t, args|
-    args[:opts][:output] = args[:opts][:input] unless args[:opts].key?(:output)
-    args[:opts][:output] += '.tmp' if args[:opts][:output].eql?(args[:opts][:input])
+  def initialize(logger)
+    @logger = logger
 
-    logger.info(format('Processing file: %<filename>s', filename: args[:opts][:input]))
+    json = Oj.load_file('composer.json')
+    @ext = json['name'].split('/')
+  end
 
-    File.open(args[:opts][:output], 'w') do |f|
-      css = File.read(args[:opts][:input])
+  def autoprefix_file(args = {})
+    args[:output] = args[:input] unless args.key?(:output)
+    args[:output] += '.tmp' if args[:output].eql?(args[:input])
+
+    @logger.info(format('Processing file: %<filename>s', filename: args[:input]))
+    File.open(args[:output], 'w') do |f|
+      css = File.read(args[:input])
 
       f.puts AutoprefixerRails.process(
         css,
         map: false,
         cascade: false,
-        from: args[:opts][:input],
-        to: args[:opts][:output],
+        from: args[:input],
+        to: args[:output],
         browsers: [
           '>= 1%',
           'last 1 major version',
@@ -49,28 +58,157 @@ namespace :build do
           'Opera >= 30'
         ]
       ).css
+    end
 
-      if args[:opts][:output].index(/\.tmp$/).to_i.positive?
-        logger.warn(format('Overwriting file: %<filename>s', filename: args[:opts][:input]))
-        File.delete(args[:opts][:input])
-        File.rename(args[:opts][:output], args[:opts][:input])
+    return unless args[:output].end_with?('.tmp')
+
+    @logger.warn(format('Overwriting file: %<filename>s', filename: args[:input]))
+    File.delete(args[:input])
+    File.rename(args[:output], args[:input])
+  end
+
+  def minify_file(args = {})
+    args[:output] = minified_ext(args[:input]) unless args.key?(:output)
+    args[:path] = asset_path(args[:input]) unless args.key?(:path)
+
+    # Minify file
+    @logger.info(format('Processing file: %<filename>s', filename: args[:output]))
+    case args[:path]
+    when 'css'
+      File.open(args[:output], 'w') do |f|
+        css = File.read(args[:input])
+
+        f.puts SassC::Engine.new(
+          css,
+          style: :compressed,
+          cache: false,
+          syntax: :css,
+          filename: args[:output],
+          sourcemap: :none
+        ).render
       end
+    when 'js'
+      File.open(args[:output], 'w') do |f|
+        js = File.read(args[:input])
+
+        f.puts Uglifier.compile(
+          js,
+          comments: :none,
+          harmony: true,
+          output: {
+            quote_style: :single
+          }
+        )
+      end
+    else
+      @logger.error(format('Invalid path: %<directory>s', directory: args[:path]))
+      abort
     end
   end
 
-  desc 'Build CSS files'
-  task :css do
-    files.each do |file|
-      Rake::Task['build:base'].reenable
-      Rake::Task['build:base'].invoke(
+  def replace_asset_file(files = [], html = '')
+    files.each do |f|
+      namespace = twig_namespace(f)
+      next unless html.include?(namespace)
+
+      # Generate minified file
+      minify_file(input: f)
+
+      # Replace filename in template
+      html = html.gsub(namespace, minified_ext(namespace))
+    end
+
+    html
+  end
+
+  def base_dir
+    File.join('build', 'package', @ext.first, @ext.last)
+  end
+
+  def twig_namespace(file_path)
+    format(
+      '@%<vendor>s_%<extname>s/%<path>s/%<filename>s',
+      vendor: @ext.first,
+      extname: @ext.last,
+      path: asset_path(file_path),
+      filename: File.basename(file_path)
+    )
+  end
+
+  def asset_path(file_path)
+    File.extname(file_path).gsub('.', '')
+  end
+
+  def minified_ext(file_path)
+    ext = File.extname(file_path)
+
+    return file_path if file_path.end_with?('.min' + ext)
+
+    file_path.gsub(ext, '.min' + ext)
+  end
+end
+
+namespace :build do
+  # Input files
+  files = {
+    css: Dir.glob('styles/**/theme/css/*.css') + Dir.glob('adm/style/css/*.css'),
+    js: Dir.glob('styles/**/theme/js/*.js') + Dir.glob('adm/style/js/*.js')
+  }
+
+  # Exclude minified files
+  files[:css].delete_if { |file| file.end_with?('.min.css') }
+  files[:js].delete_if { |file| file.end_with?('.min.js') }
+
+  helper = Helper.new(logger)
+
+  desc 'AutoPrefix CSS files'
+  task :autoprefix do
+    logger.info('Autoprefixing CSS files')
+    files[:css].each do |file|
+      helper.autoprefix_file(
         input: file,
         style: :expanded
       )
     end
   end
 
-  desc 'Build all CSS files'
+  desc 'Minify assets'
+  task :minify do
+    logger.info('Minifying assets')
+    base_dir = helper.base_dir
+
+    unless Dir.exist?(base_dir)
+      logger.fatal(format('Directory not found: %<directory>s', directory: base_dir))
+      abort
+    end
+
+    Dir.chdir(base_dir) do
+      template = Dir.glob('styles/**/template/**/*.html') + Dir.glob('adm/style/**/*.html')
+
+      template.each do |file|
+        html = old_html = File.read(file)
+
+        # Replace assets (CSS and JS)
+        html = helper.replace_asset_file(files[:css], html)
+        html = helper.replace_asset_file(files[:js], html)
+
+        next if html.eql?(old_html)
+
+        # Update template file
+        logger.warn(format('Overwritting file: %<filename>s', filename: file))
+        File.open(file, 'w') { |f| f.puts html }
+
+        unless File.size(file).positive?
+          logger.fatal(format('Generated empty file: %<filename>s', filename: file))
+          abort
+        end
+      end
+    end
+  end
+
+  desc 'Build assets'
   task :all do
-    Rake::Task['build:css'].invoke
+    Rake::Task['build:autoprefix'].invoke
+    Rake::Task['build:minify'].invoke
   end
 end
