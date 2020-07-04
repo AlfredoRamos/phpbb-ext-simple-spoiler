@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Simple Spoiler Extension Builder" description="Builds an extension.zip from a git repository" default="all">
+	<property name="env" value="production" />
 	<property name="vendor-name" value="alfredoramos" />
 	<property name="extension-name" value="simplespoiler" />
 	<!--
@@ -14,6 +15,8 @@
 	example: ext/${vendor-name}/${extension-name}/
 	-->
 	<target name="clean-package">
+		<echo msg="Cleaning files and directories" />
+
 		<delete dir="${dir}/tests" />
 		<delete dir="${dir}/travis" />
 		<delete dir="${dir}/.github" />
@@ -28,7 +31,15 @@
 		<delete file="${dir}/Gemfile" />
 		<delete file="${dir}/Rakefile" />
 
-		<phingcall target="clean-langs" />
+		<if>
+			<and>
+				<equals arg1="${env}" arg2="production" />
+				<isset property="exclude-langs" />
+			</and>
+			<then>
+				<phingcall target="clean-langs" />
+			</then>
+		</if>
 	</target>
 
 	<!-- DO NOT EDIT BELOW THIS LINE -->
@@ -66,7 +77,7 @@
 				<isfalse value="${exclude-langs}" />
 			</not>
 			<then>
-				<echo msg="Deleting incomplete languages..." />
+				<echo msg="Deleting incomplete languages" />
 				<foreach list="${exclude-langs}" param="lang" target="clean-lang" />
 			</then>
 		</if>
@@ -75,6 +86,12 @@
 	<!-- Clean up the build directory -->
 	<target name="clean">
 		<delete dir="${build-directory}" />
+	</target>
+
+	<!-- Minify CSS and JS assets -->
+	<target name="minify-assets">
+		<echo msg="Minifying assets" />
+		<exec command="bundle exec rake build:all" checkreturn="true" />
 	</target>
 
 	<!-- Recreate the necessary folders -->
@@ -114,7 +131,12 @@
 			outputProperty='package-version' />
 
 		<!-- Build and ninify assets -->
-		<exec command="bundle exec rake build:all" checkreturn="true" />
+		<if>
+			<equals arg1="${env}" arg2="production" />
+			<then>
+				<phingcall target="minify-assets" />
+			</then>
+		</if>
 
 		<phingcall target="wrap-package">
 			<property name="destination-filename" value="${build-directory}/upload/${vendor-name}_${extension-name}_${package-version}" />
