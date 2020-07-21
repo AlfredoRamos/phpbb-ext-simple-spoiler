@@ -44,7 +44,16 @@
 			container: e.target.closest('.spoiler')
 		};
 
+		if (!elements.container) {
+			return;
+		}
+
+		// Status icon
 		elements.icon = elements.container.querySelector('.spoiler-status > .icon');
+
+		if (!elements.icon) {
+			return;
+		}
 
 		// Check if spoiler is opened
 		let isOpen = elements.container.hasAttribute('open');

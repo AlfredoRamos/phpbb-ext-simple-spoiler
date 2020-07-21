@@ -21,20 +21,24 @@
 	cursor: pointer;
 }
 
-.spoiler-title,
-.spoiler-status {
-	-ms-flex-preferred-size: 0;
-	flex-basis: 0;
-}
-
 .spoiler-title {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	-ms-flex-preferred-size: 0;
+	flex-basis: 0;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	min-width: 0;
+	max-width: 100%;
 }
 
 .spoiler-status {
 	margin-left: 3px;
+	-ms-flex: 0 0 auto;
+	flex: 0 0 auto;
+	width: auto;
+	max-width: 100%;
 	-ms-flex-item-align: end;
 	align-self: flex-end;
 	text-align: center;
@@ -42,17 +46,6 @@
 
 .faq details.spoiler {
 	max-width: 650px;
-}
-
-/* IE */
-.spoiler-title {
-	-ms-flex-positive: 40;
-	flex-grow: 40;
-}
-
-.spoiler-status {
-	-ms-flex-positive: 1;
-	flex-grow: 1;
 }
 
 /* Polyfill */
