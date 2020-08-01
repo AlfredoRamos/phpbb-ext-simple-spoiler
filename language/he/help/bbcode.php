@@ -30,8 +30,8 @@ $lang = array_merge($lang, [
 	'HELP_BBCODE_SPOILERS_BASIC_ANSWER'		=> 'ספויילר בסיסי מוקף בתגים <strong>[spoiler][/spoiler]</strong>. לדוגמה:<br><br><strong>[spoiler]</strong>%2$s<strong>[/spoiler]</strong><br><br> מייצר:<br>%1$s',
 
 	'HELP_BBCODE_SPOILERS_TITLE_QUESTION'	=> 'הוספת ספויילר עם כותרת לתוך ההודעה',
-	'HELP_BBCODE_SPOILERS_TITLE_ANSWER'		=> 'A spoiler can optionally show a custom title, to do so the text need to be wrapped in <strong>[spoiler title=][/spoiler]</strong>. For example:<br><br><strong>[spoiler title=</strong>%3$s<strong>]</strong>%2$s<strong>[/spoiler]</strong><br><br>This would generate:<br>%1$s',
+	'HELP_BBCODE_SPOILERS_TITLE_ANSWER'		=> 'ספויילר יכול להכין כותרת מותאמת אישית, כדי לעשות זאת צריך שהטקסט יהיה מוקף ב<strong>[spoiler title=][/spoiler]</strong>. לדוגמה:<br><br><strong>[spoiler title=</strong>%3$s<strong>]</strong>%2$s<strong>[/spoiler]</strong><br><br> יציג על המסך:<br>%1$s',
 
-	'HELP_BBCODE_SPOILERS_DEMO_TITLE'	=> 'Plot summary',
-	'HELP_BBCODE_SPOILERS_DEMO_BODY'	=> 'Details about the movie narrative'
+	'HELP_BBCODE_SPOILERS_DEMO_TITLE'	=> 'תקציר העלילה',
+	'HELP_BBCODE_SPOILERS_DEMO_BODY'	=> 'פרטים על עלילת הסרט'
 ]);
