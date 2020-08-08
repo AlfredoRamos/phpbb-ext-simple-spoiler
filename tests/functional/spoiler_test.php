@@ -9,13 +9,13 @@
 
 namespace alfredoramos\simplespoiler\tests\functional;
 
-use phpbb_functional_test_case;
-
 /**
  * @group functional
  */
-class spoiler_test extends phpbb_functional_test_case
+class spoiler_test extends \phpbb_functional_test_case
 {
+	use functional_test_case_trait;
+
 	/** @var string */
 	static protected $spoiler_html;
 
@@ -29,15 +29,8 @@ class spoiler_test extends phpbb_functional_test_case
 	public function setUp(): void
 	{
 		parent::setUp();
-
 		$this->add_lang_ext('alfredoramos/simplespoiler', 'posting');
-
 		$this->login();
-	}
-
-	static protected function setup_extensions()
-	{
-		return ['alfredoramos/simplespoiler'];
 	}
 
 	public function test_spoiler_bbcode()
@@ -137,20 +130,5 @@ class spoiler_test extends phpbb_functional_test_case
 		));
 
 		$this->assertSame(3, $result->filter('.spoiler')->count());
-	}
-
-	public function test_spoiler_nesting_depth_acp_form()
-	{
-		$this->admin_login();
-
-		$crawler = self::request('GET', sprintf(
-			'adm/index.php?i=acp_board&mode=post&sid=%s',
-			$this->sid
-		));
-
-		$form = $crawler->selectButton($this->lang('SUBMIT'))->form();
-
-		$this->assertTrue($form->has('config[max_spoiler_depth]'));
-		$this->assertSame(3, (int) $form->get('config[max_spoiler_depth]')->getValue());
 	}
 }

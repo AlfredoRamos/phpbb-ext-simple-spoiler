@@ -9,7 +9,6 @@
 
 namespace alfredoramos\simplespoiler\tests\event;
 
-use phpbb_test_case;
 use alfredoramos\simplespoiler\event\listener;
 use alfredoramos\simplespoiler\includes\helper;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -17,7 +16,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * @group event
  */
-class listener_test extends phpbb_test_case
+class listener_test extends \phpbb_test_case
 {
 	/** @var \alfredoramos\simplespoiler\includes\helper */
 	protected $helper;
