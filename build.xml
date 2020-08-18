@@ -48,7 +48,7 @@
 	<property name="package-directory" value="${build-directory}/package/${vendor-name}/${extension-name}" />
 
 	<!-- Remove incomplete translations. -->
-	<property name="exclude-langs" value="nl" override="true" />
+	<property name="exclude-langs" value="" override="true" />
 
 	<!-- These are the main targets which you will probably want to use -->
 	<target name="all" depends="prepare-structure,package" />
