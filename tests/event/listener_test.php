@@ -46,6 +46,7 @@ class listener_test extends \phpbb_test_case
 				'core.text_formatter_s9e_parse_after',
 				'core.help_manager_add_block_before',
 				'core.acp_board_config_edit_add',
+				'core.posting_modify_template_vars',
 				'alfredoramos.seometadata.clean_description_after'
 			],
 			array_keys(listener::getSubscribedEvents())

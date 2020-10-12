@@ -15,6 +15,7 @@ services:
             - '@template'
             - '@config'
             - '@text_formatter.utils'
+            - '@ext.manager'
             - '%core.root_path%'
             - '%core.php_ext%'
             - '%tables.bbcodes%'

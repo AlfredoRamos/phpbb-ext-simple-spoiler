@@ -92,4 +92,4 @@ To customize the look and feel:
 
 ### Credits
 
-File `view-hide.svg` from [Zoondicons](https://www.zondicons.com/) by [Steve Schoger](https://twitter.com/steveschoger) is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+File `eye-invisible.svg` is a modified version of `1F441.svg` from [Emoji One Legacy](https://github.com/joypixels/emojione-legacy) which is licensed under [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).

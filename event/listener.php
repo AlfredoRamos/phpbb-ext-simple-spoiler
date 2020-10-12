@@ -42,6 +42,7 @@ class listener implements EventSubscriberInterface
 			'core.text_formatter_s9e_parse_after' => 'parser_check_message',
 			'core.help_manager_add_block_before' => 'bbcode_help',
 			'core.acp_board_config_edit_add' => 'acp_config_add',
+			'core.posting_modify_template_vars' => 'posting_template_vars',
 			'alfredoramos.seometadata.clean_description_after' => 'clean_description_after'
 		];
 	}
@@ -136,6 +137,18 @@ class listener implements EventSubscriberInterface
 		}
 
 		$event['display_vars'] = $this->helper->add_acp_config($event['display_vars']);
+	}
+
+	/**
+	 * Add posting template variables.
+	 *
+	 * @param object $event
+	 *
+	 * @return void
+	 */
+	public function posting_template_vars($event)
+	{
+		$event['page_data'] = $this->helper->posting_template_vars($event['page_data']);
 	}
 
 	/**
