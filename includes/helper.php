@@ -15,6 +15,7 @@ use phpbb\language\language;
 use phpbb\template\template;
 use phpbb\config\config;
 use phpbb\textformatter\s9e\utils;
+use phpbb\extension\manager as ext_manager;
 
 class helper
 {
@@ -35,6 +36,9 @@ class helper
 
 	/** @var \phpbb\textformatter\s9e\utils */
 	protected $utils;
+
+	/** @var \phpbb\extension\manager */
+	protected $ext_manager;
 
 	/** @var string */
 	protected $root_path;
@@ -57,13 +61,14 @@ class helper
 	 * @param \phpbb\template\template			$template
 	 * @param \phpbb\config\config				$config
 	 * @param \phpbb\textformatter\s9e\utils	$utils
+	 * @param \phpbb\extension\manager			$ext_manager
 	 * @param string							$root_path
 	 * @param string							$php_ext
 	 * @param string							$bbcodes_table
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, utils $utils, $root_path, $php_ext, $bbcodes_table)
+	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, utils $utils, ext_manager $ext_manager, $root_path, $php_ext, $bbcodes_table)
 	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
@@ -71,6 +76,7 @@ class helper
 		$this->template = $template;
 		$this->config = $config;
 		$this->utils = $utils;
+		$this->ext_manager = $ext_manager;
 		$this->root_path = $root_path;
 		$this->php_ext = $php_ext;
 
@@ -402,6 +408,25 @@ class helper
 
 		// Remove spoilers at any depth
 		return $this->utils->remove_bbcode($description, 'SPOILER', 0);
+	}
+
+	/**
+	 * Set template variable for ABBC3 icon type.
+	 *
+	 * @param array $template_vars
+	 *
+	 * @return array
+	 */
+	public function posting_template_vars($template_vars = [])
+	{
+		if (empty($template_vars) || !$this->ext_manager->is_enabled('vse/abbc3') || empty($this->config['abbc3_icons_type']))
+		{
+			return $template_vars;
+		}
+
+		return array_merge($template_vars, [
+			'SIMPLE_SPOILER_ABBC3_ICON_TYPE' => $this->config['abbc3_icons_type']
+		]);
 	}
 
 	/**
