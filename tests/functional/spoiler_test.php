@@ -19,7 +19,7 @@ class spoiler_test extends \phpbb_functional_test_case
 	/** @var string */
 	static protected $spoiler_html;
 
-	static public function setUpBeforeClass()
+	static public function setUpBeforeClass(): void
 	{
 		parent::setUpBeforeClass();
 
