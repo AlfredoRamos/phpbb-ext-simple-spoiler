@@ -16,7 +16,7 @@ class acp_spoiler_test extends \phpbb_functional_test_case
 {
 	use functional_test_case_trait;
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		parent::setUp();
 		$this->login();
