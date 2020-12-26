@@ -22,11 +22,10 @@ class spoiler_test extends \phpbb_functional_test_case
 	static public function setUpBeforeClass(): void
 	{
 		parent::setUpBeforeClass();
-
 		self::$spoiler_html = '<details class="spoiler"><summary class="spoiler-header"><span class="spoiler-title">%1$s</span><span class="spoiler-status"><i class="icon fa-fw fa-eye" aria-hidden="true"></i></span></summary><div class="spoiler-body">%2$s</div></details>';
 	}
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		parent::setUp();
 		$this->add_lang_ext('alfredoramos/simplespoiler', 'posting');
@@ -56,7 +55,7 @@ class spoiler_test extends \phpbb_functional_test_case
 		));
 
 		$this->assertSame(1, $result->filter('.spoiler')->count());
-		$this->assertContains($expected, $result->html());
+		$this->assertStringContainsString($expected, $result->html());
 	}
 
 	public function test_spoiler_title_bbcode()
@@ -82,7 +81,7 @@ class spoiler_test extends \phpbb_functional_test_case
 		));
 
 		$this->assertSame(1, $result->filter('.spoiler')->count());
-		$this->assertContains($expected, $result->html());
+		$this->assertStringContainsString($expected, $result->html());
 	}
 
 	public function test_deprecated_spoiler_title_bbcode()
@@ -108,7 +107,7 @@ class spoiler_test extends \phpbb_functional_test_case
 		));
 
 		$this->assertSame(1, $result->filter('.spoiler')->count());
-		$this->assertContains($expected, $result->html());
+		$this->assertStringContainsString($expected, $result->html());
 	}
 
 	public function test_spoiler_nesting_depth()

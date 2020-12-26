@@ -21,10 +21,9 @@ class listener_test extends \phpbb_test_case
 	/** @var \alfredoramos\simplespoiler\includes\helper */
 	protected $helper;
 
-	public function setUp(): void
+	protected function setUp(): void
 	{
 		parent::setUp();
-
 		$this->helper = $this->getMockBuilder(helper::class)
 			->disableOriginalConstructor()->getMock();
 	}
