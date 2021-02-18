@@ -14,7 +14,7 @@ use alfredoramos\simplespoiler\includes\helper as spoiler_helper;
 
 class m1_spoiler_data extends container_aware_migration
 {
-	/** @var \alfredoramos\simplespoiler\includes\helper */
+	/** @var spoiler_helper */
 	private $spoiler = null;
 
 	/**
@@ -47,7 +47,7 @@ class m1_spoiler_data extends container_aware_migration
 	/**
 	 * Spoiler helper.
 	 *
-	 * @return \alfredoramos\simplespoiler\includes\helper
+	 * @return spoiler_helper
 	 */
 	private function get_helper()
 	{
