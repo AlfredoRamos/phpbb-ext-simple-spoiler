@@ -10,17 +10,17 @@
 namespace alfredoramos\simplespoiler\event;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use alfredoramos\simplespoiler\includes\helper as helper;
+use alfredoramos\simplespoiler\includes\helper;
 
 class listener implements EventSubscriberInterface
 {
-	/** @var \alfredoramos\simplespoiler\includes\helper */
+	/** @var helper */
 	protected $helper;
 
 	/**
 	 * Listener constructor.
 	 *
-	 * @param \alfredoramos\simplespoiler\includes\helper $helper
+	 * @param helper $helper
 	 *
 	 * @return void
 	 */

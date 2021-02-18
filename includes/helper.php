@@ -19,25 +19,25 @@ use phpbb\extension\manager as ext_manager;
 
 class helper
 {
-	/** @var \phpbb\db\driver\factory */
+	/** @var database */
 	protected $db;
 
-	/** @var \phpbb\filesystem\filesystem */
+	/** @var filesystem */
 	protected $filesystem;
 
-	/** @var \phpbb\language\language */
+	/** @var language */
 	protected $language;
 
-	/** @var \phpbb\template\template */
+	/** @var template */
 	protected $template;
 
-	/** @var \phpbb\config\config */
+	/** @var config */
 	protected $config;
 
-	/** @var \phpbb\textformatter\s9e\utils */
+	/** @var utils */
 	protected $utils;
 
-	/** @var \phpbb\extension\manager */
+	/** @var manager */
 	protected $ext_manager;
 
 	/** @var string */
@@ -55,16 +55,16 @@ class helper
 	/**
 	 * Constructor of the helper class.
 	 *
-	 * @param \phpbb\db\driver\factory			$db
-	 * @param \phpbb\filesystem\filesystem		$filesystem
-	 * @param \phpbb\language\language			$language
-	 * @param \phpbb\template\template			$template
-	 * @param \phpbb\config\config				$config
-	 * @param \phpbb\textformatter\s9e\utils	$utils
-	 * @param \phpbb\extension\manager			$ext_manager
-	 * @param string							$root_path
-	 * @param string							$php_ext
-	 * @param string							$bbcodes_table
+	 * @param database		$db
+	 * @param filesystem	$filesystem
+	 * @param language		$language
+	 * @param template		$template
+	 * @param config		$config
+	 * @param utils			$utils
+	 * @param manager		$ext_manager
+	 * @param string		$root_path
+	 * @param string		$php_ext
+	 * @param string		$bbcodes_table
 	 *
 	 * @return void
 	 */
