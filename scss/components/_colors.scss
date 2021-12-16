@@ -1,0 +1,30 @@
+.spoiler {
+	&-header {
+		background-color: $bg-header;
+		color: $fg-header;
+	}
+
+	&-status {
+		background-color: $bg-status-closed;
+	}
+
+	&-status,
+	&-status > .icon {
+		color: $fg-icon;
+	}
+}
+
+details {
+	&.spoiler {
+		background-color: $bg-spoiler;
+	}
+
+	&.spoiler,
+	.spoiler-header {
+		border-color: $br-default;
+	}
+
+	&.spoiler[open] > .spoiler-header > .spoiler-status {
+		background-color: $bg-status-opened;
+	}
+}

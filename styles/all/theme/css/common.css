@@ -4,62 +4,59 @@
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
-
-.spoiler {
+.spoiler,
+.spoiler-title {
 	overflow: hidden;
 }
 
 .spoiler-header {
 	display: -ms-flexbox;
 	display: flex;
+	-ms-flex-pack: justify;
+	-ms-flex-align: start;
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
-	-ms-flex-align: start;
-	align-items: flex-start;
-	-ms-flex-pack: justify;
 	justify-content: space-between;
+	align-items: flex-start;
 	cursor: pointer;
 }
 
+.spoiler-header:before {
+	font-size: 1em;
+	padding-right: 0;
+}
+
+.spoiler-header:before,
+.spoiler[open] > .spoiler-header:before {
+	content: "";
+}
+
 .spoiler-title {
-	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	-ms-flex-preferred-size: 0;
 	flex-basis: 0;
-	-ms-flex-positive: 1;
 	flex-grow: 1;
 	min-width: 0;
 	max-width: 100%;
+	-ms-flex-positive: 1;
+	-ms-flex-preferred-size: 0;
 }
 
 .spoiler-status {
-	margin-left: 3px;
+	text-align: center;
 	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
+	align-self: flex-end;
 	width: auto;
 	max-width: 100%;
+	margin-left: 3px;
 	-ms-flex-item-align: end;
-	align-self: flex-end;
-	text-align: center;
+}
+
+.spoiler-header::-webkit-details-marker {
+	display: none;
 }
 
 .faq details.spoiler {
 	max-width: 650px;
-}
-
-/* Polyfill */
-.spoiler-header::before {
-	padding-right: 0;
-	font-size: 1em;
-}
-
-.spoiler-header::before,
-.spoiler[open] > .spoiler-header::before {
-	content: '';
-}
-
-/* Chrome */
-.spoiler-header::-webkit-details-marker {
-	display: none;
 }

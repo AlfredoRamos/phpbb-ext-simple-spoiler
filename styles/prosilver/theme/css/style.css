@@ -4,6 +4,29 @@
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
+.spoiler,
+.spoiler-status {
+	border-radius: 4px;
+}
+
+.spoiler-header {
+	margin: -3px -5px;
+}
+
+.spoiler[open] > .spoiler-header {
+	border-width: 0 0 1px;
+	border-style: solid;
+	margin-bottom: 5px;
+}
+
+.spoiler-status {
+	padding: 1px 4px;
+}
+
+details.spoiler,
+.spoiler-header {
+	padding: 3px 5px;
+}
 
 details.spoiler {
 	border-width: 1px;
@@ -15,35 +38,11 @@ details.spoiler .spoiler:last-child {
 	margin-bottom: 5px;
 }
 
-details.spoiler,
-.spoiler-header {
-	padding: 3px 5px;
-}
-
-.spoiler,
-.spoiler-status {
-	border-radius: 4px;
-}
-
-.spoiler-header {
-	margin: -3px -5px;
-}
-
-.spoiler[open] > .spoiler-header {
-	margin-bottom: 5px;
-	border-width: 0 0 1px;
-	border-style: solid;
-}
-
-.spoiler-status {
-	padding: 1px 4px;
-}
-
 .bbcode-spoiler.abbc3_button {
-	background-image: url('../../../all/theme/images/eye-invisible.svg');
-	background-size: contain;
-	background-position: center;
+	background-image: url("../../../all/theme/images/eye-invisible.svg");
 	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 
 .bbcode-spoiler.abbc3_button.icon-type-svg {
