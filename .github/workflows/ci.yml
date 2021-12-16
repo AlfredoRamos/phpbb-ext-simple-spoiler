@@ -113,7 +113,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.setup-composer.outputs.dir }}
-          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock', '**/composer.json', 'phpBB3/phpBB/ext/${{ env.EXTNAME }}/composer.lock', 'phpBB3/phpBB/ext/${{ env.EXTNAME }}/composer.json') }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock', '**/composer.json') }}
           restore-keys: |
             ${{ runner.os }}-composer-
 
@@ -121,12 +121,21 @@ jobs:
         working-directory: phpBB3
         run: .github/setup-phpbb.sh $DB $PHP_VERSION $NOTESTS
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Node cache
+        uses: actions/cache@v2
         with:
-          ruby-version: '3.0'
-          bundler-cache: true
-          working-directory: extension
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '17'
+
+      - name: Install Node dependencies
+        working-directory: extension
+        run: npm install
 
       - name: Setup extension
         working-directory: extension
@@ -185,13 +194,22 @@ jobs:
         with:
           path: extension
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
+      - name: Setup Node cache
+        uses: actions/cache@v2
         with:
-          ruby-version: '3.0'
-          bundler-cache: true
-          working-directory: extension
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '17'
 
-      - name: Test Ruby
+      - name: Install Node dependencies
         working-directory: extension
-        run: bundle exec rake rubocop
+        run: npm install
+
+      - name: Test SCSS
+        working-directory: extension
+        run: npm run lint-scss

@@ -4,16 +4,6 @@
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
-
-details.spoiler {
-	background-color: #fff;
-}
-
-details.spoiler,
-.spoiler-header {
-	border-color: #ddd;
-}
-
 .spoiler-header {
 	background-color: #f3f3f3;
 	color: #333;
@@ -26,6 +16,15 @@ details.spoiler,
 .spoiler-status,
 .spoiler-status > .icon {
 	color: #fff;
+}
+
+details.spoiler {
+	background-color: #fff;
+}
+
+details.spoiler,
+details .spoiler-header {
+	border-color: #ddd;
 }
 
 details.spoiler[open] > .spoiler-header > .spoiler-status {
