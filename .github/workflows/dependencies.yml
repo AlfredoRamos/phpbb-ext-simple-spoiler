@@ -16,7 +16,13 @@ jobs:
         id: metadata
         uses: dependabot/fetch-metadata@v1
         with:
-          github-token: '${{ secrets.GITHUB_TOKEN }}'
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Approve pull request
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr review --approve "$PR_URL"
 
       - name: Merge pull request
         env:
