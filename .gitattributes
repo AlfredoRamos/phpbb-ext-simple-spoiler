@@ -12,5 +12,6 @@ postcss.config.js export-ignore
 .gitignore export-ignore
 .gitattributes export-ignore
 .stylelintrc.json export-ignore
+.tool-versions export-ignore
 *.md export-ignore
 *.scss
