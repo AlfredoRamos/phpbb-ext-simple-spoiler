@@ -28,13 +28,13 @@
 		"glob": "^10.0.0",
 		"postcss": "^8.4.4",
 		"postcss-cli": "^11.0.0",
-		"postcss-import": "^15.0.0",
+		"postcss-import": "^16.0.0",
 		"postcss-scss": "^4.0.2",
 		"sass": "^1.44.0",
-		"stylelint": "^15.6.0",
-		"stylelint-config-standard-scss": "^11.0.0",
+		"stylelint": "^16.1.0",
+		"stylelint-config-standard-scss": "^13.0.0",
 		"stylelint-order": "^6.0.1",
-		"stylelint-scss": "^5.0.0",
+		"stylelint-scss": "^6.0.0",
 		"uglify-js": "^3.14.5"
 	}
 }

@@ -24,6 +24,7 @@
 		<delete dir="${dir}/.vscode" />
 		<delete file="${dir}/.gitignore" />
 		<delete file="${dir}/.gitattributes" />
+		<delete file="${dir}/.editorconfig" />
 		<delete file="${dir}/.stylelintrc.json" />
 		<delete file="${dir}/.tool-versions" />
 		<delete file="${dir}/build.xml" />
@@ -124,7 +125,6 @@
 	<!-- The real packaging -->
 	<target name="package">
 		<echo msg="Extracting ${version}" />
-
 		<phingcall target="git-checkout">
 			<property name="archive-version" value="${version}" />
 		</phingcall>
@@ -151,7 +151,9 @@
 		<if>
 			<equals arg1="${env}" arg2="production" />
 			<then>
-				<phingcall target="minify-assets" />
+				<phingcall target="minify-assets">
+					<property name="dir" value="${package-directory}" />
+				</phingcall>
 			</then>
 		</if>
 
