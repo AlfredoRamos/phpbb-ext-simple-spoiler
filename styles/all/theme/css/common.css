@@ -1,62 +1,62 @@
 /**
  * Simple Spoiler extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@protonmail.com>
+ * @author Alfredo Ramos <alfredo.ramos@skiff.com>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
 .spoiler,
 .spoiler-title {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .spoiler-header {
-	display: -ms-flexbox;
-	display: flex;
-	-ms-flex-pack: justify;
-	-ms-flex-align: start;
-	-ms-flex-wrap: wrap;
-	flex-wrap: wrap;
-	justify-content: space-between;
-	align-items: flex-start;
-	cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+  -ms-flex-align: start;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  cursor: pointer;
 }
 
 .spoiler-header:before {
-	font-size: 1em;
-	padding-right: 0;
+  font-size: 1em;
+  padding-right: 0;
 }
 
 .spoiler-header:before,
 .spoiler[open] > .spoiler-header:before {
-	content: "";
+  content: '';
 }
 
 .spoiler-title {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	flex-basis: 0;
-	flex-grow: 1;
-	min-width: 0;
-	max-width: 100%;
-	-ms-flex-positive: 1;
-	-ms-flex-preferred-size: 0;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex-basis: 0;
+  flex-grow: 1;
+  min-width: 0;
+  max-width: 100%;
+  -ms-flex-positive: 1;
+  -ms-flex-preferred-size: 0;
 }
 
 .spoiler-status {
-	text-align: center;
-	-ms-flex: 0 0 auto;
-	flex: 0 0 auto;
-	align-self: flex-end;
-	width: auto;
-	max-width: 100%;
-	margin-left: 3px;
-	-ms-flex-item-align: end;
+  text-align: center;
+  -ms-flex: 0 0 auto;
+  flex: 0 0 auto;
+  align-self: flex-end;
+  width: auto;
+  max-width: 100%;
+  margin-left: 3px;
+  -ms-flex-item-align: end;
 }
 
 .spoiler-header::-webkit-details-marker {
-	display: none;
+  display: none;
 }
 
 .faq details.spoiler {
-	max-width: 650px;
+  max-width: 650px;
 }
