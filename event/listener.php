@@ -2,7 +2,7 @@
 
 /**
  * Simple Spoiler extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@skiff.com>
+ * @author Alfredo Ramos <alfredo.ramos@proton.me>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
@@ -77,11 +77,12 @@ class listener implements EventSubscriberInterface
 		$spoiler = $this->helper->bbcode_data();
 
 		// Spoiler data must not be empty
-		if (empty($spoiler) ||
+		if (
+			empty($spoiler) ||
 			empty($spoiler['bbcode_tag']) ||
 			empty($spoiler['bbcode_match']) ||
-			empty($spoiler['bbcode_tpl']))
-		{
+			empty($spoiler['bbcode_tpl'])
+		) {
 			return;
 		}
 
@@ -131,8 +132,7 @@ class listener implements EventSubscriberInterface
 	 */
 	public function acp_config_add($event)
 	{
-		if ($event['mode'] !== 'post')
-		{
+		if ($event['mode'] !== 'post') {
 			return;
 		}
 

@@ -2,7 +2,7 @@
 
 /**
  * Simple Spoiler extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@skiff.com>
+ * @author Alfredo Ramos <alfredo.ramos@proton.me>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
@@ -81,8 +81,7 @@ class helper
 		$this->php_ext = $php_ext;
 
 		// Assign tables
-		if (empty($this->tables))
-		{
+		if (empty($this->tables)) {
 			$this->tables = [
 				'bbcodes' => $bbcodes_table
 			];
@@ -98,16 +97,13 @@ class helper
 	{
 		$data = $this->bbcode_data();
 
-		if (empty($data))
-		{
+		if (empty($data)) {
 			return;
 		}
 
 		// Lazy load BBCodes helper
-		if (!isset($this->acp_bbcodes))
-		{
-			if (!class_exists('acp_bbcodes'))
-			{
+		if (!isset($this->acp_bbcodes)) {
+			if (!class_exists('acp_bbcodes')) {
 				include($this->root_path . 'includes/acp/acp_bbcodes.' . $this->php_ext);
 			}
 
@@ -130,12 +126,9 @@ class helper
 		$old_bbcode_id = (int) $this->bbcode_exists($data['bbcode_tag']);
 
 		// Update or add BBCode
-		if ($old_bbcode_id > NUM_CORE_BBCODES)
-		{
+		if ($old_bbcode_id > NUM_CORE_BBCODES) {
 			$this->update_bbcode($old_bbcode_id, $data);
-		}
-		else
-		{
+		} else {
 			$this->add_bbcode($data);
 		}
 	}
@@ -159,8 +152,7 @@ class helper
 	 */
 	public function bbcode_exists($bbcode_tag = '')
 	{
-		if (empty($bbcode_tag))
-		{
+		if (empty($bbcode_tag)) {
 			return -1;
 		}
 
@@ -192,8 +184,7 @@ class helper
 		$this->db->sql_freeresult($result);
 		$bbcode_id += 1;
 
-		if ($bbcode_id <= NUM_CORE_BBCODES)
-		{
+		if ($bbcode_id <= NUM_CORE_BBCODES) {
 			$bbcode_id = NUM_CORE_BBCODES + 1;
 		}
 
@@ -210,16 +201,16 @@ class helper
 	 */
 	public function add_bbcode($data = [])
 	{
-		if (empty($data) ||
-			(!empty($data['bbcode_id']) && (int) $data['bbcode_id'] > BBCODE_LIMIT))
-		{
+		if (
+			empty($data) ||
+			(!empty($data['bbcode_id']) && (int) $data['bbcode_id'] > BBCODE_LIMIT)
+		) {
 			return;
 		}
 
 		$sql = 'INSERT INTO ' . $this->tables['bbcodes'] . '
 			' . $this->db->sql_build_array('INSERT', $data);
 		$this->db->sql_query($sql);
-
 	}
 
 	/**
@@ -231,16 +222,14 @@ class helper
 	 */
 	public function remove_bbcode($bbcode_tag = '')
 	{
-		if (empty($bbcode_tag))
-		{
+		if (empty($bbcode_tag)) {
 			return;
 		}
 
 		$bbcode_id = (int) $this->bbcode_exists($bbcode_tag);
 
 		// Remove only if exists
-		if ($bbcode_id > NUM_CORE_BBCODES)
-		{
+		if ($bbcode_id > NUM_CORE_BBCODES) {
 			$sql = 'DELETE FROM ' . $this->tables['bbcodes'] . '
 				WHERE bbcode_id = ' . $bbcode_id;
 			$this->db->sql_query($sql);
@@ -259,8 +248,7 @@ class helper
 	{
 		$bbcode_id = (int) $bbcode_id;
 
-		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data))
-		{
+		if ($bbcode_id <= NUM_CORE_BBCODES || empty($data)) {
 			return;
 		}
 
@@ -281,8 +269,7 @@ class helper
 	 */
 	public function add_bbcode_help($block_name = '')
 	{
-		if (empty($block_name) || $block_name !== 'HELP_BBCODE_BLOCK_OTHERS')
-		{
+		if (empty($block_name) || $block_name !== 'HELP_BBCODE_BLOCK_OTHERS') {
 			return;
 		}
 
@@ -308,8 +295,7 @@ class helper
 		$uid = $bitfield = $flags = null;
 
 		// Generate questions and answers
-		foreach ($faq['questions'] as $key => $value)
-		{
+		foreach ($faq['questions'] as $key => $value) {
 			$has_title = (strpos($key, 'TITLE') !== false);
 			$text = sprintf(
 				'[spoiler%2$s]%1$s[/spoiler]',
@@ -340,13 +326,11 @@ class helper
 	 */
 	public function add_acp_config($display_vars = [])
 	{
-		if (empty($display_vars) || empty($display_vars['vars']))
-		{
+		if (empty($display_vars) || empty($display_vars['vars'])) {
 			return [];
 		}
 
-		if (!function_exists('phpbb_insert_config_array'))
-		{
+		if (!function_exists('phpbb_insert_config_array')) {
 			include($this->root_path . 'includes/functions_acp.' . $this->php_ext);
 		}
 
@@ -375,15 +359,13 @@ class helper
 	 */
 	public function remove_nested_spoilers($xml = '')
 	{
-		if (empty($xml))
-		{
+		if (empty($xml)) {
 			return '';
 		}
 
 		$max_depth = (int) $this->config['max_spoiler_depth'];
 
-		if ($max_depth <= 0)
-		{
+		if ($max_depth <= 0) {
 			return $xml;
 		}
 
@@ -401,8 +383,7 @@ class helper
 	 */
 	public function remove_description_spoilers($description = '')
 	{
-		if (empty($description))
-		{
+		if (empty($description)) {
 			return '';
 		}
 
@@ -419,8 +400,7 @@ class helper
 	 */
 	public function posting_template_vars($template_vars = [])
 	{
-		if (empty($template_vars) || !$this->ext_manager->is_enabled('vse/abbc3') || empty($this->config['abbc3_icons_type']))
-		{
+		if (empty($template_vars) || !$this->ext_manager->is_enabled('vse/abbc3') || empty($this->config['abbc3_icons_type'])) {
 			return $template_vars;
 		}
 
@@ -445,8 +425,7 @@ class helper
 		$template = $this->filesystem->is_readable($xsl) ? trim(file_get_contents($xsl)) : '';
 
 		// The spoiler template should not be empty
-		if (empty($template))
-		{
+		if (empty($template)) {
 			return [];
 		}
 

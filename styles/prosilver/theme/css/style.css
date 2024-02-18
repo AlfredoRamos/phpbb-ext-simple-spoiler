@@ -1,51 +1,51 @@
 /**
  * Simple Spoiler extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@skiff.com>
+ * @author Alfredo Ramos <alfredo.ramos@proton.me>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
 .spoiler,
 .spoiler-status {
-  border-radius: 4px;
+	border-radius: 4px;
 }
 
 .spoiler-header {
-  margin: -3px -5px;
+	margin: -3px -5px;
 }
 
 .spoiler[open] > .spoiler-header {
-  border-width: 0 0 1px;
-  border-style: solid;
-  margin-bottom: 5px;
+	border-width: 0 0 1px;
+	border-style: solid;
+	margin-bottom: 5px;
 }
 
 .spoiler-status {
-  padding: 1px 4px;
+	padding: 1px 4px;
 }
 
 details.spoiler,
 .spoiler-header {
-  padding: 3px 5px;
+	padding: 3px 5px;
 }
 
 details.spoiler {
-  border-width: 1px;
-  border-style: solid;
-  margin: 1em 0;
+	border-width: 1px;
+	border-style: solid;
+	margin: 1em 0;
 }
 
 details.spoiler .spoiler:last-child {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 .bbcode-spoiler.abbc3_button {
-  background-image: url('../../../all/theme/images/eye-invisible.svg');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
+	background-image: url('../../../all/theme/images/eye-invisible.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 }
 
 .bbcode-spoiler.abbc3_button.icon-type-svg {
-  -webkit-filter: grayscale(1);
-  filter: grayscale(1);
+	-webkit-filter: grayscale(1);
+	filter: grayscale(1);
 }

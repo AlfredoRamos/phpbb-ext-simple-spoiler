@@ -2,7 +2,7 @@
 
 /**
  * Simple Spoiler extension for phpBB.
- * @author Alfredo Ramos <alfredo.ramos@skiff.com>
+ * @author Alfredo Ramos <alfredo.ramos@proton.me>
  * @copyright 2017 Alfredo Ramos
  * @license GPL-2.0-only
  */
@@ -51,8 +51,7 @@ class m1_spoiler_data extends container_aware_migration
 	 */
 	private function get_helper()
 	{
-		if ($this->spoiler === null)
-		{
+		if ($this->spoiler === null) {
 			$this->spoiler = new spoiler_helper(
 				$this->container->get('dbal.conn'),
 				$this->container->get('filesystem'),

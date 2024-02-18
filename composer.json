@@ -5,12 +5,18 @@
 	"homepage": "https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler",
 	"version": "2.3.2",
 	"time": "2020-10-12",
-	"keywords": ["phpbb", "extension", "spoiler", "bbcode", "html5"],
+	"keywords": [
+		"phpbb",
+		"extension",
+		"spoiler",
+		"bbcode",
+		"html5"
+	],
 	"license": "GPL-2.0-only",
 	"authors": [
 		{
 			"name": "Alfredo Ramos",
-			"email": "alfredo.ramos@skiff.com",
+			"email": "alfredo.ramos@proton.me",
 			"homepage": "https://alfredoramos.mx/",
 			"role": "Lead Developer"
 		}
