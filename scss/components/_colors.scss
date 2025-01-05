@@ -1,30 +1,32 @@
+@use '../abstracts/variables';
+
 .spoiler {
 	&-header {
-		background-color: $bg-header;
-		color: $fg-header;
+		background-color: variables.$bg-header;
+		color: variables.$fg-header;
 	}
 
 	&-status {
-		background-color: $bg-status-closed;
+		background-color: variables.$bg-status-closed;
 	}
 
 	&-status,
 	&-status > .icon {
-		color: $fg-icon;
+		color: variables.$fg-icon;
 	}
 }
 
 details {
 	&.spoiler {
-		background-color: $bg-spoiler;
+		background-color: variables.$bg-spoiler;
 	}
 
 	&.spoiler,
 	.spoiler-header {
-		border-color: $br-default;
+		border-color: variables.$br-default;
 	}
 
 	&.spoiler[open] > .spoiler-header > .spoiler-status {
-		background-color: $bg-status-opened;
+		background-color: variables.$bg-status-opened;
 	}
 }

@@ -6,52 +6,52 @@
  */
 
 .spoiler {
-  &,
-  &-title {
-    overflow: hidden;
-  }
+	&,
+	&-title {
+		overflow: hidden;
+	}
 
-  &-header {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: flex-start;
-    cursor: pointer;
-  }
+	&-header {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: flex-start;
+		cursor: pointer;
+	}
 
-  &-header:before {
-    font-size: 1em;
-    padding-right: 0;
-  }
+	&-header:before {
+		font-size: 1em;
+		padding-right: 0;
+	}
 
-  &-header:before,
-  &[open] > &-header:before {
-    content: '';
-  }
+	&-header:before,
+	&[open] > &-header:before {
+		content: '';
+	}
 
-  &-title {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    flex-basis: 0;
-    flex-grow: 1;
-    min-width: 0;
-    max-width: 100%;
-  }
+	&-title {
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		flex-basis: 0;
+		flex-grow: 1;
+		min-width: 0;
+		max-width: 100%;
+	}
 
-  &-status {
-    text-align: center;
-    flex: 0 0 auto;
-    align-self: flex-end;
-    width: auto;
-    max-width: 100%;
-    margin-left: 3px;
-  }
+	&-status {
+		text-align: center;
+		flex: 0 0 auto;
+		align-self: flex-end;
+		width: auto;
+		max-width: 100%;
+		margin-left: 3px;
+	}
 
-  &-header::-webkit-details-marker {
-    display: none;
-  }
+	&-header::-webkit-details-marker {
+		display: none;
+	}
 }
 
 .faq details.spoiler {
-  max-width: 650px;
+	max-width: 650px;
 }

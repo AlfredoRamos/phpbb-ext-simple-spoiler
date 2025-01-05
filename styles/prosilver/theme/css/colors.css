@@ -8,11 +8,9 @@
 	background-color: #f3f3f3;
 	color: #333;
 }
-
 .spoiler-status {
 	background-color: #d9534f;
 }
-
 .spoiler-status,
 .spoiler-status > .icon {
 	color: #fff;
@@ -21,12 +19,10 @@
 details.spoiler {
 	background-color: #fff;
 }
-
 details.spoiler,
 details .spoiler-header {
 	border-color: #ddd;
 }
-
 details.spoiler[open] > .spoiler-header > .spoiler-status {
 	background-color: #5cb85c;
 }
