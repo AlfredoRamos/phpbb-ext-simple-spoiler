@@ -8,7 +8,7 @@ const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
 
 const scssFileList = glob.sync('scss/themes/**/*.scss');
-scssFileList.forEach(function (s) {
+scssFileList.forEach((s) => {
 	const normalFile = s.replace('scss/themes/', '').replace('.scss', '.css');
 	const normalFilePath = path.dirname(normalFile);
 
@@ -20,8 +20,8 @@ scssFileList.forEach(function (s) {
 
 	postcss([autoprefixer({ cascade: false })])
 		.process(result.css, { from: result.css, to: normalFile })
-		.then(function (res) {
-			res.warnings().forEach(function (warn) {
+		.then((res) => {
+			res.warnings().forEach((warn) => {
 				console.warn(warn.toString());
 			});
 
