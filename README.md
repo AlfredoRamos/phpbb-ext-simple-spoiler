@@ -2,7 +2,7 @@
 
 Simple Spoiler BBCode extension for phpBB.
 
-[![Build Status](https://img.shields.io/github/workflow/status/AlfredoRamos/phpbb-ext-simple-spoiler/CI?style=flat-square)](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/AlfredoRamos/phpbb-ext-simple-spoiler/ci.yml?style=flat-square)](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/actions)
 [![Latest Stable Version](https://img.shields.io/github/tag/AlfredoRamos/phpbb-ext-simple-spoiler.svg?label=stable&style=flat-square)](https://github.com/AlfredoRamos/phpbb-ext-simple-spoiler/releases)
 [![Code Quality](https://img.shields.io/codacy/grade/d999d79cca134f189502ad84cee17a33.svg?style=flat-square)](https://app.codacy.com/manual/AlfredoRamos/phpbb-ext-simple-spoiler/dashboard)
 [![Translation Progress](https://badges.crowdin.net/phpbb-ext-simple-spoiler/localized.svg)](https://crowdin.com/project/phpbb-ext-simple-spoiler)
@@ -36,9 +36,9 @@ You can nest `[spoiler]` and write unicode titles in `[spoiler title=title]`.
 
 If you like or found my work useful and want to show some appreciation, you can consider supporting its development by giving a donation.
 
-[![Donate with PayPal](https://alfredoramos.mx/images/paypal.svg)](https://alfredoramos.mx/donate/) | [![Donate with Stripe](https://alfredoramos.mx/images/stripe.svg)](https://alfredoramos.mx/donate/)
-:-:|:-:
-[![Donate with PayPal](https://alfredoramos.mx/images/donate_paypal.svg)](https://alfredoramos.mx/donate/) | [![Donate with Stripe](https://alfredoramos.mx/images/donate_stripe.svg)](https://alfredoramos.mx/donate/)
+|    [![Donate with PayPal](https://alfredoramos.mx/images/paypal.svg)](https://alfredoramos.mx/donate/)     |    [![Donate with Stripe](https://alfredoramos.mx/images/stripe.svg)](https://alfredoramos.mx/donate/)     |
+| :--------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
+| [![Donate with PayPal](https://alfredoramos.mx/images/donate_paypal.svg)](https://alfredoramos.mx/donate/) | [![Donate with Stripe](https://alfredoramos.mx/images/donate_stripe.svg)](https://alfredoramos.mx/donate/) |
 
 ### Installation
 
