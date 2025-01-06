@@ -82,7 +82,8 @@ class listener implements EventSubscriberInterface
 			empty($spoiler['bbcode_tag']) ||
 			empty($spoiler['bbcode_match']) ||
 			empty($spoiler['bbcode_tpl'])
-		) {
+		)
+		{
 			return;
 		}
 
@@ -132,7 +133,8 @@ class listener implements EventSubscriberInterface
 	 */
 	public function acp_config_add($event)
 	{
-		if ($event['mode'] !== 'post') {
+		if ($event['mode'] !== 'post')
+		{
 			return;
 		}
 
