@@ -8,29 +8,21 @@
 .spoiler-title {
 	overflow: hidden;
 }
-
 .spoiler-header {
-	display: -ms-flexbox;
 	display: flex;
-	-ms-flex-pack: justify;
-	-ms-flex-align: start;
-	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 	justify-content: space-between;
 	align-items: flex-start;
 	cursor: pointer;
 }
-
 .spoiler-header:before {
 	font-size: 1em;
 	padding-right: 0;
 }
-
 .spoiler-header:before,
 .spoiler[open] > .spoiler-header:before {
 	content: '';
 }
-
 .spoiler-title {
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -38,21 +30,15 @@
 	flex-grow: 1;
 	min-width: 0;
 	max-width: 100%;
-	-ms-flex-positive: 1;
-	-ms-flex-preferred-size: 0;
 }
-
 .spoiler-status {
 	text-align: center;
-	-ms-flex: 0 0 auto;
 	flex: 0 0 auto;
 	align-self: flex-end;
 	width: auto;
 	max-width: 100%;
 	margin-left: 3px;
-	-ms-flex-item-align: end;
 }
-
 .spoiler-header::-webkit-details-marker {
 	display: none;
 }
