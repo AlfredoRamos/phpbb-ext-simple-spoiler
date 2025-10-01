@@ -241,7 +241,7 @@ jobs:
         include:
           - php-version: '8.1'
             db-type: 'postgres'
-            db-version: '11-alpine'
+            db-version: '17-alpine'
           - php-version: '8.4'
             db-type: 'postgres'
             db-version: '18-alpine'
