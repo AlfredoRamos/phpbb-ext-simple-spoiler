@@ -18,14 +18,12 @@ jobs:
     if: ${{ !contains(github.event.head_commit.message, 'skip ci') }}
     name: php ${{ matrix.php-version }}, none none
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental }} # TODO: Remove
     env:
       PHP_VERSION: ${{ matrix.php-version }}
     strategy:
       fail-fast: false
       matrix:
         php-version: ['8.1']
-        experimental: [true] # TODO: Remove
     steps:
       - name: Checkout phpBB
         uses: actions/checkout@v5
@@ -83,7 +81,6 @@ jobs:
 
       - name: Setup EPV
         if: ${{ env.EPV == 1 }}
-        continue-on-error: ${{ matrix.experimental }} # TODO: Remove
         working-directory: phpBB3/phpBB
         run: composer require -n --prefer-dist --no-progress phpbb/epv:dev-master
 
@@ -94,13 +91,11 @@ jobs:
 
       - name: Check image ICC profiles
         if: ${{ env.IMAGE_ICC == 1 }}
-        continue-on-error: ${{ matrix.experimental }} # TODO: Remove
         working-directory: phpBB3
         run: .github/check-image-icc-profiles.sh
 
       - name: Check executable files
         if: ${{ env.EXECUTABLE_FILES == 1 }}
-        continue-on-error: ${{ matrix.experimental }} # TODO: Remove
         working-directory: phpBB3
         run: .github/ext-check-executable-files.sh ./ $EXTNAME
 
@@ -215,7 +210,6 @@ jobs:
           cp -a .github/phpunit* phpBB/ext/$EXTNAME/ci/
 
       - name: Run unit tests
-        continue-on-error: ${{ matrix.experimental }} # TODO: Remove
         working-directory: phpBB3
         run: phpBB/vendor/bin/phpunit --configuration phpBB/ext/$EXTNAME/ci/phpunit-$DB-github.xml --bootstrap tests/bootstrap.php
 
