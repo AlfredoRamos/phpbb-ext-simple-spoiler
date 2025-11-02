@@ -50,7 +50,7 @@ class helper
 	protected $acp_bbcodes;
 
 	/** @var array */
-	protected $tables;
+	protected $tables = [];
 
 	/**
 	 * Constructor of the helper class.
@@ -68,7 +68,7 @@ class helper
 	 *
 	 * @return void
 	 */
-	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, utils $utils, ext_manager $ext_manager, $root_path, $php_ext, $bbcodes_table)
+	public function __construct(database $db, filesystem $filesystem, language $language, template $template, config $config, utils $utils, ext_manager $ext_manager, string $root_path, string $php_ext, string $bbcodes_table)
 	{
 		$this->db = $db;
 		$this->filesystem = $filesystem;
@@ -157,7 +157,7 @@ class helper
 	 *
 	 * @return integer
 	 */
-	public function bbcode_exists($bbcode_tag = '')
+	public function bbcode_exists(string $bbcode_tag = ''): int
 	{
 		if (empty($bbcode_tag))
 		{
@@ -183,7 +183,7 @@ class helper
 	 *
 	 * @return integer
 	 */
-	public function bbcode_id()
+	public function bbcode_id(): int
 	{
 		$sql = 'SELECT MAX(bbcode_id) as last_id
 			FROM ' . $this->tables['bbcodes'];
@@ -208,7 +208,7 @@ class helper
 	 *
 	 * @return void
 	 */
-	public function add_bbcode($data = [])
+	public function add_bbcode(array $data = [])
 	{
 		if (
 			empty($data) ||
@@ -230,7 +230,7 @@ class helper
 	 *
 	 * @return void
 	 */
-	public function remove_bbcode($bbcode_tag = '')
+	public function remove_bbcode(string $bbcode_tag = '')
 	{
 		if (empty($bbcode_tag))
 		{
@@ -256,7 +256,7 @@ class helper
 	 *
 	 * @return void
 	 */
-	public function update_bbcode($bbcode_id = -1, $data = [])
+	public function update_bbcode(int $bbcode_id = -1, array $data = [])
 	{
 		$bbcode_id = (int) $bbcode_id;
 
@@ -280,7 +280,7 @@ class helper
 	 *
 	 * @return void
 	 */
-	public function add_bbcode_help($block_name = '')
+	public function add_bbcode_help(string $block_name = '')
 	{
 		if (empty($block_name) || $block_name !== 'HELP_BBCODE_BLOCK_OTHERS')
 		{
@@ -339,7 +339,7 @@ class helper
 	 *
 	 * @return array
 	 */
-	public function add_acp_config($display_vars = [])
+	public function add_acp_config(array $display_vars = []): array
 	{
 		if (empty($display_vars) || empty($display_vars['vars']))
 		{
@@ -374,7 +374,7 @@ class helper
 	 *
 	 * @return string
 	 */
-	public function remove_nested_spoilers($xml = '')
+	public function remove_nested_spoilers(string $xml = ''): string
 	{
 		if (empty($xml))
 		{
@@ -400,7 +400,7 @@ class helper
 	 *
 	 * @return string
 	 */
-	public function remove_description_spoilers($description = '')
+	public function remove_description_spoilers(string $description = ''): string
 	{
 		if (empty($description))
 		{
@@ -418,7 +418,7 @@ class helper
 	 *
 	 * @return array
 	 */
-	public function posting_template_vars($template_vars = [])
+	public function posting_template_vars(array $template_vars = []): array
 	{
 		if (empty($template_vars) || !$this->ext_manager->is_enabled('vse/abbc3') || empty($this->config['abbc3_icons_type']))
 		{
@@ -435,7 +435,7 @@ class helper
 	 *
 	 * @return array
 	 */
-	public function bbcode_data()
+	public function bbcode_data(): array
 	{
 		// Return absolute path if file exists
 		$xsl = $this->filesystem->realpath(
