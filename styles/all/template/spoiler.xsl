@@ -16,7 +16,7 @@
 			</xsl:choose>
 		</span>
 		<span class="spoiler-status">
-			<i class="icon fa-fw fa-eye" aria-hidden="true"></i>
+			<i class="icon o-icon o-icon-font fa-fw fa-eye fas" aria-hidden="true"></i>
 		</span>
 	</summary>
 	<div class="spoiler-body"><xsl:apply-templates/></div>
